@@ -22,6 +22,9 @@ import {
   Rocket
 } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { Reveal } from "@/components/ui/Reveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/Stagger";
+import { Parallax } from "@/components/ui/Parallax";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -114,17 +117,23 @@ export function HomePage() {
 
         <div className="container relative z-20">
           <div className="max-w-4xl">
-            <FadeIn direction="right">
+            <Reveal direction="right">
               <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-primary/10 backdrop-blur-md border border-primary/20 rounded-full text-[10px] font-black mb-10 text-primary tracking-[0.2em] uppercase">
                 <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
                 SGS em Operação Real
               </div>
+            </Reveal>
+            <Reveal direction="right" delay={0.1} width="100%">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-10 leading-[1.05] tracking-tighter text-sgs-navy text-balance">
                 A Inteligência da <span className="text-primary">Segurança</span> no Campo
               </h1>
+            </Reveal>
+            <Reveal direction="right" delay={0.2} width="100%">
               <p className="text-xl md:text-2xl text-slate-600 mb-14 leading-relaxed max-w-2xl font-medium text-pretty">
                 A plataforma que TSTs e Supervisores usam para garantir conformidade em tempo real. DDS, PT e APR direto do campo para a governança.
               </p>
+            </Reveal>
+            <FadeIn direction="up" delay={0.4}>
               <div className="flex flex-wrap gap-6">
                 <Link
                   href="https://app.sgsseguranca.com.br"
@@ -146,24 +155,24 @@ export function HomePage() {
 
       {/* Client Logos Section - Refined */}
       <section className="container">
-        <FadeIn direction="up">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
+          <FadeIn direction="up">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-16 relative">
               <span className="absolute -left-12 top-1/2 w-8 h-[1px] bg-slate-200"></span>
               Empresas que confiam na nossa governança
               <span className="absolute -right-12 top-1/2 w-8 h-[1px] bg-slate-200"></span>
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-1000 w-full">
-              {clientLogos.map((logo, i) => (
-                <div key={i} className="flex justify-center group cursor-crosshair">
-                  <div className="h-12 w-full max-w-[140px] bg-slate-50 rounded-2xl flex items-center justify-center font-black text-[11px] text-slate-400 border border-slate-100 uppercase tracking-tighter group-hover:border-primary/20 group-hover:bg-white group-hover:shadow-sgs transition-all duration-500">
-                    {logo.name}
-                  </div>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-1000 w-full">
+            {clientLogos.map((logo, i) => (
+              <StaggerItem key={i} className="flex justify-center group cursor-crosshair">
+                <div className="h-12 w-full max-w-[140px] bg-slate-50 rounded-2xl flex items-center justify-center font-black text-[11px] text-slate-400 border border-slate-100 uppercase tracking-tighter group-hover:border-primary/20 group-hover:bg-white group-hover:shadow-sgs transition-all duration-500">
+                  {logo.name}
                 </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </section>
 
       {/* Field Action Gallery - Refined */}
@@ -179,25 +188,27 @@ export function HomePage() {
           </div>
         </FadeIn>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {fieldPhotos.map((photo, i) => (
-            <FadeIn key={i} direction="up" delay={i * 0.1}>
-              <div className="group relative aspect-[3/4] bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sgs hover:shadow-premium transition-all duration-700">
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
-                  <Camera className="w-12 h-12 text-slate-200 opacity-20" />
+            <StaggerItem key={i}>
+              <Parallax offset={i % 2 === 0 ? 20 : -20}>
+                <div className="group relative aspect-[3/4] bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sgs hover:shadow-premium transition-all duration-700">
+                  <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
+                    <Camera className="w-12 h-12 text-slate-200 opacity-20" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-sgs-navy via-sgs-navy/40 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-700"></div>
+                  <div className="absolute inset-0 p-10 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">{photo.category}</p>
+                    <h4 className="text-2xl font-black text-white mb-3 leading-tight">{photo.title}</h4>
+                    <p className="text-sm text-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 leading-relaxed">
+                      {photo.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-sgs-navy via-sgs-navy/40 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-700"></div>
-                <div className="absolute inset-0 p-10 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">{photo.category}</p>
-                  <h4 className="text-2xl font-black text-white mb-3 leading-tight">{photo.title}</h4>
-                  <p className="text-sm text-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 leading-relaxed">
-                    {photo.desc}
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
+              </Parallax>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* Value Proposition */}
