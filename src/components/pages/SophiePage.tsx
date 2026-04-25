@@ -18,6 +18,7 @@ import {
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const initialMessages = [
   { role: "bot", content: "Olá! Eu sou a Sophie, sua assistente SST. Como posso te ajudar hoje?" },
