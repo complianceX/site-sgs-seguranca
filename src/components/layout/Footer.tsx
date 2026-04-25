@@ -12,9 +12,9 @@ export function Footer() {
               <Image 
                 src="/images/logo-sgs.png" 
                 alt="SGS Logo" 
-                width={120} 
-                height={40} 
-                className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                width={160} 
+                height={54} 
+                className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </Link>
             <p className="text-sm leading-relaxed mb-10 text-slate-500 font-medium max-w-sm">
