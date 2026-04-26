@@ -1,10 +1,10 @@
 "use client";
 
-import { 
-  FileCheck, 
-  History, 
-  ShieldCheck, 
-  Globe, 
+import {
+  FileCheck,
+  History,
+  ShieldCheck,
+  Globe,
   Search,
   CheckCircle2,
   QrCode,
@@ -25,10 +25,10 @@ export function GovernancePage() {
   const handleValidate = (e: React.FormEvent) => {
     e.preventDefault();
     if (!code) return;
-    
+
     setIsValidating(true);
     setResult(null);
-    
+
     setTimeout(() => {
       setIsValidating(false);
       if (code.toUpperCase().includes("SGS-")) {
@@ -53,7 +53,7 @@ export function GovernancePage() {
               A Autoridade Técnica da sua <span className="text-primary">Operação</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-pretty max-w-3xl">
-              No SGS, documentos oficiais não ficam soltos. Cada artefato tem origem, controle, 
+              No SGS, documentos oficiais não ficam soltos. Cada artefato tem origem, controle,
               acesso seguro e uma trilha de verificação completa para garantir a integridade da sua empresa.
             </p>
           </FadeIn>
@@ -68,7 +68,7 @@ export function GovernancePage() {
               </div>
               <h2 className="text-3xl font-black mb-6 text-sgs-navy tracking-tight">PDF Final Oficial</h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-10 font-medium">
-                Todo documento finalizado no sistema gera um PDF oficial imutável. Este arquivo é o 
+                Todo documento finalizado no sistema gera um PDF oficial imutável. Este arquivo é o
                 "selo de verdade" da sua operação, pronto para auditorias e fiscalizações.
               </p>
               <ul className="space-y-4">
@@ -96,7 +96,7 @@ export function GovernancePage() {
               </div>
               <h2 className="text-3xl font-black mb-6 text-sgs-navy tracking-tight">Trilha Forense</h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-10 font-medium">
-                Mantemos um registro append-only de todos os eventos críticos. Saiba exatamente quem, 
+                Mantemos um registro append-only de todos os eventos críticos. Saiba exatamente quem,
                 quando e onde cada documento foi criado, alterado ou visualizado.
               </p>
               <ul className="space-y-4">
@@ -125,35 +125,35 @@ export function GovernancePage() {
             <FadeIn direction="right">
               <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-sgs-orange/5 text-sgs-orange rounded-full text-[10px] font-black mb-10 tracking-[0.2em] uppercase">
                 <QrCode className="w-4 h-4" />
-                Registry Simulator
+                Simulação de validação documental
               </div>
               <h2 className="text-4xl lg:text-5xl font-black mb-8 text-sgs-navy tracking-tight">Validação Pública</h2>
               <p className="text-slate-500 text-xl font-medium mb-12 leading-relaxed">
                 No sistema real, qualquer fiscal ou contratante pode verificar a autenticidade de um documento instantaneamente via QR Code.
               </p>
-              
+
               <form onSubmit={handleValidate} className="space-y-6">
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                     placeholder="Ex: SGS-8829-PX"
                     className="flex-grow bg-slate-50 border border-slate-200 rounded-[1.25rem] px-8 py-5 text-lg font-bold text-sgs-navy focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all"
                   />
-                  <button 
+                  <button
                     disabled={isValidating || !code}
                     className="bg-primary hover:bg-primary/90 disabled:opacity-50 text-white font-black px-10 py-5 rounded-[1.25rem] flex items-center justify-center gap-3 transition-all shadow-xl shadow-primary/20 text-lg group"
                   >
                     {isValidating ? <Loader2 className="w-6 h-6 animate-spin" /> : <>Validar <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>}
                   </button>
                 </div>
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest italic">Dica: Use um código começando com "SGS-" para o simulador.</p>
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest italic">Demonstração ilustrativa do fluxo de validação pública.</p>
               </form>
 
               <AnimatePresence mode="wait">
                 {result && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
@@ -173,8 +173,8 @@ export function GovernancePage() {
                         {result === "valid" ? "Documento Autêntico" : "Documento não encontrado"}
                       </h4>
                       <p className="text-slate-500 font-medium leading-relaxed">
-                        {result === "valid" 
-                          ? "Este documento foi gerado pelo sistema SGS e possui integridade garantida por hash criptográfico." 
+                        {result === "valid"
+                          ? "Este documento foi gerado pelo sistema SGS e possui integridade garantida por hash criptográfico."
                           : "O código informado não corresponde a nenhum documento oficial em nossa base de dados."}
                       </p>
                     </div>
@@ -192,7 +192,7 @@ export function GovernancePage() {
                   </div>
                   <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Registry Portal</span>
                 </div>
-                
+
                 <div className="space-y-8 mb-12">
                   <div className="flex gap-5">
                     <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform duration-500">
@@ -230,11 +230,11 @@ export function GovernancePage() {
           <FadeIn direction="right" className="lg:col-span-1">
             <h2 className="text-4xl lg:text-5xl font-black mb-8 text-sgs-navy tracking-tight leading-tight">Central de Pendências</h2>
             <p className="text-xl text-slate-500 leading-relaxed font-medium">
-              Não perca prazos. Nossa central agrega gargalos documentais e classifica criticidades 
+              Não perca prazos. Nossa central agrega gargalos documentais e classifica criticidades
               automaticamente para que você saiba exatamente onde agir primeiro.
             </p>
           </FadeIn>
-          
+
           <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
              {[
                { title: "Classificação de Risco", desc: "O sistema prioriza pendências com base no impacto operacional e normativo." },

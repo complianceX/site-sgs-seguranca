@@ -1,12 +1,12 @@
 "use client";
 
-import { 
-  Zap, 
-  Brain, 
-  MessageSquare, 
-  ShieldCheck, 
-  Lock, 
-  EyeOff, 
+import {
+  Zap,
+  Brain,
+  MessageSquare,
+  ShieldCheck,
+  Lock,
+  EyeOff,
   Sparkles,
   BarChart3,
   CheckCircle2,
@@ -18,6 +18,7 @@ import {
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const initialMessages = [
   { role: "bot", content: "Olá! Eu sou a Sophie, sua assistente SST. Como posso te ajudar hoje?" },
@@ -46,7 +47,7 @@ export function SophiePage() {
 
   const handleSend = (text: string) => {
     if (!text.trim()) return;
-    
+
     setMessages(prev => [...prev, { role: "user", content: text }]);
     setInput("");
     setIsTyping(true);
@@ -54,7 +55,7 @@ export function SophiePage() {
     setTimeout(() => {
       setIsTyping(false);
       let response = "Desculpe, como sou um simulador, só posso responder a alguns tópicos básicos. No sistema real, eu analisaria todo o seu contexto operacional!";
-      
+
       if (text.toLowerCase().includes("apr")) {
         response = "Para criar uma APR, você deve identificar a atividade, os riscos associados e os controles necessários. Eu posso te ajudar gerando um rascunho baseado na descrição da tarefa!";
       } else if (text.toLowerCase().includes("dds")) {
@@ -81,7 +82,7 @@ export function SophiePage() {
               Conheça a <span className="text-primary">Sophie IA</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium mb-12 text-pretty">
-              Sua assistente inteligente desenhada especificamente para a segurança do trabalho. 
+              Sua assistente inteligente desenhada especificamente para a segurança do trabalho.
               A Sophie apoia a operação, reduz o trabalho manual e gera insights valiosos em tempo real.
             </p>
             <div className="flex flex-wrap gap-6">
@@ -89,6 +90,9 @@ export function SophiePage() {
                 Ver Demonstração <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
+            <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+              Demonstração ilustrativa. A Sophie real opera dentro da plataforma SGS com contexto autorizado.
+            </p>
           </FadeIn>
 
           <FadeIn direction="left" delay={0.2}>
@@ -112,10 +116,10 @@ export function SophiePage() {
                   <div className="w-1 h-1 bg-white/30 rounded-full mx-0.5"></div>
                 </div>
               </div>
-              
+
               <div className="flex-grow overflow-y-auto p-8 space-y-6 bg-slate-50/30">
                 {messages.map((m, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, scale: 0.95, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -123,8 +127,8 @@ export function SophiePage() {
                   >
                     <div className={cn(
                       "max-w-[85%] p-6 rounded-[1.5rem] text-sm font-medium leading-relaxed shadow-sm",
-                      m.role === "user" 
-                        ? "bg-primary text-white rounded-tr-none shadow-primary/10" 
+                      m.role === "user"
+                        ? "bg-primary text-white rounded-tr-none shadow-primary/10"
                         : "bg-white text-slate-700 rounded-tl-none border border-slate-100"
                     )}>
                       {m.content}
@@ -149,7 +153,7 @@ export function SophiePage() {
               <div className="p-6 border-t border-slate-100 bg-white">
                 <div className="flex flex-wrap gap-2 mb-6">
                   {suggestedPrompts.map((p, i) => (
-                    <button 
+                    <button
                       key={i}
                       onClick={() => handleSend(p)}
                       className="text-[10px] font-black uppercase tracking-widest bg-slate-50 border border-slate-100 px-4 py-2 rounded-full hover:border-primary/30 hover:bg-primary/5 hover:text-primary transition-all text-slate-400"
@@ -159,15 +163,15 @@ export function SophiePage() {
                   ))}
                 </div>
                 <div className="relative">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSend(input)}
                     placeholder="Pergunte algo à Sophie..."
                     className="w-full bg-slate-50 border border-slate-100 rounded-[1.25rem] px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all pr-14 text-sgs-navy"
                   />
-                  <button 
+                  <button
                     onClick={() => handleSend(input)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
                   >
@@ -189,25 +193,25 @@ export function SophiePage() {
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { 
-                icon: Brain, 
-                title: "Rascunhos Assistidos", 
-                desc: "Geração automática de rascunhos para APR, PT, DDS e Checklists baseados no contexto da atividade." 
+              {
+                icon: Brain,
+                title: "Rascunhos Assistidos",
+                desc: "Geração automática de rascunhos para APR, PT, DDS e Checklists baseados no contexto da atividade."
               },
-              { 
-                icon: MessageSquare, 
-                title: "Insights Operacionais", 
-                desc: "Análises rápidas de pendências e sugestões de melhoria nos processos de segurança." 
+              {
+                icon: MessageSquare,
+                title: "Insights Operacionais",
+                desc: "Análises rápidas de pendências e sugestões de melhoria nos processos de segurança."
               },
-              { 
-                icon: ShieldCheck, 
-                title: "Análise de Imagem", 
-                desc: "Apoio na identificação visual de riscos e conformidade em fotos enviadas ao sistema." 
+              {
+                icon: ShieldCheck,
+                title: "Análise de Imagem",
+                desc: "Apoio na identificação visual de riscos e conformidade em fotos enviadas ao sistema."
               },
-              { 
-                icon: BarChart3, 
-                title: "Relatórios IA", 
-                desc: "Consolidação mensal assistida para criar visões executivas claras e objetivas." 
+              {
+                icon: BarChart3,
+                title: "Relatórios IA",
+                desc: "Consolidação mensal assistida para criar visões executivas claras e objetivas."
               }
             ].map((cap, i) => (
               <FadeIn key={i} direction="up" delay={i * 0.1}>

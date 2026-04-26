@@ -6,7 +6,7 @@ import { sanitizeContactPayload } from '@/lib/sanitize';
 
 export async function POST(req: Request) {
   const cId = crypto.randomUUID(); // correlationId
-  
+
   try {
     // 1. RATE LIMIT GLOBAL (Sliding Window via Redis)
     const rl = await rateLimit(5, 10 * 60 * 1000);
@@ -29,7 +29,8 @@ export async function POST(req: Request) {
     // 3. VERIFICAÇÃO ANTI-BOT (TURNSTILE)
     const isHuman = await verifyTurnstile(result.data.turnstileToken);
     if (!isHuman) {
-      logSecurityEvent('BOT_ATTEMPT_BLOCKED', { email: result.data.email, correlationId: cId });
+      const emailDomain = result.data.email.split("@")[1] ?? "unknown";
+      logSecurityEvent('BOT_ATTEMPT_BLOCKED', { emailDomain, correlationId: cId });
       return NextResponse.json({ error: 'Falha na verificação anti-bot' }, { status: 403 });
     }
 
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
 
 export async function OPTIONS() {
   // FASE 7: CORS Seguro
-  const allowedOrigin = process.env.NEXT_PUBLIC_SITE_URL || 'https://sgsseguranca.com.br';
+  const allowedOrigin = process.env.SITE_ORIGIN || 'https://sgsseguranca.com.br';
   return new NextResponse(null, {
     status: 204,
     headers: {

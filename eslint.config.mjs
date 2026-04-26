@@ -1,21 +1,11 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
 
 const eslintConfig = [
-  // Importa as configurações base do Next.js
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  
+  ...nextVitals,
+  {
+    ignores: [".next/**", "node_modules/**", ".claude/**"],
+  },
+
   // Regras personalizadas de acessibilidade
   {
     rules: {
@@ -24,6 +14,7 @@ const eslintConfig = [
       "jsx-a11y/alt-text": "error",
       "jsx-a11y/aria-props": "warn",
       "jsx-a11y/no-noninteractive-element-interactions": "warn",
+      "react/no-unescaped-entities": "off",
     },
   },
 ];

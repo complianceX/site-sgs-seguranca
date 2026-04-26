@@ -1,10 +1,10 @@
 "use client";
 
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
   MessageSquare,
   Building,
   User,
@@ -15,27 +15,67 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+type LeadResponse = {
+  success: boolean;
+  error?: string;
+  referenceId?: string;
+  delivery?: "webhook" | "local";
+  fallbackEmail?: string;
+  fallbackSubject?: string;
+};
+
 export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [leadResult, setLeadResult] = useState<LeadResponse | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Honeypot check
+    setSubmitError("");
+    setLeadResult(null);
+
     if (honeypot !== "") {
-      console.warn("Spam detected");
       return;
     }
 
     setIsSubmitting(true);
-    
-    // Mock submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "contact",
+          name: String(formData.get("name") ?? ""),
+          company: String(formData.get("company") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          whatsapp: String(formData.get("whatsapp") ?? ""),
+          message: String(formData.get("message") ?? ""),
+          honeypot,
+        }),
+      });
+
+      const result = (await response.json()) as LeadResponse;
+
+      if (!response.ok || !result.success) {
+        setSubmitError(result.error ?? "Não foi possível enviar sua mensagem agora.");
+        return;
+      }
+
+      setLeadResult(result);
       setSubmitted(true);
-    }, 2000);
+      form.reset();
+      setHoneypot("");
+    } catch {
+      setSubmitError("Falha de conexão. Tente novamente em instantes.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -72,8 +112,8 @@ export function ContactPage() {
                 </div>
                 <div>
                   <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">WhatsApp Business</h4>
-                  <p className="text-lg font-black text-sgs-navy">+55 (11) 99999-9999</p>
-                  <p className="text-sm font-bold text-slate-400">Seg-Sex, 08:00 às 18:00</p>
+                  <p className="text-lg font-black text-sgs-navy">Atendimento digital</p>
+                  <p className="text-sm font-bold text-slate-400">Retorno comercial em horário útil</p>
                 </div>
               </div>
               <div className="flex gap-6 group">
@@ -99,9 +139,9 @@ export function ContactPage() {
                 <p className="text-slate-500 font-medium mb-8 leading-relaxed">
                   Já é cliente e precisa de ajuda técnica? Acesse nossa central de ajuda ou abra um chamado diretamente pelo seu dashboard.
                 </p>
-                <button className="text-primary font-black text-sm uppercase tracking-widest flex items-center gap-3 group/btn">
-                  Acessar Central <Send className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                <a href="mailto:suporte@sgsseguranca.com.br" className="text-primary font-black text-sm uppercase tracking-widest flex items-center gap-3 group/btn">
+                  Falar com suporte <Send className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
               </div>
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors duration-1000"></div>
             </div>
@@ -113,19 +153,19 @@ export function ContactPage() {
               <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48"></div>
               <AnimatePresence mode="wait">
                 {!submitted ? (
-                  <motion.form 
+                  <motion.form
                     key="form"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    onSubmit={handleSubmit} 
+                    onSubmit={handleSubmit}
                     className="space-y-8 relative z-10"
                   >
                     {/* Honeypot field (hidden from users) */}
                     <div className="hidden" aria-hidden="true">
-                      <input 
-                        type="text" 
-                        name="website" 
+                      <input
+                        type="text"
+                        name="website"
                         value={honeypot}
                         onChange={(e) => setHoneypot(e.target.value)}
                         tabIndex={-1}
@@ -133,62 +173,72 @@ export function ContactPage() {
                       />
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-8">
+                    <div className="grid gap-8 xl:grid-cols-2">
                       <div className="space-y-3">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                        <label htmlFor="contact-name" className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                           <User className="w-3.5 h-3.5 text-primary" /> Nome
                         </label>
-                        <input 
+                        <input
                           required
-                          type="text" 
+                          id="contact-name"
+                          name="name"
+                          type="text"
                           placeholder="Seu nome completo"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                         />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                        <label htmlFor="contact-company" className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                           <Building className="w-3.5 h-3.5 text-primary" /> Empresa
                         </label>
-                        <input 
+                        <input
                           required
-                          type="text" 
-                          placeholder="Nome da sua empresa"
+                          id="contact-company"
+                          name="company"
+                          type="text"
+                          placeholder="Empresa"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                         />
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                      <label htmlFor="contact-email" className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                         <Mail className="w-3.5 h-3.5 text-primary" /> E-mail Corporativo
                       </label>
-                      <input 
+                      <input
                         required
-                        type="email" 
+                        id="contact-email"
+                        name="email"
+                        type="email"
                         placeholder="seu@email.com.br"
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                      <label htmlFor="contact-whatsapp" className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                         <Phone className="w-3.5 h-3.5 text-primary" /> WhatsApp
                       </label>
-                      <input 
+                      <input
                         required
-                        type="tel" 
-                        placeholder="(11) 99999-9999"
+                        id="contact-whatsapp"
+                        name="whatsapp"
+                        type="tel"
+                        placeholder="DDD + número"
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Como podemos ajudar?</label>
-                      <textarea 
+                      <label htmlFor="contact-message" className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Como podemos ajudar?</label>
+                      <textarea
                         required
+                        id="contact-message"
+                        name="message"
                         rows={4}
                         placeholder="Conte-nos um pouco sobre sua necessidade técnica ou comercial..."
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all resize-none text-sgs-navy"
                       ></textarea>
                     </div>
-                    <button 
+                    <button
                       disabled={isSubmitting}
                       className="w-full bg-primary text-white font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-3 text-lg group/btn"
                     >
@@ -198,12 +248,17 @@ export function ContactPage() {
                         <>Enviar Mensagem <Send className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" /></>
                       )}
                     </button>
+                    {submitError && (
+                      <p role="alert" className="text-sm font-bold text-sgs-red text-center">
+                        {submitError}
+                      </p>
+                    )}
                     <p className="text-[10px] font-bold text-center text-slate-400 uppercase tracking-widest">
-                      Segurança e Privacidade Garantidas
+                      Usaremos seus dados apenas para responder este contato. Consulte nossa Política de Privacidade.
                     </p>
                   </motion.form>
                 ) : (
-                  <motion.div 
+                  <motion.div
                     key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -212,11 +267,17 @@ export function ContactPage() {
                     <div className="w-20 h-20 bg-sgs-green/10 text-sgs-green rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 className="w-10 h-10" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">Mensagem Enviada!</h3>
+                    <h3 className="text-2xl font-bold mb-4">Solicitação registrada</h3>
                     <p className="text-muted-foreground mb-8">
-                      Obrigado pelo contato. Nossa equipe analisará sua solicitação e retornará em breve para o e-mail informado.
+                      Recebemos sua mensagem e vamos retornar pelo contato informado.
+                      {leadResult?.referenceId ? ` Protocolo: ${leadResult.referenceId.slice(0, 8).toUpperCase()}.` : ""}
                     </p>
-                    <button 
+                    {leadResult?.delivery === "local" && (
+                      <p className="text-xs font-bold text-slate-400 mb-8">
+                        Encaminhamento externo ainda não configurado neste ambiente. Para urgências, escreva para contato@sgsseguranca.com.br.
+                      </p>
+                    )}
+                    <button
                       onClick={() => setSubmitted(false)}
                       className="text-primary font-bold hover:underline"
                     >

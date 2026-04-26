@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "SGS Segurança" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e9]:
+          - generic [ref=e10]: SGS
+          - generic [ref=e11]: Segurança
+      - navigation [ref=e12]:
+        - generic [ref=e13]:
+          - link "Módulos" [ref=e15] [cursor=pointer]:
+            - /url: /modulos
+            - generic [ref=e16]: Módulos
+          - link "Governança" [ref=e18] [cursor=pointer]:
+            - /url: /governanca
+            - generic [ref=e19]: Governança
+          - link "IA Sophie" [ref=e21] [cursor=pointer]:
+            - /url: /sophie
+            - generic [ref=e22]: IA Sophie
+          - link "Preços" [ref=e24] [cursor=pointer]:
+            - /url: /precos
+            - generic [ref=e25]: Preços
+          - link "Blog" [ref=e27] [cursor=pointer]:
+            - /url: /blog
+            - generic [ref=e28]: Blog
+          - link "Recursos" [ref=e30] [cursor=pointer]:
+            - /url: /recursos
+            - generic [ref=e31]: Recursos
+          - link "Contato" [ref=e33] [cursor=pointer]:
+            - /url: /contato
+            - generic [ref=e34]: Contato
+        - link "Agendar demonstração" [ref=e36] [cursor=pointer]:
+          - /url: /contato
+          - button "Agendar demonstração" [ref=e37]:
+            - generic [ref=e39]:
+              - text: Agendar demonstração
+              - img [ref=e40]
+  - main [ref=e42]:
+    - generic [ref=e44]:
+      - heading "404" [level=1] [ref=e45]
+      - heading "This page could not be found." [level=2] [ref=e47]
+  - contentinfo [ref=e48]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - link "SGS Segurança" [ref=e52] [cursor=pointer]:
+            - /url: /
+            - img [ref=e54]
+            - generic [ref=e56]:
+              - generic [ref=e57]: SGS
+              - generic [ref=e58]: Segurança
+          - paragraph [ref=e59]: Plataforma SaaS para transformar documentos, evidências de campo e prazos de SST em governança rastreável.
+          - generic [ref=e60]:
+            - paragraph [ref=e61]: Newsletter Técnica
+            - generic [ref=e62]:
+              - textbox "Seu melhor e-mail" [ref=e63]
+              - button [ref=e64]:
+                - img [ref=e65]
+        - generic [ref=e67]:
+          - heading "Produto" [level=4] [ref=e68]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "Módulos" [ref=e71] [cursor=pointer]:
+                - /url: /modulos
+            - listitem [ref=e72]:
+              - link "Governança" [ref=e73] [cursor=pointer]:
+                - /url: /governanca
+            - listitem [ref=e74]:
+              - link "IA Sophie" [ref=e75] [cursor=pointer]:
+                - /url: /sophie
+            - listitem [ref=e76]:
+              - link "Integrações" [ref=e77] [cursor=pointer]:
+                - /url: /integracoes
+            - listitem [ref=e78]:
+              - link "Segurança" [ref=e79] [cursor=pointer]:
+                - /url: /seguranca
+        - generic [ref=e80]:
+          - heading "Empresa" [level=4] [ref=e81]
+          - list [ref=e82]:
+            - listitem [ref=e83]:
+              - link "Blog" [ref=e84] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e85]:
+              - link "Recursos" [ref=e86] [cursor=pointer]:
+                - /url: /recursos
+            - listitem [ref=e87]:
+              - link "Contato" [ref=e88] [cursor=pointer]:
+                - /url: /contato
+            - listitem [ref=e89]:
+              - link "Sobre nós" [ref=e90] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e92]:
+          - heading "Pronto para digitalizar seu SST?" [level=4] [ref=e93]
+          - paragraph [ref=e94]: Converse com nossa equipe e veja como o SGS pode se adaptar à realidade da sua operação.
+          - link "Agendar demonstração" [ref=e95] [cursor=pointer]:
+            - /url: /contato
+            - text: Agendar demonstração
+            - img [ref=e96]
+      - generic [ref=e98]:
+        - paragraph [ref=e99]: © 2026 SGS - Segurança do Trabalho. Tecnologia para Vida.
+        - generic [ref=e100]:
+          - link "LinkedIn" [ref=e101] [cursor=pointer]:
+            - /url: "#"
+          - link "Instagram" [ref=e102] [cursor=pointer]:
+            - /url: "#"
+          - link "YouTube" [ref=e103] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e109] [cursor=pointer]:
+    - img [ref=e110]

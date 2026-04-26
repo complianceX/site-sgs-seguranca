@@ -1,15 +1,13 @@
-import DOMPurify from 'isomorphic-dompurify';
-
 /**
- * FASE 5: Sanitização real de inputs para prevenir XSS e Injection
+ * Sanitização leve para textos de formulários institucionais.
+ * Remove tags e caracteres de controle sem depender de pacotes externos.
  */
 export function sanitizeText(value: string): string {
   if (!value) return "";
-  // Remove todas as tags HTML e limpa atributos perigosos
-  return DOMPurify.sanitize(value, {
-    ALLOWED_TAGS: [], // Bloqueio total de tags
-    ALLOWED_ATTR: []
-  }).trim();
+  return value
+    .replace(/<[^>]*>/g, "")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .trim();
 }
 
 export function sanitizeEmailSubject(value: string): string {
@@ -17,9 +15,9 @@ export function sanitizeEmailSubject(value: string): string {
   return sanitizeText(value).replace(/[\r\n]/g, '');
 }
 
-export function sanitizeContactPayload<T extends Record<string, any>>(payload: T): T {
-  const sanitized = { ...payload };
-  if (sanitized.name) sanitized.name = sanitizeText(sanitized.name).substring(0, 120);
-  if (sanitized.message) sanitized.message = sanitizeText(sanitized.message).substring(0, 2000);
-  return sanitized;
+export function sanitizeContactPayload<T extends Record<string, unknown>>(payload: T): T {
+  const sanitized: Record<string, unknown> = { ...payload };
+  if (typeof sanitized.name === "string") sanitized.name = sanitizeText(sanitized.name).substring(0, 120);
+  if (typeof sanitized.message === "string") sanitized.message = sanitizeText(sanitized.message).substring(0, 2000);
+  return sanitized as T;
 }

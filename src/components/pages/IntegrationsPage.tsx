@@ -1,12 +1,12 @@
 "use client";
 
-import { 
-  Cloud, 
-  Mail, 
-  Calendar, 
-  Database, 
-  Cpu, 
-  Shield, 
+import {
+  Cloud,
+  Mail,
+  Calendar,
+  Database,
+  Cpu,
+  Shield,
   ArrowRight,
   ExternalLink,
   Code2,
@@ -20,9 +20,9 @@ const integrationGroups = [
   {
     category: "Inteligência & IA",
     integrations: [
-      { 
-        name: "OpenAI / Sophie", 
-        icon: Cpu, 
+      {
+        name: "OpenAI / Sophie",
+        icon: Cpu,
         desc: "Motor de IA assistiva para geração de rascunhos de APR, PT e DDS, além de análise de imagens de risco.",
         features: ["Sanitização de PII", "Consentimento do Usuário", "Circuit Breaker"]
       },
@@ -31,9 +31,9 @@ const integrationGroups = [
   {
     category: "Produtividade & Eventos",
     integrations: [
-      { 
-        name: "Google Calendar API", 
-        icon: Calendar, 
+      {
+        name: "Google Calendar API",
+        icon: Calendar,
         desc: "Sincronização automática de vencimentos de exames, treinamentos e eventos operacionais no calendário.",
         features: ["Timezone Brasil", "Eventos Críticos", "Alertas Push"]
       },
@@ -42,9 +42,9 @@ const integrationGroups = [
   {
     category: "Comunicação & Notificações",
     integrations: [
-      { 
-        name: "Brevo / SMTP / Resend", 
-        icon: Mail, 
+      {
+        name: "Brevo / SMTP / Resend",
+        icon: Mail,
         desc: "Fluxos de e-mail automatizados para envio de documentos, alertas de pendências e notificações de sistema.",
         features: ["Filas BullMQ", "Logs de Envio", "Retries Automáticos"]
       },
@@ -53,17 +53,17 @@ const integrationGroups = [
   {
     category: "Storage & Infraestrutura",
     integrations: [
-      { 
-        name: "Cloudflare R2 / S3", 
-        icon: Box, 
+      {
+        name: "Cloudflare R2 / S3",
+        icon: Box,
         desc: "Armazenamento governado de PDFs oficiais, evidências em vídeo e anexos com URLs assinadas.",
         features: ["Integridade Hash", "URLs Temporárias", "Disaster Recovery"]
       },
-      { 
-        name: "Supabase PostgreSQL", 
-        icon: Database, 
-        desc: "Banco de dados principal com isolamento multi-tenant real via Row Level Security (RLS).",
-        features: ["RLS Nativo", "Pooler de Alta Performance", "Migrations Versionadas"]
+      {
+        name: "PostgreSQL gerenciado",
+        icon: Database,
+        desc: "Banco de dados relacional para dados estruturados da plataforma, com governança de schema e isolamento por empresa.",
+        features: ["Isolamento por Empresa", "Migrations Versionadas", "Operação Gerenciada"]
       },
     ]
   }
@@ -83,7 +83,7 @@ export function IntegrationsPage() {
               Integrações que potencializam sua <span className="text-primary">Operação</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-pretty max-w-3xl">
-              O SGS não é uma ilha. Nossa arquitetura foi desenhada para se conectar aos melhores provedores 
+              O SGS não é uma ilha. Nossa arquitetura foi desenhada para se conectar aos melhores provedores
               de tecnologia, garantindo escalabilidade e segurança para seus dados.
             </p>
           </FadeIn>
@@ -148,15 +148,14 @@ export function IntegrationsPage() {
                   </h2>
                 </div>
                 <p className="text-white/60 text-xl font-medium mb-12 leading-relaxed">
-                  Conecte seu ERP ou BI diretamente ao SGS. Nossa API REST permite extrair indicadores, 
-                  sincronizar trabalhadores e gerir documentos programaticamente.
+                  Exemplo ilustrativo de integração para equipes técnicas. APIs e chaves reais ficam no ambiente operacional do SGS, com controles próprios de autenticação e autorização.
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="px-10 py-5 bg-primary text-white rounded-2xl font-black text-lg hover:bg-primary/90 transition-all flex items-center gap-3 shadow-xl shadow-primary/20 group/btn">
-                    Documentação API <ExternalLink className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
+                    Conversar sobre integrações <ExternalLink className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
                   </button>
                   <button className="px-10 py-5 bg-white/5 text-white border border-white/10 rounded-2xl font-black text-lg hover:bg-white/10 transition-all backdrop-blur-sm">
-                    Solicitar API Key
+                    Agendar avaliação técnica
                   </button>
                 </div>
               </div>
@@ -167,7 +166,7 @@ export function IntegrationsPage() {
                   <div className="w-3 h-3 rounded-full bg-green-500/50" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-primary mb-4 font-black">GET /api/v1/kpis/site-status</p>
+                  <p className="text-primary mb-4 font-black">GET /exemplo/kpis/site-status</p>
                   <p className="text-white/30">{"{"}</p>
                   <p className="pl-6 text-white/80">"site": <span className="text-sgs-orange">"Planta-Industrial-04"</span>,</p>
                   <p className="pl-6 text-white/80">"status": <span className="text-sgs-green">"compliant"</span>,</p>

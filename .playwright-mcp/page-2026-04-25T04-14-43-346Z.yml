@@ -1,0 +1,350 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "SGS Segurança" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e9]:
+          - generic [ref=e10]: SGS
+          - generic [ref=e11]: Segurança
+      - navigation [ref=e12]:
+        - generic [ref=e13]:
+          - link "Módulos" [ref=e15] [cursor=pointer]:
+            - /url: /modulos
+            - generic [ref=e16]: Módulos
+          - link "Governança" [ref=e18] [cursor=pointer]:
+            - /url: /governanca
+            - generic [ref=e19]: Governança
+          - link "IA Sophie" [ref=e21] [cursor=pointer]:
+            - /url: /sophie
+            - generic [ref=e22]: IA Sophie
+          - link "Preços" [ref=e24] [cursor=pointer]:
+            - /url: /precos
+            - generic [ref=e25]: Preços
+          - link "Blog" [ref=e27] [cursor=pointer]:
+            - /url: /blog
+            - generic [ref=e28]: Blog
+          - link "Recursos" [ref=e30] [cursor=pointer]:
+            - /url: /recursos
+            - generic [ref=e31]: Recursos
+          - link "Contato" [ref=e33] [cursor=pointer]:
+            - /url: /contato
+            - generic [ref=e34]: Contato
+        - link "Agendar demonstração" [ref=e36] [cursor=pointer]:
+          - /url: /contato
+          - button "Agendar demonstração" [ref=e37]:
+            - generic [ref=e39]:
+              - text: Agendar demonstração
+              - img [ref=e40]
+  - main [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic:
+          - img
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - generic:
+                - generic: Compliance Engine
+              - generic: AUDIT READY · 256-BIT ENCRYPTION
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - generic:
+                - generic: Immutable Registry
+                - img
+              - generic: Block-level Integrity Verified
+        - generic [ref=e51]:
+          - generic [ref=e52]: Site institucional do SGS
+          - heading "Software de gestão de SST para documentos, evidências e conformidade em campo" [level=1] [ref=e54]:
+            - generic [ref=e55]:
+              - generic [ref=e57]: Software
+              - generic [ref=e59]: de
+              - generic [ref=e61]: gestão
+              - generic [ref=e63]: de
+              - generic [ref=e65]: SST
+              - generic [ref=e67]: para
+              - generic [ref=e69]: documentos,
+              - generic [ref=e71]: evidências
+              - generic [ref=e73]: e
+              - generic [ref=e75]: conformidade
+              - generic [ref=e77]: em
+              - generic [ref=e79]: campo
+          - paragraph [ref=e80]: O SGS conecta documentos críticos, evidências de campo e prazos de SST em uma governança rastreável para empresas que precisam reduzir retrabalho e risco operacional.
+          - generic [ref=e81]:
+            - link "Agendar demonstração" [ref=e82] [cursor=pointer]:
+              - /url: /contato
+              - button "Agendar demonstração" [ref=e83]:
+                - generic [ref=e85]:
+                  - text: Agendar demonstração
+                  - img [ref=e86]
+            - link "Ver Planos" [ref=e88] [cursor=pointer]:
+              - /url: /precos
+              - button "Ver Planos" [ref=e89]:
+                - generic [ref=e91]: Ver Planos
+      - generic [ref=e94]:
+        - paragraph [ref=e95]: Setores onde o SGS gera valor
+        - generic [ref=e98]:
+          - generic "Setor industrial" [ref=e100]: Indústria
+          - generic "Construção civil" [ref=e102]: Construção
+          - generic "Operações de mineração" [ref=e104]: Mineração
+          - generic "Logística e transporte" [ref=e106]: Logística
+          - generic "Facilities e manutenção" [ref=e108]: Facilities
+          - generic "Energia e utilities" [ref=e110]: Energia
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - heading "A autoridade em Gestão de SST" [level=2] [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e116]: A
+              - generic [ref=e118]: autoridade
+              - generic [ref=e120]: em
+              - generic [ref=e122]: Gestão
+              - generic [ref=e124]: de
+              - generic [ref=e126]: SST
+          - paragraph [ref=e127]: O SGS combina tecnologia de ponta com as melhores práticas de governança documental para sua empresa.
+        - generic [ref=e128]:
+          - generic [ref=e131]:
+            - img [ref=e133]
+            - heading "Segurança & LGPD" [level=3] [ref=e136]
+            - paragraph [ref=e137]: Isolamento de dados e controles nativos de privacidade para apoiar sua conformidade.
+          - generic [ref=e140]:
+            - img [ref=e142]
+            - heading "Governança Documental" [level=3] [ref=e145]
+            - paragraph [ref=e146]: Registry de documentos com trilha forense e validação pública para auditorias impecáveis.
+          - generic [ref=e149]:
+            - img [ref=e151]
+            - heading "IA Sophie Assistiva" [level=3] [ref=e154]
+            - paragraph [ref=e155]: Inteligência artificial que apoia a operação, reduzindo o trabalho manual e aumentando a precisão.
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - img [ref=e159]
+            - text: Implementação Rápida
+          - heading "Como o SGS entra na sua Operação" [level=2] [ref=e164]:
+            - generic [ref=e165]:
+              - generic [ref=e167]: Como
+              - generic [ref=e169]: o
+              - generic [ref=e171]: SGS
+              - generic [ref=e173]: entra
+              - generic [ref=e175]: na
+              - generic [ref=e177]: sua
+              - generic [ref=e179]: Operação
+        - generic [ref=e180]:
+          - generic [ref=e184]:
+            - img [ref=e186]
+            - generic [ref=e191]: "01"
+            - heading "Setup & Unidades" [level=3] [ref=e192]
+            - paragraph [ref=e193]: Estruturamos suas unidades, sites e hierarquia de acesso (RBAC) em minutos.
+          - generic [ref=e196]:
+            - img [ref=e198]
+            - generic [ref=e201]: "02"
+            - heading "Importação de Dados" [level=3] [ref=e202]
+            - paragraph [ref=e203]: Sincronizamos sua base de trabalhadores, treinamentos e exames atuais.
+          - generic [ref=e206]:
+            - img [ref=e208]
+            - generic [ref=e211]: "03"
+            - heading "Customização IA" [level=3] [ref=e212]
+            - paragraph [ref=e213]: A Sophie aprende o contexto técnico da sua empresa para rascunhos precisos.
+          - generic [ref=e216]:
+            - img [ref=e218]
+            - generic [ref=e223]: "04"
+            - heading "Go-Live no Campo" [level=3] [ref=e224]
+            - paragraph [ref=e225]: Treinamento focado no TST e Supervisores para uso direto via tablet ou mobile.
+      - generic [ref=e228]:
+        - heading "Quem usa, confia" [level=2] [ref=e230]:
+          - generic [ref=e231]:
+            - generic [ref=e233]: Quem
+            - generic [ref=e235]: usa,
+            - generic [ref=e237]: confia
+        - generic [ref=e238]:
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - img [ref=e243]
+              - img [ref=e245]
+              - img [ref=e247]
+              - img [ref=e249]
+              - img [ref=e251]
+            - paragraph [ref=e253]: "\"O SGS mudou completamente nossa forma de gerir documentos. O que levava dias para organizar agora fica rastreável, padronizado e pronto para auditoria.\""
+            - generic [ref=e254]:
+              - generic [ref=e255]: R
+              - generic [ref=e256]:
+                - paragraph [ref=e257]: Ricardo Santos
+                - paragraph [ref=e258]: Gerente de SST
+                - paragraph [ref=e259]: Indústria Metalúrgica Sul
+          - generic [ref=e262]:
+            - generic [ref=e263]:
+              - img [ref=e264]
+              - img [ref=e266]
+              - img [ref=e268]
+              - img [ref=e270]
+              - img [ref=e272]
+            - paragraph [ref=e274]: "\"A IA Sophie é uma mão na roda. Os rascunhos de APR e PT economizam horas de trabalho manual da nossa equipe técnica.\""
+            - generic [ref=e275]:
+              - generic [ref=e276]: A
+              - generic [ref=e277]:
+                - paragraph [ref=e278]: Ana Paula Silva
+                - paragraph [ref=e279]: Engenheira de Segurança
+                - paragraph [ref=e280]: Construtora Horizonte
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - img [ref=e285]
+              - img [ref=e287]
+              - img [ref=e289]
+              - img [ref=e291]
+              - img [ref=e293]
+            - paragraph [ref=e295]: "\"O controle de vencimentos de treinamentos e exames reduziu nosso risco operacional drasticamente. Não perdemos mais nenhum prazo.\""
+            - generic [ref=e296]:
+              - generic [ref=e297]: M
+              - generic [ref=e298]:
+                - paragraph [ref=e299]: Marcos Oliveira
+                - paragraph [ref=e300]: Diretor de Operações
+                - paragraph [ref=e301]: Logística Express
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - img [ref=e310]
+            - text: Calculadora de ROI
+          - heading "Quanto sua empresa economiza?" [level=2] [ref=e312]
+          - generic [ref=e313]:
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - generic [ref=e316]: Nº de Trabalhadores
+                - generic [ref=e317]: "100"
+              - slider [ref=e318] [cursor=pointer]: "100"
+            - generic [ref=e319]:
+              - generic [ref=e320]:
+                - generic [ref=e321]: Horas/Mês por Doc (Manual)
+                - generic [ref=e322]: 2h
+              - slider [ref=e323] [cursor=pointer]: "2"
+        - generic [ref=e324]:
+          - paragraph [ref=e326]: Economia Estimada
+          - generic [ref=e327]:
+            - text: "3080"
+            - generic [ref=e328]: h
+          - paragraph [ref=e329]: Poupadas todos os meses.
+          - paragraph [ref=e331]: "*Cálculo baseado em ganho de eficiência de 70% na geração, assinatura e arquivamento de documentos digitais via SGS."
+      - generic [ref=e333]:
+        - generic [ref=e335]:
+          - heading "Perguntas Frequentes" [level=2] [ref=e336]
+          - generic [ref=e337]:
+            - heading "Ainda tem dúvidas?" [level=4] [ref=e338]
+            - link "Abrir chat comercial" [ref=e339] [cursor=pointer]:
+              - /url: /contato
+              - button "Abrir chat comercial" [ref=e340]:
+                - generic [ref=e342]:
+                  - text: Abrir chat comercial
+                  - img [ref=e343]
+        - generic [ref=e345]:
+          - button "O SGS é compatível com a LGPD?" [ref=e348]:
+            - generic [ref=e349]: O SGS é compatível com a LGPD?
+            - img [ref=e351]
+          - button "Como funciona a validação pública de documentos?" [ref=e355]:
+            - generic [ref=e356]: Como funciona a validação pública de documentos?
+            - img [ref=e358]
+          - button "A IA Sophie substitui o técnico de segurança?" [ref=e362]:
+            - generic [ref=e363]: A IA Sophie substitui o técnico de segurança?
+            - img [ref=e365]
+          - button "Posso gerenciar múltiplas unidades ou empresas?" [ref=e369]:
+            - generic [ref=e370]: Posso gerenciar múltiplas unidades ou empresas?
+            - img [ref=e372]
+      - generic [ref=e377]:
+        - heading "Pronto para elevar o nível da sua segurança?" [level=2] [ref=e378]:
+          - generic [ref=e379]:
+            - generic [ref=e381]: Pronto
+            - generic [ref=e383]: para
+            - generic [ref=e385]: elevar
+            - generic [ref=e387]: o
+            - generic [ref=e389]: nível
+            - generic [ref=e391]: da
+            - generic [ref=e393]: sua
+            - generic [ref=e395]: segurança?
+        - generic [ref=e396]:
+          - link "Agendar demonstração" [ref=e397] [cursor=pointer]:
+            - /url: /contato
+            - button "Agendar demonstração" [ref=e398]:
+              - generic [ref=e400]:
+                - text: Agendar demonstração
+                - img [ref=e401]
+          - link "Ver módulos" [ref=e403] [cursor=pointer]:
+            - /url: /modulos
+            - button "Ver módulos" [ref=e404]:
+              - generic [ref=e406]: Ver módulos
+  - contentinfo [ref=e409]:
+    - generic [ref=e410]:
+      - generic [ref=e411]:
+        - generic [ref=e412]:
+          - link "SGS Segurança" [ref=e413] [cursor=pointer]:
+            - /url: /
+            - img [ref=e415]
+            - generic [ref=e417]:
+              - generic [ref=e418]: SGS
+              - generic [ref=e419]: Segurança
+          - paragraph [ref=e420]: Plataforma SaaS para transformar documentos, evidências de campo e prazos de SST em governança rastreável.
+          - generic [ref=e421]:
+            - paragraph [ref=e422]: Newsletter Técnica
+            - generic [ref=e423]:
+              - textbox "Seu melhor e-mail" [ref=e424]
+              - button [ref=e425]:
+                - img [ref=e426]
+        - generic [ref=e428]:
+          - heading "Produto" [level=4] [ref=e429]
+          - list [ref=e430]:
+            - listitem [ref=e431]:
+              - link "Módulos" [ref=e432] [cursor=pointer]:
+                - /url: /modulos
+            - listitem [ref=e433]:
+              - link "Governança" [ref=e434] [cursor=pointer]:
+                - /url: /governanca
+            - listitem [ref=e435]:
+              - link "IA Sophie" [ref=e436] [cursor=pointer]:
+                - /url: /sophie
+            - listitem [ref=e437]:
+              - link "Integrações" [ref=e438] [cursor=pointer]:
+                - /url: /integracoes
+            - listitem [ref=e439]:
+              - link "Segurança" [ref=e440] [cursor=pointer]:
+                - /url: /seguranca
+        - generic [ref=e441]:
+          - heading "Empresa" [level=4] [ref=e442]
+          - list [ref=e443]:
+            - listitem [ref=e444]:
+              - link "Blog" [ref=e445] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e446]:
+              - link "Recursos" [ref=e447] [cursor=pointer]:
+                - /url: /recursos
+            - listitem [ref=e448]:
+              - link "Contato" [ref=e449] [cursor=pointer]:
+                - /url: /contato
+            - listitem [ref=e450]:
+              - link "Termos" [ref=e451] [cursor=pointer]:
+                - /url: /termos
+            - listitem [ref=e452]:
+              - link "Sobre nós" [ref=e453] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e455]:
+          - heading "Pronto para digitalizar seu SST?" [level=4] [ref=e456]
+          - paragraph [ref=e457]: Converse com nossa equipe e veja como o SGS pode se adaptar à realidade da sua operação.
+          - link "Agendar demonstração" [ref=e458] [cursor=pointer]:
+            - /url: /contato
+            - text: Agendar demonstração
+            - img [ref=e459]
+      - generic [ref=e461]:
+        - paragraph [ref=e462]: © 2026 SGS - Segurança do Trabalho. Tecnologia para Vida.
+        - generic [ref=e463]:
+          - button "Cookies" [ref=e464]
+          - generic [ref=e465] [cursor=pointer]: LinkedIn
+          - generic [ref=e466] [cursor=pointer]: Instagram
+          - generic [ref=e467] [cursor=pointer]: YouTube
+  - generic [ref=e469]:
+    - paragraph [ref=e470]:
+      - text: Utilizamos cookies necessários e, com sua autorização, analytics/marketing para melhorar a experiência no site institucional SGS. Ao clicar em aceitar, você concorda com nossa
+      - link "Política de Privacidade" [ref=e471] [cursor=pointer]:
+        - /url: /privacidade
+      - text: .
+    - generic [ref=e472]:
+      - button "Recusar" [ref=e473]
+      - button "Aceitar Cookies" [ref=e474]
+  - alert [ref=e475]

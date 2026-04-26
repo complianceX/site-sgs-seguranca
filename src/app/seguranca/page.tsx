@@ -3,7 +3,7 @@ import { SecurityPage } from "@/components/pages/SecurityPage";
 
 export const metadata: Metadata = {
   title: "Segurança e LGPD - SGS",
-  description: "Isolamento multi-tenant, criptografia, conformidade LGPD e monitoramento 24/7.",
+  description: "Segurança, LGPD, isolamento de dados por empresa, controles de acesso e governança para o software SGS.",
   keywords: ["Segurança da Informação", "LGPD SST", "Multi-tenancy", "SST Seguro"],
 };
 

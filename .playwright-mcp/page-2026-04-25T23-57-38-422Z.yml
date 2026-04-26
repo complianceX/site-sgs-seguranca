@@ -1,0 +1,224 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "SGS Segurança" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e9]:
+          - generic [ref=e10]: SGS
+          - generic [ref=e11]: Segurança
+      - navigation [ref=e12]:
+        - generic [ref=e13]:
+          - link "Módulos" [ref=e15] [cursor=pointer]:
+            - /url: /modulos
+            - generic [ref=e16]: Módulos
+          - link "Governança" [ref=e18] [cursor=pointer]:
+            - /url: /governanca
+            - generic [ref=e19]: Governança
+          - link "IA Sophie" [ref=e21] [cursor=pointer]:
+            - /url: /sophie
+            - generic [ref=e22]: IA Sophie
+          - link "Preços" [ref=e24] [cursor=pointer]:
+            - /url: /precos
+            - generic [ref=e25]: Preços
+          - link "Blog" [ref=e27] [cursor=pointer]:
+            - /url: /blog
+            - generic [ref=e28]: Blog
+          - link "Recursos" [ref=e30] [cursor=pointer]:
+            - /url: /recursos
+            - generic [ref=e31]: Recursos
+          - link "Contato" [ref=e33] [cursor=pointer]:
+            - /url: /contato
+            - generic [ref=e34]: Contato
+        - link "Agendar demonstração" [ref=e36] [cursor=pointer]:
+          - /url: /contato
+          - button "Agendar demonstração" [ref=e37]:
+            - generic [ref=e39]:
+              - text: Agendar demonstração
+              - img [ref=e40]
+  - main [ref=e42]:
+    - generic [ref=e44]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - img [ref=e48]
+          - text: Ecossistema Completo
+        - heading "Cobertura completa da gestão de SST" [level=1] [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e56]: Cobertura
+            - generic [ref=e58]: completa
+            - generic [ref=e60]: da
+            - generic [ref=e62]: gestão
+            - generic [ref=e64]: de
+            - generic [ref=e66]: SST
+        - paragraph [ref=e67]: O SGS é composto por módulos integrados que cobrem todas as necessidades de gestão de SST, desde a operação no campo até a governança executiva.
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e72]:
+            - heading "Documentos de SST" [level=2] [ref=e73]
+            - paragraph [ref=e74]: Capacidades da plataforma para criação e gestão de documentos críticos.
+          - generic [ref=e76]:
+            - generic [ref=e79]:
+              - img [ref=e81]
+              - heading "APR" [level=3] [ref=e84]
+              - paragraph [ref=e85]: Análise Preliminar de Riscos com controle de versões e evidências.
+            - generic [ref=e88]:
+              - img [ref=e90]
+              - heading "PT" [level=3] [ref=e93]
+              - paragraph [ref=e94]: Permissão de Trabalho com fluxos de aprovação e histórico.
+            - generic [ref=e97]:
+              - img [ref=e99]
+              - heading "DDS" [level=3] [ref=e102]
+              - paragraph [ref=e103]: Diálogo Diário de Segurança com assinaturas e vídeos.
+            - generic [ref=e106]:
+              - img [ref=e108]
+              - heading "RDO" [level=3] [ref=e110]
+              - paragraph [ref=e111]: Registro Diário de Obra com evidências e assinaturas.
+            - generic [ref=e114]:
+              - img [ref=e116]
+              - heading "CAT" [level=3] [ref=e118]
+              - paragraph [ref=e119]: Comunicação de Acidente de Trabalho e investigação.
+            - generic [ref=e122]:
+              - img [ref=e124]
+              - heading "Checklists" [level=3] [ref=e127]
+              - paragraph [ref=e128]: Padronização de verificações a partir de templates.
+            - generic [ref=e131]:
+              - img [ref=e133]
+              - heading "Inspeções & Auditorias" [level=3] [ref=e136]
+              - paragraph [ref=e137]: Registros formais, rastreáveis e integrados a ações.
+        - generic [ref=e138]:
+          - generic [ref=e141]:
+            - heading "Pessoas e Conformidade" [level=2] [ref=e142]
+            - paragraph [ref=e143]: Gestão do capital humano e requisitos legais de saúde e segurança.
+          - generic [ref=e145]:
+            - generic [ref=e148]:
+              - img [ref=e150]
+              - heading "Trabalhadores" [level=3] [ref=e155]
+              - paragraph [ref=e156]: Cadastro centralizado com timeline e status operacional.
+            - generic [ref=e159]:
+              - img [ref=e161]
+              - heading "Treinamentos" [level=3] [ref=e164]
+              - paragraph [ref=e165]: Controle de vencimentos e compliance por usuário.
+            - generic [ref=e168]:
+              - img [ref=e170]
+              - heading "Exames Médicos" [level=3] [ref=e174]
+              - paragraph [ref=e175]: Monitoramento de ASOs e exames com visibilidade de prazos.
+            - generic [ref=e178]:
+              - img [ref=e180]
+              - heading "EPI" [level=3] [ref=e185]
+              - paragraph [ref=e186]: Controle de entrega, devolução e substituição com histórico.
+        - generic [ref=e187]:
+          - generic [ref=e190]:
+            - heading "Gestão Operacional" [level=2] [ref=e191]
+            - paragraph [ref=e192]: Estrutura e suporte para as atividades do dia a dia.
+          - generic [ref=e194]:
+            - generic [ref=e197]:
+              - img [ref=e199]
+              - heading "Sites & Empresas" [level=3] [ref=e203]
+              - paragraph [ref=e204]: Estrutura multi-tenant para unidades e permissões (RBAC).
+            - generic [ref=e207]:
+              - img [ref=e209]
+              - heading "Riscos & Atividades" [level=3] [ref=e211]
+              - paragraph [ref=e212]: Base operacional reutilizável para documentos.
+            - generic [ref=e215]:
+              - img [ref=e217]
+              - heading "Ações Corretivas" [level=3] [ref=e220]
+              - paragraph [ref=e221]: Planos de ação, prazos, responsáveis e escalonamento.
+        - generic [ref=e222]:
+          - generic [ref=e225]:
+            - heading "Inteligência e Governança" [level=2] [ref=e226]
+            - paragraph [ref=e227]: Visibilidade, dados e integridade documental.
+          - generic [ref=e229]:
+            - generic [ref=e232]:
+              - img [ref=e234]
+              - heading "Dashboards & KPIs" [level=3] [ref=e235]
+              - paragraph [ref=e236]: Indicadores executivos e operacionais em tempo real.
+            - generic [ref=e239]:
+              - img [ref=e241]
+              - heading "Registry Documental" [level=3] [ref=e244]
+              - paragraph [ref=e245]: Central de documentos oficiais com validação pública.
+            - generic [ref=e248]:
+              - img [ref=e250]
+              - heading "Central de Pendências" [level=3] [ref=e252]
+              - paragraph [ref=e253]: Visão consolidada de gargalos e ações necessárias.
+      - generic [ref=e258]:
+        - heading "Precisa de uma demonstração detalhada?" [level=2] [ref=e259]
+        - paragraph [ref=e260]: Agende uma conversa com nossos especialistas para ver como cada módulo pode ser aplicado à realidade da sua empresa.
+        - generic [ref=e261]:
+          - link "Solicitar Demonstração" [ref=e262] [cursor=pointer]:
+            - /url: /contato
+            - button "Solicitar Demonstração" [ref=e263]:
+              - generic [ref=e265]:
+                - text: Solicitar Demonstração
+                - img [ref=e266]
+          - link "Voltar ao Início" [ref=e268] [cursor=pointer]:
+            - /url: /
+            - button "Voltar ao Início" [ref=e269]:
+              - generic [ref=e271]: Voltar ao Início
+  - contentinfo [ref=e273]:
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - link "SGS Segurança" [ref=e277] [cursor=pointer]:
+            - /url: /
+            - img [ref=e279]
+            - generic [ref=e281]:
+              - generic [ref=e282]: SGS
+              - generic [ref=e283]: Segurança
+          - paragraph [ref=e284]: Plataforma SaaS para transformar documentos, evidências de campo e prazos de SST em governança rastreável.
+          - generic [ref=e285]:
+            - paragraph [ref=e286]: Newsletter Técnica
+            - generic [ref=e287]:
+              - textbox "Seu melhor e-mail" [ref=e288]
+              - button [ref=e289]:
+                - img [ref=e290]
+        - generic [ref=e292]:
+          - heading "Produto" [level=4] [ref=e293]
+          - list [ref=e294]:
+            - listitem [ref=e295]:
+              - link "Módulos" [ref=e296] [cursor=pointer]:
+                - /url: /modulos
+            - listitem [ref=e297]:
+              - link "Governança" [ref=e298] [cursor=pointer]:
+                - /url: /governanca
+            - listitem [ref=e299]:
+              - link "IA Sophie" [ref=e300] [cursor=pointer]:
+                - /url: /sophie
+            - listitem [ref=e301]:
+              - link "Integrações" [ref=e302] [cursor=pointer]:
+                - /url: /integracoes
+            - listitem [ref=e303]:
+              - link "Segurança" [ref=e304] [cursor=pointer]:
+                - /url: /seguranca
+        - generic [ref=e305]:
+          - heading "Empresa" [level=4] [ref=e306]
+          - list [ref=e307]:
+            - listitem [ref=e308]:
+              - link "Blog" [ref=e309] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e310]:
+              - link "Recursos" [ref=e311] [cursor=pointer]:
+                - /url: /recursos
+            - listitem [ref=e312]:
+              - link "Contato" [ref=e313] [cursor=pointer]:
+                - /url: /contato
+            - listitem [ref=e314]:
+              - link "Sobre nós" [ref=e315] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e317]:
+          - heading "Pronto para digitalizar seu SST?" [level=4] [ref=e318]
+          - paragraph [ref=e319]: Converse com nossa equipe e veja como o SGS pode se adaptar à realidade da sua operação.
+          - link "Agendar demonstração" [ref=e320] [cursor=pointer]:
+            - /url: /contato
+            - text: Agendar demonstração
+            - img [ref=e321]
+      - generic [ref=e323]:
+        - paragraph [ref=e324]: © 2026 SGS - Segurança do Trabalho. Tecnologia para Vida.
+        - generic [ref=e325]:
+          - link "LinkedIn" [ref=e326] [cursor=pointer]:
+            - /url: "#"
+          - link "Instagram" [ref=e327] [cursor=pointer]:
+            - /url: "#"
+          - link "YouTube" [ref=e328] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e334] [cursor=pointer]:
+    - img [ref=e335]
