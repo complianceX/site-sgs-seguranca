@@ -1,6 +1,6 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { ShieldCheck, Star } from "lucide-react";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionCard } from "@/components/ui/MotionCard";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -13,22 +13,27 @@ export function TestimonialsSection() {
       <div className="container relative z-10">
         <FadeIn className="text-center mb-24">
           <MotionText as="h2" className="text-4xl lg:text-5xl font-black mb-6 text-sgs-navy tracking-tight">
-            Quem usa, confia
+            Por que empresas usam o SGS?
           </MotionText>
+          <p className="mx-auto max-w-3xl text-lg font-medium leading-relaxed text-slate-500">
+            Sem inventar depoimentos: estes são pilares de capacidade do produto para operações que precisam de controle, evidência e governança.
+          </p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-10">
           {testimonials.map((t, i) => (
             <MotionCard key={i} delay={i * 0.1} className="flex flex-col h-full group">
               <div className="flex gap-1.5 mb-8 text-sgs-orange">
-                {[...Array(t.stars)].map((_, s) => (
-                  <Star 
-                    key={s} 
-                    className="w-4 h-4 fill-current group-hover:scale-110 transition-transform duration-500" 
-                    style={{ transitionDelay: `${s * 100}ms` }} 
+                {t.stars > 0 ? [...Array(t.stars)].map((_, s) => (
+                  <Star
+                    key={s}
+                    className="w-4 h-4 fill-current group-hover:scale-110 transition-transform duration-500"
+                    style={{ transitionDelay: `${s * 100}ms` }}
                   />
-                ))}
+                )) : (
+                  <ShieldCheck className="h-6 w-6 text-primary" />
+                )}
               </div>
-              <p className="text-slate-600 font-medium italic mb-10 text-lg leading-relaxed flex-grow">"{t.text}"</p>
+              <p className="text-slate-600 font-medium mb-10 text-lg leading-relaxed flex-grow">{t.text}</p>
               <div className="flex items-center gap-4 pt-8 border-t border-slate-50">
                 <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-black text-slate-400">
                   {t.name[0]}

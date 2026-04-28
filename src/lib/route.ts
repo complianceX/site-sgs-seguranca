@@ -27,8 +27,8 @@ export async function POST(req: Request) {
     }
 
     // 3. VERIFICAÇÃO ANTI-BOT (TURNSTILE)
-    const isHuman = await verifyTurnstile(result.data.turnstileToken);
-    if (!isHuman) {
+    const turnstile = await verifyTurnstile(result.data.turnstileToken);
+    if (!turnstile.success) {
       const emailDomain = result.data.email.split("@")[1] ?? "unknown";
       logSecurityEvent('BOT_ATTEMPT_BLOCKED', { emailDomain, correlationId: cId });
       return NextResponse.json({ error: 'Falha na verificação anti-bot' }, { status: 403 });

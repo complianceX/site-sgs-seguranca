@@ -16,6 +16,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 
 const resources = [
   {
@@ -64,12 +65,19 @@ export function ResourcesPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [submitError, setSubmitError] = useState("");
   const [leadResult, setLeadResult] = useState<LeadResponse | null>(null);
+  const requiresTurnstile = process.env.NODE_ENV === "production" || Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
   const handleDownload = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !selectedResource) return;
+    if (requiresTurnstile && !turnstileToken) {
+      setSubmitError("Conclua a verificação anti-spam antes de enviar.");
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitError("");
@@ -83,6 +91,7 @@ export function ResourcesPage() {
           source: "resource",
           email,
           resourceTitle: selectedResource.title,
+          turnstileToken,
         }),
       });
       const result = (await response.json()) as LeadResponse;
@@ -98,6 +107,8 @@ export function ResourcesPage() {
         setSubmitted(false);
         setSelectedResource(null);
         setEmail("");
+        setTurnstileToken("");
+        setTurnstileReset((value) => value + 1);
         setLeadResult(null);
       }, 4500);
     } catch {
@@ -152,7 +163,11 @@ export function ResourcesPage() {
                   {res.desc}
                 </p>
                 <button
-                  onClick={() => setSelectedResource(res)}
+                  onClick={() => {
+                    setSelectedResource(res);
+                    setTurnstileToken("");
+                    setTurnstileReset((value) => value + 1);
+                  }}
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-50 text-sgs-navy rounded-2xl font-black text-sm hover:bg-primary hover:text-white transition-all shadow-sm group/btn"
                 >
                   Download Grátis <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -170,7 +185,13 @@ export function ResourcesPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => !submitted && setSelectedResource(null)}
+                onClick={() => {
+                  if (!submitted) {
+                    setSelectedResource(null);
+                    setTurnstileToken("");
+                    setTurnstileReset((value) => value + 1);
+                  }
+                }}
                 className="absolute inset-0 bg-sgs-navy/60 backdrop-blur-md"
               />
               <motion.div
@@ -208,14 +229,20 @@ export function ResourcesPage() {
                           required
                           aria-label="E-mail corporativo para receber material"
                           type="email"
+                          maxLength={160}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="seu@email.com.br"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-16 pr-6 py-5 text-lg font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                         />
                       </div>
+                      <TurnstileWidget
+                        className="flex justify-center"
+                        onTokenChange={setTurnstileToken}
+                        resetSignal={turnstileReset}
+                      />
                       <button
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || (requiresTurnstile && !turnstileToken)}
                         className="w-full bg-primary text-white font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-3 text-lg group/btn disabled:cursor-not-allowed disabled:opacity-70"
                       >
                         {isSubmitting ? "Enviando..." : "Receber Agora"} <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />

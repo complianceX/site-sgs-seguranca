@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { NewsletterOverlay } from "@/components/layout/NewsletterOverlay";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { ConsentScripts } from "@/lib/ConsentScripts";
 
 const geistSans = Geist({
@@ -66,6 +67,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ConsentScripts />
+        <ScrollProgress />
         <Header />
         <main className="flex-grow pt-16">
           {children}

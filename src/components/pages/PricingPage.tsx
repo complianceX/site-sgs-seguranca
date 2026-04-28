@@ -9,13 +9,14 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { transitions } from "@/lib/motion";
+import { getSchedulingHref, getSpecialistHref } from "@/lib/contact-links";
 
 const plans = [
   {
     name: "Operacional",
     icon: Shield,
     price: "Consulte",
-    description: "Ideal para pequenas empresas que precisam digitalizar suas rotinas básicas de SST.",
+    description: "Para empresas que querem sair das planilhas e controlar documentos essenciais de SST com rastreabilidade.",
     features: [
       "Até 50 Trabalhadores",
       "Módulos APR, PT e DDS",
@@ -24,14 +25,14 @@ const plans = [
       "Suporte via E-mail",
       "1 Unidade (Site)",
     ],
-    cta: "Solicitar demonstração",
+    cta: "Agendar demonstração",
     popular: false,
   },
   {
     name: "Profissional",
     icon: Zap,
     price: "Consulte",
-    description: "Para empresas em crescimento que buscam governança e automação com IA.",
+    description: "Para operações com mais unidades, evidências, prazos e necessidade de governança documental contínua.",
     features: [
       "Até 250 Trabalhadores",
       "Todos os módulos do plano anterior",
@@ -42,30 +43,52 @@ const plans = [
       "Até 5 Unidades (Sites)",
       "Suporte Prioritário",
     ],
-    cta: "Agendar avaliação",
+    cta: "Agendar demonstração",
     popular: true,
   },
   {
     name: "Enterprise",
     icon: Crown,
     price: "Sob Consulta",
-    description: "Solução completa para grandes corporações com múltiplos sites e alta complexidade.",
+    description: "Para empresas com múltiplos sites, alto volume operacional, integrações e requisitos avançados de governança.",
     features: [
-      "Trabalhadores Ilimitados",
+      "Grandes volumes de trabalhadores",
       "Módulos Customizados",
-      "IA Sophie Full (Insights & Imagem)",
+      "IA Sophie avançada mediante escopo",
       "Integração via API (Google, ERP)",
       "Dashboard Executivo Customizado",
-      "Single Sign-On (SAML/SSO)",
+      "SSO mediante projeto técnico",
       "Unidades Ilimitadas",
-      "Account Manager Dedicado",
+      "Acompanhamento comercial e técnico dedicado",
     ],
-    cta: "Falar com Consultor",
+    cta: "Falar com especialista",
     popular: false,
   },
 ];
 
+const pricingFaqs = [
+  {
+    question: "Por que os planos são sob consulta?",
+    answer: "Porque o escopo varia conforme número de empresas, usuários, módulos, volume de evidências e necessidade de implantação."
+  },
+  {
+    question: "Posso começar apenas com APR, DDS e PT?",
+    answer: "Sim. A demonstração ajuda a definir os módulos prioritários para a sua operação antes de expandir."
+  },
+  {
+    question: "A implantação inclui orientação da rotina?",
+    answer: "Sim. O objetivo é mapear documentos, usuários, permissões e principais fluxos de SST antes do uso em campo."
+  },
+  {
+    question: "O SGS atende empresas com várias unidades?",
+    answer: "Sim. Os planos podem considerar empresas, sites, frentes de serviço e permissões conforme o cenário operacional."
+  }
+];
+
 export function PricingPage() {
+  const schedulingHref = getSchedulingHref();
+  const specialistHref = getSpecialistHref();
+
   return (
     <div className="py-24 lg:py-40 bg-white">
       <div className="container">
@@ -76,11 +99,11 @@ export function PricingPage() {
               Preços e Planos
             </div>
             <MotionText as="h1" className="text-5xl md:text-7xl font-black text-sgs-navy mb-10 tracking-tighter leading-[1.05] text-balance">
-              Planos que crescem com a sua Segurança
+              Planos ajustados à maturidade da sua operação de SST
             </MotionText>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-pretty">
-              Escolha o plano ideal para a maturidade da sua gestão de SST.
-              Transparência, governança e tecnologia para todos os tamanhos de empresa.
+              O SGS é dimensionado conforme número de empresas, usuários, módulos e volume operacional.
+              Agende uma demonstração para definir o melhor escopo antes da contratação.
             </p>
           </FadeIn>
         </div>
@@ -115,7 +138,7 @@ export function PricingPage() {
                   <h3 className="text-3xl font-black mb-4 text-sgs-navy tracking-tight">{plan.name}</h3>
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="text-4xl font-black text-sgs-navy tracking-tight">{plan.price}</span>
-                    {plan.price !== "Sob Consulta" && <span className="text-slate-400 font-bold text-sm">/mês</span>}
+                    {plan.price.startsWith("R$") && <span className="text-slate-400 font-bold text-sm">/mês</span>}
                   </div>
                   <p className="text-slate-500 font-medium leading-relaxed">
                     {plan.description}
@@ -140,7 +163,7 @@ export function PricingPage() {
                   ))}
                 </div>
 
-                <Link href="/contato" className="block w-full">
+                <Link href={plan.name === "Enterprise" ? specialistHref : schedulingHref} className="block w-full">
                   <MotionButton
                     variant={plan.popular ? "primary" : "outline"}
                     className="w-full text-lg group py-5"
@@ -163,14 +186,29 @@ export function PricingPage() {
               </p>
             </div>
             <div className="relative z-10 flex-shrink-0">
-              <Link href="/contato">
+              <Link href={specialistHref}>
                 <MotionButton variant="secondary" size="lg" className="group">
-                  Solicitar Proposta <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Falar com especialista <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </MotionButton>
               </Link>
             </div>
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[100px] rounded-full -mr-64 -mt-64 group-hover:bg-primary/10 transition-all duration-1000"></div>
           </MotionCard>
+        </FadeIn>
+
+        <FadeIn direction="up">
+          <div className="mt-24 grid gap-6 lg:grid-cols-4">
+            {pricingFaqs.map((item, index) => (
+              <MotionCard key={item.question} delay={index * 0.05} className="p-8">
+                <h3 className="mb-4 text-lg font-black tracking-tight text-sgs-navy">
+                  {item.question}
+                </h3>
+                <p className="text-sm font-medium leading-relaxed text-slate-500">
+                  {item.answer}
+                </p>
+              </MotionCard>
+            ))}
+          </div>
         </FadeIn>
       </div>
     </div>

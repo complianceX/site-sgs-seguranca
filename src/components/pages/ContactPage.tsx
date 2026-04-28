@@ -14,6 +14,7 @@ import {
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 
 type LeadResponse = {
   success: boolean;
@@ -28,8 +29,11 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [submitError, setSubmitError] = useState("");
   const [leadResult, setLeadResult] = useState<LeadResponse | null>(null);
+  const requiresTurnstile = process.env.NODE_ENV === "production" || Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +41,10 @@ export function ContactPage() {
     setLeadResult(null);
 
     if (honeypot !== "") {
+      return;
+    }
+    if (requiresTurnstile && !turnstileToken) {
+      setSubmitError("Conclua a verificação anti-spam antes de enviar.");
       return;
     }
 
@@ -57,6 +65,7 @@ export function ContactPage() {
           whatsapp: String(formData.get("whatsapp") ?? ""),
           message: String(formData.get("message") ?? ""),
           honeypot,
+          turnstileToken,
         }),
       });
 
@@ -71,6 +80,8 @@ export function ContactPage() {
       setSubmitted(true);
       form.reset();
       setHoneypot("");
+      setTurnstileToken("");
+      setTurnstileReset((value) => value + 1);
     } catch {
       setSubmitError("Falha de conexão. Tente novamente em instantes.");
     } finally {
@@ -89,10 +100,10 @@ export function ContactPage() {
               Canais de Atendimento
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-sgs-navy mb-10 tracking-tighter leading-[1.05] text-balance">
-              Vamos conversar sobre sua <span className="text-primary">Gestão</span>
+              Agende uma demonstração do <span className="text-primary">SGS</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 mb-16 leading-relaxed font-medium text-pretty max-w-xl">
-              Estamos prontos para ajudar sua empresa a elevar o nível da segurança operacional e conformidade técnica.
+              Mostre sua rotina de APR, DDS, PT, evidências e prazos. Vamos indicar como o SGS pode reduzir retrabalho e organizar sua operação de SST.
             </p>
 
             <div className="space-y-10">
@@ -183,6 +194,8 @@ export function ContactPage() {
                           id="contact-name"
                           name="name"
                           type="text"
+                          minLength={2}
+                          maxLength={120}
                           placeholder="Seu nome completo"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                         />
@@ -196,6 +209,8 @@ export function ContactPage() {
                           id="contact-company"
                           name="company"
                           type="text"
+                          minLength={2}
+                          maxLength={150}
                           placeholder="Empresa"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                         />
@@ -210,6 +225,7 @@ export function ContactPage() {
                         id="contact-email"
                         name="email"
                         type="email"
+                        maxLength={160}
                         placeholder="seu@email.com.br"
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                       />
@@ -223,6 +239,9 @@ export function ContactPage() {
                         id="contact-whatsapp"
                         name="whatsapp"
                         type="tel"
+                        inputMode="tel"
+                        pattern="[0-9+()\\-\\s.]{8,30}"
+                        maxLength={30}
                         placeholder="DDD + número"
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
                       />
@@ -234,18 +253,25 @@ export function ContactPage() {
                         id="contact-message"
                         name="message"
                         rows={4}
+                        minLength={10}
+                        maxLength={2000}
                         placeholder="Conte-nos um pouco sobre sua necessidade técnica ou comercial..."
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all resize-none text-sgs-navy"
                       ></textarea>
                     </div>
+                    <TurnstileWidget
+                      className="flex justify-center"
+                      onTokenChange={setTurnstileToken}
+                      resetSignal={turnstileReset}
+                    />
                     <button
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || (requiresTurnstile && !turnstileToken)}
                       className="w-full bg-primary text-white font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-3 text-lg group/btn"
                     >
                       {isSubmitting ? (
                         <Loader2 className="w-6 h-6 animate-spin" />
                       ) : (
-                        <>Enviar Mensagem <Send className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" /></>
+                        <>Solicitar demonstração <Send className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" /></>
                       )}
                     </button>
                     {submitError && (

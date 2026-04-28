@@ -3,13 +3,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 
 export function NewsletterOverlay() {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [submitError, setSubmitError] = useState("");
+  const requiresTurnstile = process.env.NODE_ENV === "production" || Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
   useEffect(() => {
     const canShow = () => {
@@ -43,6 +47,11 @@ export function NewsletterOverlay() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (requiresTurnstile && !turnstileToken) {
+      setSubmitError("Conclua a verificação anti-spam antes de enviar.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -53,6 +62,7 @@ export function NewsletterOverlay() {
         body: JSON.stringify({
           source: "newsletter",
           email,
+          turnstileToken,
         }),
       });
       const result = (await response.json()) as { success: boolean; error?: string };
@@ -63,6 +73,8 @@ export function NewsletterOverlay() {
       }
 
       setSubmitted(true);
+      setTurnstileToken("");
+      setTurnstileReset((value) => value + 1);
       setTimeout(() => {
         handleClose();
       }, 3000);
@@ -115,6 +127,7 @@ export function NewsletterOverlay() {
                     <input
                       required
                       type="email"
+                      maxLength={160}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Seu melhor e-mail"
@@ -124,11 +137,15 @@ export function NewsletterOverlay() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || (requiresTurnstile && !turnstileToken)}
                     className="w-full bg-sgs-navy text-white font-black py-4 rounded-xl shadow-lg shadow-sgs-navy/10 hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSubmitting ? "Enviando..." : "Inscrever-se"} <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </motion.button>
+                  <TurnstileWidget
+                    onTokenChange={setTurnstileToken}
+                    resetSignal={turnstileReset}
+                  />
                 </form>
                 {submitError && (
                   <p role="alert" className="mt-4 text-xs font-bold text-sgs-red">

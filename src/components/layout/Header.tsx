@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Shield, Menu, X, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { transitions } from "@/lib/motion";
 import { navItems } from "@/content/navigation";
+import { getSchedulingHref } from "@/lib/contact-links";
 
 /**
  * Header Component
@@ -16,6 +18,8 @@ import { navItems } from "@/content/navigation";
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const schedulingHref = getSchedulingHref();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +65,10 @@ export function Header() {
               visible: { transition: { staggerChildren: 0.05 } }
             }}
           >
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+
+              return (
               <motion.div
                 key={item.href}
                 variants={{
@@ -71,7 +78,10 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="text-[13px] font-bold text-slate-500 hover:text-primary transition-all relative group tracking-tight"
+                  className={cn(
+                    "text-[13px] font-bold transition-all relative group tracking-tight",
+                    isActive ? "text-primary" : "text-slate-500 hover:text-primary"
+                  )}
                 >
                   <motion.span
                     whileHover={{ y: -1 }}
@@ -79,10 +89,19 @@ export function Header() {
                   >
                     {item.name}
                   </motion.span>
-                  <span className="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
+                  {isActive ? (
+                    <motion.span
+                      layoutId="header-active-link"
+                      className="absolute -bottom-1.5 left-0 h-0.5 w-full rounded-full bg-primary"
+                      transition={{ duration: 0.35, ease: transitions.expo }}
+                    />
+                  ) : (
+                    <span className="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
+                  )}
                 </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
 
           <motion.div
@@ -90,7 +109,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, ease: transitions.expo }}
           >
-            <Link href="/contato">
+            <Link href={schedulingHref}>
               <MotionButton size="sm" className="gap-2.5">
                 Agendar demonstração <ArrowRight className="w-4 h-4" />
               </MotionButton>
@@ -141,7 +160,7 @@ export function Header() {
                 transition={{ delay: 0.3 }}
               >
                 <Link
-                  href="/contato"
+                  href={schedulingHref}
                   className="w-full py-4 bg-primary text-white rounded-xl text-center text-lg font-bold shadow-lg shadow-primary/20 block"
                   onClick={() => setIsOpen(false)}
                 >

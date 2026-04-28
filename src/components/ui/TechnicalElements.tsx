@@ -4,13 +4,43 @@ import { motion } from "framer-motion";
 import { Shield, FileText, CheckCircle, Database, Activity, Lock } from "lucide-react";
 import { transitions, variants } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/motion-hooks";
+/**
+ * TechnicalFormationWrapper
+ * Encapsula a animação de formação técnica para uso em Server Components.
+ */
+export function TechnicalFormationWrapper({ 
+  children, 
+  custom = 0 
+}: { 
+  children: React.ReactNode; 
+  custom?: number 
+}) {
+  return (
+    <motion.div
+      variants={variants.technicalFormation}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      custom={custom}
+      className="flex justify-center group"
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 /**
  * TechnicalElements Component
+...
  * Composição visual de fundo que simula um painel operacional inteligente.
  */
 export function TechnicalElements() {
   const shouldReduceMotion = useReducedMotion();
+  const dataPackets = [
+    { top: "26%", right: "30%", delay: 0 },
+    { top: "58%", right: "18%", delay: 1.8 },
+    { top: "72%", right: "40%", delay: 3.2 },
+  ];
 
   return (
     <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden hidden lg:block select-none">
@@ -112,6 +142,24 @@ export function TechnicalElements() {
           }}
         />
       )}
+
+      {!shouldReduceMotion && dataPackets.map((packet) => (
+        <motion.div
+          key={`${packet.top}-${packet.right}`}
+          className="absolute h-2 w-12 rounded-full bg-primary/20"
+          style={{ top: packet.top, right: packet.right }}
+          animate={{
+            x: [0, -120, -240],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 4.8,
+            delay: packet.delay,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
     </div>
   );
 }
