@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { footerSections } from "@/content/navigation";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
@@ -65,14 +66,14 @@ export function Footer() {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
           <div className="md:col-span-4">
-            <Link href="/" className="flex items-center gap-2.5 mb-8 group">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-6 transition-all shadow-lg shadow-primary/20">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex flex-col -space-y-1">
-                <span className="text-2xl font-black tracking-tighter text-sgs-navy leading-none">SGS</span>
-                <span className="text-[8px] font-black tracking-[0.2em] text-primary uppercase">Segurança</span>
-              </div>
+            <Link href="/" className="flex items-center mb-8 group">
+              <Image 
+                src="/images/logo-sgs.png" 
+                alt="SGS Logo" 
+                width={160} 
+                height={54} 
+                className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+              />
             </Link>
             <p className="text-sm leading-relaxed mb-10 text-slate-500 font-medium max-w-sm">
               Plataforma SaaS para transformar documentos, evidências de campo e prazos de SST em governança rastreável.

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -39,20 +40,15 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <motion.div
-            whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.5 } }}
-            className="w-11 h-11 bg-primary rounded-2xl flex items-center justify-center transition-all duration-500 shadow-lg shadow-primary/20 relative overflow-hidden"
-          >
-            <Shield className="w-6 h-6 text-white relative z-10" />
-            <motion.div
-              className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"
-            />
-          </motion.div>
-          <div className="flex flex-col -space-y-1">
-            <span className="text-2xl font-black tracking-tighter text-sgs-navy leading-none">SGS</span>
-            <span className="text-[8px] font-black tracking-[0.2em] text-primary uppercase">Segurança</span>
-          </div>
+        <Link href="/" className="flex items-center group">
+          <Image 
+            src="/images/logo-sgs.png" 
+            alt="SGS Logo" 
+            width={180} 
+            height={60} 
+            className="h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
