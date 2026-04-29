@@ -32,6 +32,14 @@ export function BlogPage() {
     return matchesCategory && matchesSearch;
   });
 
+  // Encontrar o post em destaque dinamicamente
+  const featuredPost = posts.find(p => p.featured) || posts[0];
+  
+  // Posts para o grid: remove o destaque apenas se estivermos na visão geral sem busca
+  const gridPosts = (activeCategory === "Todos" && !normalizedSearch)
+    ? filteredPosts.filter(p => p.id !== featuredPost.id)
+    : filteredPosts;
+
   return (
     <div className="py-24 lg:py-40 bg-white">
       <div className="container">
@@ -83,14 +91,14 @@ export function BlogPage() {
           </div>
         </div>
 
-        {/* Featured Post (Optional, showing the first one as featured if activeCategory is "Todos") */}
-        {activeCategory === "Todos" && posts.length > 0 && (
+        {/* Featured Post */}
+        {activeCategory === "Todos" && !normalizedSearch && featuredPost && (
           <FadeIn className="mb-24">
             <div className="group relative grid lg:grid-cols-2 gap-12 bg-slate-50 rounded-[3rem] overflow-hidden border border-slate-100 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-700">
               <div className="aspect-[16/10] lg:aspect-auto relative overflow-hidden">
                 <Image
-                  src={posts[0].image}
-                  alt={posts[0].title}
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
                   fill
                   priority
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -105,25 +113,25 @@ export function BlogPage() {
               <div className="p-12 lg:p-20 flex flex-col justify-center">
                 <div className="flex items-center gap-4 text-[10px] font-black text-primary uppercase tracking-widest mb-6">
                   <Tag className="w-3 h-3" />
-                  {posts[0].category}
+                  {featuredPost.category}
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black text-sgs-navy mb-8 tracking-tighter leading-tight group-hover:text-primary transition-colors">
-                  {posts[0].title}
+                  {featuredPost.title}
                 </h2>
                 <p className="text-lg text-slate-500 mb-10 leading-relaxed font-medium">
-                  {posts[0].excerpt}
+                  {featuredPost.excerpt}
                 </p>
                 <div className="flex items-center justify-between pt-10 border-t border-slate-200">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-black text-slate-400">
-                      {posts[0].author[0]}
+                      {featuredPost.author[0]}
                     </div>
                     <div>
-                      <p className="text-xs font-black text-sgs-navy">{posts[0].author}</p>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{posts[0].date}</p>
+                      <p className="text-xs font-black text-sgs-navy">{featuredPost.author}</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{featuredPost.date}</p>
                     </div>
                   </div>
-                  <Link href={`/blog/${posts[0].slug}`} className="flex items-center gap-2 text-xs font-black text-primary uppercase tracking-widest group/link">
+                  <Link href={`/blog/${featuredPost.slug}`} className="flex items-center gap-2 text-xs font-black text-primary uppercase tracking-widest group/link">
                     Ler artigo <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -134,7 +142,7 @@ export function BlogPage() {
 
         {/* Post Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {filteredPosts.filter((_, i) => activeCategory !== "Todos" || i !== 0).map((post, i) => (
+          {gridPosts.map((post, i) => (
             <FadeIn key={post.id} delay={i * 0.1}>
               <div className="group flex flex-col h-full bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[16/10] relative overflow-hidden">
