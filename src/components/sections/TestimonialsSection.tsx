@@ -4,7 +4,7 @@ import { ShieldCheck, Star } from "lucide-react";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionCard } from "@/components/ui/MotionCard";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { testimonials } from "@/content/home";
+import { testimonials } from "@/data/home";
 
 export function TestimonialsSection() {
   return (

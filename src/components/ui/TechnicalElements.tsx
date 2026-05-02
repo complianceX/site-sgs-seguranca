@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Shield, FileText, CheckCircle, Database, Activity, Lock } from "lucide-react";
-import { transitions, variants } from "@/lib/motion";
-import { useReducedMotion } from "@/lib/motion-hooks";
+import { transitions, variants } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/use-motion";
 /**
  * TechnicalFormationWrapper
  * Encapsula a animação de formação técnica para uso em Server Components.
@@ -43,7 +43,7 @@ export function TechnicalElements() {
   ];
 
   return (
-    <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden hidden lg:block select-none">
+    <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden hidden lg:block select-none" aria-hidden="true" role="presentation">
       {/* Grid de Auditoria Sutil */}
       <div className="absolute inset-0 opacity-[0.02]" 
         style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} 

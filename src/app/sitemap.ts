@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { posts } from '@/content/blog';
+import { posts } from '@/data/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://sgsseguranca.com.br';

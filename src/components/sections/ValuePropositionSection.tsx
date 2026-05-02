@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionCard } from "@/components/ui/MotionCard";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { valueProps } from "@/content/home";
+import { valueProps } from "@/data/home";
 
 export function ValuePropositionSection() {
   return (

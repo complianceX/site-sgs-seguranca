@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { footerSections } from "@/content/navigation";
+import { footerSections } from "@/data/navigation";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { getSchedulingHref } from "@/lib/contact-links";
 

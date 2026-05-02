@@ -6,8 +6,8 @@ import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionButton } from "@/components/ui/MotionButton";
-import { useReducedMotion } from "@/lib/motion-hooks";
-import { finalCTA } from "@/content/home";
+import { useReducedMotion } from "@/hooks/use-motion";
+import { finalCTA } from "@/data/home";
 import { getSchedulingHref } from "@/lib/contact-links";
 
 export function FinalCTASection() {

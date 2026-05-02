@@ -17,7 +17,7 @@ import { MotionText } from "@/components/ui/MotionText";
 import { MotionCard } from "@/components/ui/MotionCard";
 import { TechnicalElements } from "@/components/ui/TechnicalElements";
 import { motion } from "framer-motion";
-import { transitions } from "@/lib/motion";
+import { transitions } from "@/lib/motion-variants";
 
 export function SecurityPage() {
   return (

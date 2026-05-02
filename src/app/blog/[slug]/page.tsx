@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
-import { getPostBySlug, posts } from "@/content/blog";
+import { getPostBySlug, posts } from "@/data/blog";
 
 type BlogPostPageProps = {
   params: Promise<{

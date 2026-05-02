@@ -8,7 +8,7 @@ import { MotionButton } from "@/components/ui/MotionButton";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { transitions } from "@/lib/motion";
+import { transitions } from "@/lib/motion-variants";
 import { getSchedulingHref, getSpecialistHref } from "@/lib/contact-links";
 
 const plans = [

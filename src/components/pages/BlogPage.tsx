@@ -14,7 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { categories, posts } from "@/content/blog";
+import { categories, posts } from "@/data/blog";
 
 export function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("Todos");

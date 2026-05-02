@@ -6,7 +6,7 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/Stagger";
 import { Parallax } from "@/components/ui/Parallax";
 import { Camera, ArrowRight } from "lucide-react";
 
-import { servedSegments, implementationSteps } from "@/content/home";
+import { servedSegments, implementationSteps } from "@/data/home";
 
 // Seções Estáticas ou já isoladas
 import { HeroSection } from "@/components/sections/HeroSection";

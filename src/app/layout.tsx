@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { NewsletterOverlay } from "@/components/layout/NewsletterOverlay";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
-import { ConsentScripts } from "@/lib/ConsentScripts";
+import { ConsentScripts } from "@/components/security/ConsentScripts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

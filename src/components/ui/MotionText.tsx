@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { variants } from "@/lib/motion";
-import { useReducedMotion } from "@/lib/motion-hooks";
+import { variants } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/use-motion";
 import { ReactNode } from "react";
 
 interface MotionTextProps {

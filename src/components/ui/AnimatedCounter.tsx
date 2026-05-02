@@ -2,7 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { useReducedMotion } from "@/lib/motion-hooks";
+import { useReducedMotion } from "@/hooks/use-motion";
 
 type AnimatedCounterProps = {
   value: number;

@@ -7,9 +7,9 @@ import { MotionText } from "@/components/ui/MotionText";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { TechnicalElements } from "@/components/ui/TechnicalElements";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { transitions, variants } from "@/lib/motion";
-import { useReducedMotion } from "@/lib/motion-hooks";
-import { homeHero } from "@/content/home";
+import { transitions, variants } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/use-motion";
+import { homeHero } from "@/data/home";
 import { getSchedulingHref } from "@/lib/contact-links";
 
 const heroMetrics = [

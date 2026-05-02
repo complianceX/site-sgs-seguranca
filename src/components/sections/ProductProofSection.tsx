@@ -6,9 +6,9 @@ import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionButton } from "@/components/ui/MotionButton";
-import { productProof } from "@/content/home";
-import { transitions } from "@/lib/motion";
-import { useReducedMotion } from "@/lib/motion-hooks";
+import { productProof } from "@/data/home";
+import { transitions } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/use-motion";
 import { getSchedulingHref } from "@/lib/contact-links";
 
 export function ProductProofSection() {

@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { MotionButton } from "@/components/ui/MotionButton";
-import { transitions } from "@/lib/motion";
-import { navItems } from "@/content/navigation";
+import { transitions } from "@/lib/motion-variants";
+import { navItems } from "@/data/navigation";
 import { getSchedulingHref } from "@/lib/contact-links";
 
 /**

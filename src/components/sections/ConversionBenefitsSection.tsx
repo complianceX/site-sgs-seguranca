@@ -3,7 +3,7 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { MotionCard } from "@/components/ui/MotionCard";
 import { MotionText } from "@/components/ui/MotionText";
-import { conversionBenefits } from "@/content/home";
+import { conversionBenefits } from "@/data/home";
 
 export function ConversionBenefitsSection() {
   return (
