@@ -1,0 +1,12 @@
+# Code ownership and review requirements
+# @complianceX must review all changes
+
+* @complianceX
+
+# Security-sensitive files require special attention
+/src/middleware.ts @complianceX
+/src/api/ @complianceX
+/next.config.ts @complianceX
+/src/utils/logger.ts @complianceX
+/src/utils/input-sanitizer.ts @complianceX
+/wrangler.toml @complianceX
