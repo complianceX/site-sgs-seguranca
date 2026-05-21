@@ -1,11 +1,12 @@
-import { Metadata } from "next";
 import { PricingPage } from "@/components/pages/PricingPage";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Planos e Preços - SGS",
-  description: "Escolha o plano ideal para sua gestão de SST. Operacional, Profissional e Enterprise.",
-  keywords: ["Preços Software SST", "Planos Gestão de Segurança", "SGS SaaS", "Custo SST Digital"],
-};
+export const metadata = createPageMetadata({
+  title: "Planos e Preços",
+  description: "Planos Operacional, Profissional e Enterprise para gestão de SST. Valores sob consulta conforme operação.",
+  path: "/precos",
+  keywords: ["Preços Software SST", "Planos Gestão de Segurança", "SGS SaaS"],
+});
 
 export default function Page() {
   return <PricingPage />;

@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { CookiePreferencesLink } from "@/components/layout/CookieBanner";
+import { submitLead } from "@/lib/submit-lead";
+import { TrackedLink } from "@/components/ui/TrackedLink";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { footerSections } from "@/data/navigation";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { getSchedulingHref } from "@/lib/contact-links";
-
-type LeadResponse = {
-  success: boolean;
-  error?: string;
-};
 
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -34,18 +32,13 @@ export function Footer() {
     setError("");
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "newsletter",
-          email,
-          turnstileToken,
-        }),
+      const { ok, result } = await submitLead({
+        body: { source: "newsletter", email, turnstileToken },
+        analyticsEvent: "newsletter_signup",
+        analyticsParams: { placement: "footer" },
       });
-      const result = (await response.json()) as LeadResponse;
 
-      if (!response.ok || !result.success) {
+      if (!ok) {
         setStatus("error");
         setError(result.error ?? "Não foi possível registrar seu e-mail agora.");
         return;
@@ -68,8 +61,8 @@ export function Footer() {
           <div className="md:col-span-4">
             <Link href="/" className="flex items-center mb-8 group">
               <Image 
-                src="/images/logo-sgs.png" 
-                alt="SGS Logo" 
+                src="/images/logo-sgs.svg"
+                alt="SGS Segurança" 
                 width={160} 
                 height={54} 
                 className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -149,12 +142,13 @@ export function Footer() {
             <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
               <h4 className="text-sgs-navy font-black text-sm mb-4">Pronto para digitalizar seu SST?</h4>
               <p className="text-xs text-slate-500 mb-6 leading-relaxed">Converse com nossa equipe e veja como o SGS pode se adaptar à realidade da sua operação.</p>
-              <Link
+              <TrackedLink
                 href={schedulingHref}
-                className="flex items-center justify-center gap-2 w-full py-4 bg-primary text-white rounded-xl text-sm font-black hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
+                trackLabel="Agendar demonstração - Footer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 text-sm font-black text-white shadow-xl shadow-primary/20 transition-all hover:bg-primary/90"
               >
-                Agendar demonstração <ArrowRight className="w-4 h-4" />
-              </Link>
+                Agendar demonstração <ArrowRight className="h-4 w-4" />
+              </TrackedLink>
             </div>
           </div>
         </div>
@@ -163,12 +157,13 @@ export function Footer() {
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
             © {new Date().getFullYear()} SGS - Segurança do Trabalho. Tecnologia para Vida.
           </p>
-          <div className="flex gap-8 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-400 md:justify-end">
             {footerSections.social.map((item) => (
-              <Link key={item.name} href={item.href} className="hover:text-primary cursor-pointer transition-colors">
+              <Link key={item.name} href={item.href} className="cursor-pointer transition-colors hover:text-primary">
                 {item.name}
               </Link>
             ))}
+            <CookiePreferencesLink />
           </div>
         </div>
       </div>

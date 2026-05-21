@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { TrackedLink } from "@/components/ui/TrackedLink";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -42,8 +43,8 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center group">
           <Image 
-            src="/images/logo-sgs.png" 
-            alt="SGS Logo" 
+            src="/images/logo-sgs.svg"
+            alt="SGS Segurança - Gestão de SST" 
             width={180} 
             height={60} 
             className="h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -105,11 +106,11 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, ease: transitions.expo }}
           >
-            <Link href={schedulingHref}>
+            <TrackedLink href={schedulingHref} trackLabel="Agendar demonstração - Header">
               <MotionButton size="sm" className="gap-2.5">
                 Agendar demonstração <ArrowRight className="w-4 h-4" />
               </MotionButton>
-            </Link>
+            </TrackedLink>
           </motion.div>
         </nav>
 

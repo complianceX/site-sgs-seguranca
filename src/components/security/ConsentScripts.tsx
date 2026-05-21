@@ -1,6 +1,8 @@
-'use client';
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
+"use client";
+
+import Script from "next/script";
+import { useEffect, useState } from "react";
+import { readCookieConsent } from "@/lib/cookie-consent";
 
 export function ConsentScripts() {
   const [consent, setConsent] = useState<{ analytics: boolean; marketing: boolean } | null>(null);
@@ -8,43 +10,32 @@ export function ConsentScripts() {
 
   useEffect(() => {
     const checkConsent = () => {
-      const saved = localStorage.getItem('sgs-cookie-consent');
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setConsent({ analytics: !!parsed.analytics, marketing: !!parsed.marketing });
-        } catch {
-          setConsent(null);
-        }
-      }
+      const saved = readCookieConsent();
+      setConsent(saved ? { analytics: saved.analytics, marketing: saved.marketing } : null);
     };
 
     checkConsent();
-    window.addEventListener('cookie-consent-updated', checkConsent);
-    return () => window.removeEventListener('cookie-consent-updated', checkConsent);
+    window.addEventListener("cookie-consent-updated", checkConsent);
+    return () => window.removeEventListener("cookie-consent-updated", checkConsent);
   }, []);
 
-  if (!consent) return null;
+  if (!consent?.analytics || !gaId) return null;
 
   return (
     <>
-      {consent.analytics && gaId && (
-        <>
-          <Script
-            id="google-analytics"
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){window.dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaId}', { anonymize_ip: true });
-            `}
-          </Script>
-        </>
-      )}
+      <Script
+        id="google-analytics"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaId}', { anonymize_ip: true });
+        `}
+      </Script>
     </>
   );
 }

@@ -15,7 +15,7 @@ export type LeadSource = "contact" | "newsletter" | "resource";
  */
 export const LeadSchema = z.object({
   source: z.enum(["contact", "newsletter", "resource"], {
-    error_map: () => ({ message: "Origem da solicitação inválida." }),
+    message: "Origem da solicitação inválida.",
   }),
   email: z.string().email("E-mail inválido.").trim().toLowerCase(),
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres.").max(120).optional().or(z.literal("")),
@@ -26,14 +26,21 @@ export const LeadSchema = z.object({
   honeypot: z.string().optional(),
   turnstileToken: z.string().max(2048, "Token de verificação inválido.").optional(),
 }).refine((data) => {
-  // Validação condicional para contato direto
   if (data.source === "contact") {
-    return !!(data.name && data.company && data.whatsapp && data.message);
+    return !!(data.name?.trim() && data.whatsapp?.trim());
   }
   return true;
 }, {
-  message: "Preencha todos os campos obrigatórios para contato.",
-  path: ["source"],
+  message: "Informe nome e WhatsApp para contato.",
+  path: ["name"],
+}).refine((data) => {
+  if (data.source === "contact" && data.message?.trim()) {
+    return data.message.trim().length >= 10;
+  }
+  return true;
+}, {
+  message: "Se informar uma mensagem, use pelo menos 10 caracteres.",
+  path: ["message"],
 }).refine((data) => {
   // Validação condicional para recursos
   if (data.source === "resource") {
@@ -50,12 +57,8 @@ export const LeadSchema = z.object({
 
 export type LeadPayload = z.infer<typeof LeadSchema>;
 
-/**
- * Esquema legado mantido por compatibilidade, agora migrado para Zod.
- */
-export const ContactSchema = LeadSchema.extend({
-  source: z.literal("contact"),
-});
+/** Alias legado — use LeadSchema com source "contact". */
+export const ContactSchema = LeadSchema;
 
 type TurnstileResult = {
   success: boolean;

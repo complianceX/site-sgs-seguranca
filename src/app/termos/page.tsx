@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { FileText } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Termos de Uso | SGS Segurança",
+export const metadata = createPageMetadata({
+  title: "Termos de Uso",
   description:
     "Termos institucionais para navegação no site SGS Segurança, materiais, conteúdos técnicos e canais de contato.",
-};
+  path: "/termos",
+});
 
 const terms = [
   {

@@ -3,10 +3,17 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { NewsletterOverlay } from "@/components/layout/NewsletterOverlay";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { ConsentScripts } from "@/components/security/ConsentScripts";
+import { StructuredData } from "@/components/seo/StructuredData";
+import {
+  getFaqSchema,
+  getOrganizationSchema,
+  getSoftwareApplicationSchema,
+  getWebSiteSchema,
+} from "@/lib/structured-data";
+import { siteConfig } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,19 +26,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sgsseguranca.com.br"),
-  title: "SGS - Gestão de Segurança do Trabalho e Governança Documental",
-  description: "Plataforma completa para controlar segurança do trabalho, documentos oficiais, evidências, treinamentos, exames e indicadores em um ambiente SaaS seguro.",
-  applicationName: "SGS Segurança",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.defaultTitle,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.defaultDescription,
+  applicationName: siteConfig.name,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "SGS - Gestão de Segurança do Trabalho",
-    description: "Organize documentos oficiais, evidências de campo e governança de SST em uma plataforma SaaS segura.",
-    url: "https://sgsseguranca.com.br",
-    siteName: "SGS Segurança",
-    locale: "pt_BR",
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     type: "website",
     images: [
       {
@@ -44,14 +54,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SGS - Gestão de Segurança do Trabalho",
-    description: "Governança documental, evidências de campo e prazos de SST em uma plataforma SaaS segura.",
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
     images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: true,
   },
 };
 
@@ -65,15 +74,20 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <StructuredData
+          data={[
+            getOrganizationSchema(),
+            getWebSiteSchema(),
+            getSoftwareApplicationSchema(),
+            getFaqSchema(),
+          ]}
+        />
         <ConsentScripts />
         <ScrollProgress />
         <Header />
-        <main className="flex-grow pt-16">
-          {children}
-        </main>
+        <main className="flex-grow pt-16">{children}</main>
         <Footer />
-        <NewsletterOverlay />
         <CookieBanner />
       </body>
     </html>

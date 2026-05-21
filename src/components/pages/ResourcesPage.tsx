@@ -17,6 +17,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
+import { submitLead, type LeadResponse } from "@/lib/submit-lead";
 
 const resources = [
   {
@@ -53,13 +54,6 @@ const resources = [
   }
 ];
 
-type LeadResponse = {
-  success: boolean;
-  error?: string;
-  referenceId?: string;
-  delivery?: "webhook" | "local";
-};
-
 export function ResourcesPage() {
   const [selectedResource, setSelectedResource] = useState<typeof resources[0] | null>(null);
   const [email, setEmail] = useState("");
@@ -84,19 +78,18 @@ export function ResourcesPage() {
     setLeadResult(null);
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const { ok, result } = await submitLead({
+        body: {
           source: "resource",
           email,
           resourceTitle: selectedResource.title,
           turnstileToken,
-        }),
+        },
+        analyticsEvent: "resource_download",
+        analyticsParams: { resource: selectedResource.title },
       });
-      const result = (await response.json()) as LeadResponse;
 
-      if (!response.ok || !result.success) {
+      if (!ok) {
         setSubmitError(result.error ?? "Não foi possível solicitar o material agora.");
         return;
       }

@@ -15,15 +15,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
-
-type LeadResponse = {
-  success: boolean;
-  error?: string;
-  referenceId?: string;
-  delivery?: "webhook" | "local";
-  fallbackEmail?: string;
-  fallbackSubject?: string;
-};
+import { submitLead, type LeadResponse } from "@/lib/submit-lead";
 
 export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,10 +46,8 @@ export function ContactPage() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const { ok, result } = await submitLead({
+        body: {
           source: "contact",
           name: String(formData.get("name") ?? ""),
           company: String(formData.get("company") ?? ""),
@@ -66,12 +56,12 @@ export function ContactPage() {
           message: String(formData.get("message") ?? ""),
           honeypot,
           turnstileToken,
-        }),
+        },
+        analyticsEvent: "generate_lead",
+        analyticsParams: { form: "contact" },
       });
 
-      const result = (await response.json()) as LeadResponse;
-
-      if (!response.ok || !result.success) {
+      if (!ok) {
         setSubmitError(result.error ?? "Não foi possível enviar sua mensagem agora.");
         return;
       }
@@ -202,14 +192,12 @@ export function ContactPage() {
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="contact-company" className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                          <Building className="w-3.5 h-3.5 text-primary" /> Empresa
+                          <Building className="w-3.5 h-3.5 text-primary" /> Empresa <span className="text-slate-300">(opcional)</span>
                         </label>
                         <input
-                          required
                           id="contact-company"
                           name="company"
                           type="text"
-                          minLength={2}
                           maxLength={150}
                           placeholder="Empresa"
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/20 transition-all text-sgs-navy"
@@ -247,9 +235,10 @@ export function ContactPage() {
                       />
                     </div>
                     <div className="space-y-3">
-                      <label htmlFor="contact-message" className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Como podemos ajudar?</label>
+                      <label htmlFor="contact-message" className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                        Como podemos ajudar? <span className="text-slate-300">(opcional)</span>
+                      </label>
                       <textarea
-                        required
                         id="contact-message"
                         name="message"
                         rows={4}

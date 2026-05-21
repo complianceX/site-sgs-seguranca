@@ -4,6 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { getPostBySlug, posts } from "@/data/blog";
+import { getPostIsoDate } from "@/data/blog-dates";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { getArticleSchema } from "@/lib/structured-data";
+import { createPageMetadata } from "@/lib/seo";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -27,16 +31,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  return {
-    title: post.seoTitle ?? `${post.title} | SGS Segurança`,
+  return createPageMetadata({
+    title: post.seoTitle ?? post.title,
     description: post.seoDescription ?? post.excerpt,
-    openGraph: {
-      title: post.seoTitle ?? post.title,
-      description: post.seoDescription ?? post.excerpt,
-      type: "article",
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
-    },
-  };
+    path: `/blog/${slug}`,
+    type: "article",
+    image: post.image,
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -47,6 +48,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="bg-white py-24 lg:py-40">
+      <StructuredData
+        data={getArticleSchema({
+          ...post,
+          date: getPostIsoDate(post.slug),
+        })}
+      />
       <div className="container">
         <Link
           href="/blog"

@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Pause, Play } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { MotionText } from "@/components/ui/MotionText";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { TechnicalElements } from "@/components/ui/TechnicalElements";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { TrackedLink } from "@/components/ui/TrackedLink";
 import { transitions, variants } from "@/lib/motion-variants";
 import { useReducedMotion } from "@/hooks/use-motion";
 import { homeHero } from "@/data/home";
@@ -21,29 +23,59 @@ const heroMetrics = [
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
   const schedulingHref = getSchedulingHref();
+  const [enableVideo, setEnableVideo] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(true);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const media = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
+    const update = () => setEnableVideo(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [shouldReduceMotion]);
 
   return (
-    <section className="relative min-h-[86vh] flex items-center overflow-hidden bg-slate-50 py-24 lg:py-28">
-      <div className="absolute inset-0 bg-white/60 z-10 backdrop-blur-[2px]"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent z-10"></div>
+    <section className="relative flex min-h-[86vh] items-center overflow-hidden bg-slate-50 py-24 lg:py-28">
+      <div className="absolute inset-0 z-10 bg-white/60 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-white via-white/40 to-transparent" />
 
-      <motion.div
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 2, ease: transitions.expo }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
+      <div className="absolute inset-0 h-full w-full">
+        <Image
+          src="/images/hero-poster.svg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {enableVideo && (
+          <video
+            autoPlay={videoPlaying}
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster="/images/hero-poster.svg"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
+          >
+            <source src={homeHero.video} type="video/mp4" />
+          </video>
+        )}
+      </div>
+
+      {enableVideo && (
+        <button
+          type="button"
+          className="absolute bottom-8 right-8 z-30 rounded-full border border-white/60 bg-white/80 p-3 text-sgs-navy shadow-sgs backdrop-blur"
+          onClick={() => setVideoPlaying((value) => !value)}
+          aria-label={videoPlaying ? "Pausar vídeo de fundo" : "Reproduzir vídeo de fundo"}
         >
-          <source src={homeHero.video} type="video/mp4" />
-        </video>
-      </motion.div>
+          {videoPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+        </button>
+      )}
 
       <TechnicalElements />
 
@@ -54,53 +86,49 @@ export function HeroSection() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: transitions.expo }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 bg-primary/10 backdrop-blur-md border border-primary/20 rounded-full text-[10px] font-black mb-10 text-primary tracking-[0.2em] uppercase"
+              className="mb-10 inline-flex items-center gap-2.5 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary backdrop-blur-md"
             >
-              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
               {homeHero.tag}
             </motion.div>
 
             <MotionText
               as="h1"
-              className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-[1.08] tracking-tight text-sgs-navy text-balance"
+              className="mb-8 text-4xl font-black leading-[1.08] tracking-tight text-sgs-navy text-balance md:text-5xl lg:text-6xl"
             >
               {homeHero.title}
             </MotionText>
 
             <motion.p
               variants={variants.maskReveal}
-              className="text-xl md:text-2xl text-slate-600 mb-14 leading-relaxed max-w-2xl font-medium text-pretty"
+              className="mb-14 max-w-2xl text-xl font-medium leading-relaxed text-slate-600 text-pretty md:text-2xl"
             >
               {homeHero.description}
             </motion.p>
 
             <div className="flex flex-wrap gap-6">
-              <Link href={schedulingHref}>
-                <MotionButton size="lg" className="gap-3 group">
-                  {homeHero.ctaPrimary.text} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <TrackedLink href={schedulingHref} trackLabel="Agendar demonstração - Hero">
+                <MotionButton size="lg" className="group gap-3">
+                  {homeHero.ctaPrimary.text}{" "}
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </MotionButton>
-              </Link>
-              <Link href={homeHero.ctaSecondary.href}>
+              </TrackedLink>
+              <TrackedLink href={homeHero.ctaSecondary.href} trackLabel="Ver módulos - Hero">
                 <MotionButton variant="outline" size="lg">
                   {homeHero.ctaSecondary.text}
                 </MotionButton>
-              </Link>
+              </TrackedLink>
             </div>
 
-            <motion.div
-              variants={variants.maskReveal}
-              className="mt-6 max-w-2xl"
-            >
-              <p className="mb-4 text-sm font-bold text-slate-500">
-                {homeHero.trustText}
-              </p>
+            <motion.div variants={variants.maskReveal} className="mt-6 max-w-2xl">
+              <p className="mb-4 text-sm font-bold text-slate-500">{homeHero.trustText}</p>
               <div className="flex flex-wrap gap-3">
                 {homeHero.proofPoints.map((item) => (
                   <span
                     key={item}
                     className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-3 py-2 text-[11px] font-black uppercase tracking-widest text-sgs-navy shadow-sm backdrop-blur"
                   >
-                    <CheckCircle2 className="h-3.5 w-3.5 text-sgs-green" />
+                    <CheckCircle2 className="h-3.5 w-3.5 text-sgs-green" aria-hidden="true" />
                     {item}
                   </span>
                 ))}
@@ -125,9 +153,7 @@ export function HeroSection() {
                   <p className="mb-2 text-[9px] font-black uppercase tracking-[0.2em] text-primary">
                     {metric.label}
                   </p>
-                  <p className="text-sm font-black text-sgs-navy">
-                    {metric.value}
-                  </p>
+                  <p className="text-sm font-black text-sgs-navy">{metric.value}</p>
                 </motion.div>
               ))}
             </motion.div>

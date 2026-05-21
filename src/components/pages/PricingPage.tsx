@@ -197,6 +197,39 @@ export function PricingPage() {
         </FadeIn>
 
         <FadeIn direction="up">
+          <div className="mt-24 overflow-x-auto rounded-[2rem] border border-slate-100">
+            <table className="w-full min-w-[720px] text-left text-sm">
+              <caption className="sr-only">Comparativo de planos SGS</caption>
+              <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <tr>
+                  <th className="px-6 py-4">Recurso</th>
+                  <th className="px-6 py-4">Operacional</th>
+                  <th className="px-6 py-4">Profissional</th>
+                  <th className="px-6 py-4">Enterprise</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  ["Trabalhadores", "Até 50", "Até 250", "Sob medida"],
+                  ["Unidades (sites)", "1", "Até 5", "Ilimitadas"],
+                  ["Módulos APR, DDS, PT", "Sim", "Sim", "Sim + custom"],
+                  ["IA Sophie", "—", "Assistiva", "Avançada (escopo)"],
+                  ["Integrações API", "—", "—", "Sim"],
+                  ["Suporte", "E-mail", "Prioritário", "Dedicado"],
+                ].map((row) => (
+                  <tr key={row[0]}>
+                    <th className="px-6 py-4 font-black text-sgs-navy">{row[0]}</th>
+                    <td className="px-6 py-4 font-medium text-slate-500">{row[1]}</td>
+                    <td className="px-6 py-4 font-medium text-slate-500">{row[2]}</td>
+                    <td className="px-6 py-4 font-medium text-slate-500">{row[3]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </FadeIn>
+
+        <FadeIn direction="up">
           <div className="mt-24 grid gap-6 lg:grid-cols-4">
             {pricingFaqs.map((item, index) => (
               <MotionCard key={item.question} delay={index * 0.05} className="p-8">

@@ -1,10 +1,13 @@
 import { BlogPage } from "@/components/pages/BlogPage";
-import { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog & Insights | SGS - Segurança do Trabalho",
-  description: "Artigos técnicos, tendências do mercado de SST e guias práticos escritos pelos nossos especialistas em governança e tecnologia.",
-};
+export const metadata = createPageMetadata({
+  title: "Blog e Insights",
+  description:
+    "Artigos técnicos, tendências do mercado de SST e guias práticos sobre governança e tecnologia aplicada à segurança do trabalho.",
+  path: "/blog",
+  keywords: ["Blog SST", "NRs", "Governança SST"],
+});
 
 export default function Page() {
   return <BlogPage />;

@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Política de Privacidade | SGS Segurança",
+export const metadata = createPageMetadata({
+  title: "Política de Privacidade",
   description:
     "Como o site institucional do SGS trata dados de contato, cookies, analytics e solicitações comerciais com foco em transparência e LGPD.",
-};
+  path: "/privacidade",
+});
 
 const sections = [
   {
@@ -19,7 +20,7 @@ const sections = [
   },
   {
     title: "Cookies e analytics",
-    text: "Cookies necessários sustentam a navegação. Analytics e marketing só devem ser ativados após consentimento, quando configurados no ambiente do site.",
+    text: "Cookies necessários sustentam a navegação. Analytics e marketing só são ativados após consentimento. Você pode alterar preferências a qualquer momento pelo link Cookies no rodapé.",
   },
   {
     title: "Compartilhamento",

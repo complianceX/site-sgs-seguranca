@@ -56,6 +56,12 @@ export function BlogPage() {
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-pretty max-w-3xl">
               Artigos técnicos, tendências do mercado de SST e guias práticos escritos pelos nossos especialistas em governança e tecnologia.
             </p>
+            <a
+              href="/rss.xml"
+              className="mt-8 inline-flex text-xs font-black uppercase tracking-widest text-primary hover:text-sgs-navy"
+            >
+              Assinar feed RSS
+            </a>
           </FadeIn>
         </div>
 

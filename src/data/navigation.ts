@@ -1,10 +1,11 @@
 export const navItems = [
   { name: "Módulos", href: "/modulos" },
   { name: "Governança", href: "/governanca" },
+  { name: "Integrações", href: "/integracoes" },
   { name: "IA Sophie", href: "/sophie" },
   { name: "Preços", href: "/precos" },
   { name: "Blog", href: "/blog" },
-  { name: "Recursos", href: "/recursos" },
+  { name: "Sobre", href: "/sobre" },
   { name: "Contato", href: "/contato" },
 ];
 
@@ -12,15 +13,16 @@ export const footerSections = {
   product: [
     { name: "Módulos", href: "/modulos" },
     { name: "Governança", href: "/governanca" },
-    { name: "IA Sophie", href: "/sophie" },
     { name: "Integrações", href: "/integracoes" },
+    { name: "IA Sophie", href: "/sophie" },
+    { name: "Preços", href: "/precos" },
     { name: "Segurança", href: "/seguranca" },
   ],
   company: [
+    { name: "Sobre", href: "/sobre" },
     { name: "Blog", href: "/blog" },
     { name: "Recursos", href: "/recursos" },
     { name: "Contato", href: "/contato" },
-    { name: "Segurança", href: "/seguranca" },
   ],
   social: [
     { name: "Privacidade", href: "/privacidade" },

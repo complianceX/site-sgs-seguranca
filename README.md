@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Site institucional SGS Segurança
 
-## Getting Started
+Site de marketing do **SGS — Sistema de Gestão de Segurança do Trabalho**, construído com Next.js 16 (App Router), React 19 e Tailwind CSS 4.
 
-First, run the development server:
+## Requisitos
+
+- Node.js 20+
+- npm 10+
+
+## Configuração local
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variáveis de ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copie `.env.example` para `.env.local` e preencha:
 
-## Learn More
+| Variável | Uso |
+|----------|-----|
+| `LEADS_WEBHOOK_URL` | Webhook HTTPS para receber leads (obrigatório em produção) |
+| `LEAD_WEBHOOK_SECRET` | Bearer token do webhook |
+| `TURNSTILE_SECRET_KEY` / `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile anti-spam |
+| `UPSTASH_REDIS_REST_*` | Rate limit distribuído em produção |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics (somente após consentimento) |
+| `NEXT_PUBLIC_SCHEDULING_URL` | Link de agendamento (Calendly, etc.) |
+| `NEXT_PUBLIC_WHATSAPP_URL` | WhatsApp comercial |
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Build de produção |
+| `npm run start` | Servidor de produção |
+| `npm run lint` | ESLint |
+| `npm run security-check` | `npm audit` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estrutura principal
 
-## Deploy on Vercel
+- `src/app/` — rotas (páginas, API, sitemap, robots, RSS)
+- `src/components/` — UI, seções, layout
+- `src/data/` — conteúdo estático (home, blog, navegação)
+- `src/lib/` — SEO, analytics, leads, segurança
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O projeto está preparado para deploy em Vercel, Cloudflare Pages ou ambiente Node compatível com Next.js 16.
+
+Em produção, configure todas as variáveis obrigatórias de leads e Turnstile antes de publicar formulários.
+
+## Repositório
+
+GitHub: [complianceX/site-sgs-seguranca](https://github.com/complianceX/site-sgs-seguranca)

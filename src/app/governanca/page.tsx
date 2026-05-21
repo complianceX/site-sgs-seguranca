@@ -1,11 +1,12 @@
-import { Metadata } from "next";
 import { GovernancePage } from "@/components/pages/GovernancePage";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Governança Documental - SGS",
+export const metadata = createPageMetadata({
+  title: "Governança Documental",
   description: "Trilha forense, PDF oficial imutável e validação pública de documentos SST.",
-  keywords: ["Governança Documental", "SST Digital", "Validação de Documentos", "Compliance SST"],
-};
+  path: "/governanca",
+  keywords: ["Governança Documental", "SST Digital", "Validação de Documentos"],
+});
 
 export default function Page() {
   return <GovernancePage />;

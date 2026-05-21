@@ -1,11 +1,12 @@
-import { Metadata } from "next";
 import { ContactPage } from "@/components/pages/ContactPage";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contato - SGS",
+export const metadata = createPageMetadata({
+  title: "Contato",
   description: "Fale com nossa equipe, tire dúvidas ou agende uma demonstração do sistema SGS.",
-  keywords: ["Contato SGS", "Suporte SST", "Demonstração Software SST"],
-};
+  path: "/contato",
+  keywords: ["Contato SGS", "Demonstração Software SST"],
+});
 
 export default function Page() {
   return <ContactPage />;

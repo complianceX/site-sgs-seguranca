@@ -1,10 +1,13 @@
 import { ResourcesPage } from "@/components/pages/ResourcesPage";
-import { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Recursos e Templates Gratuitos | SGS - Segurança do Trabalho",
-  description: "Baixe templates, guias e checklists de apoio para estruturar rotinas de SST com revisão do responsável técnico.",
-};
+export const metadata = createPageMetadata({
+  title: "Recursos e Templates Gratuitos",
+  description:
+    "Baixe templates, guias e checklists de apoio para estruturar rotinas de SST com revisão do responsável técnico.",
+  path: "/recursos",
+  keywords: ["Templates SST", "Checklist SST", "APR modelo"],
+});
 
 export default function Page() {
   return <ResourcesPage />;
