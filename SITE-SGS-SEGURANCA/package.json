@@ -9,7 +9,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:cf": "vite build && (cmd /c \"xcopy /E /I /Y dist\\server\\assets dist\\client\\assets\")",
+    "deploy": "bun run build:cf && npx wrangler deploy"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
