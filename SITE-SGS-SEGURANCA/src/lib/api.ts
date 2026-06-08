@@ -24,6 +24,7 @@ export const demoFormSchema = z.object({
     .max(200, "Nome da empresa muito longo"),
   employees: z.string().optional(),
   needs: z.string().optional(),
+  turnstileToken: z.string().optional(),
 });
 
 export type DemoFormData = z.infer<typeof demoFormSchema>;

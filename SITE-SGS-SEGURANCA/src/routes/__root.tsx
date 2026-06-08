@@ -1,6 +1,11 @@
+import { useEffect, lazy, Suspense } from "react";
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import logoSgs from "@/assets/logo-sgs.webp";
+import { Header } from "@/components/landing/Header";
+import { Footer } from "@/components/landing/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
+
+const CustomCursor = lazy(() => import("@/components/animations/CustomCursor").then(m => ({ default: m.CustomCursor })));
 
 import appCss from "../styles.css?url";
 
@@ -146,13 +151,73 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function ScrollProgress() {
+  useEffect(() => {
+    const bar = document.getElementById("sgs-scroll-bar");
+    if (!bar) return;
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = `${Math.min(progress, 100)}%`;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return <div id="sgs-scroll-bar" className="sgs-scroll-progress" />;
+}
+
 function RootComponent() {
+  useEffect(() => {
+    function observeReveals() {
+      const targets = document.querySelectorAll(
+        ".sgs-reveal, .sgs-reveal-left, .sgs-reveal-right, .sgs-reveal-scale, .sgs-stagger, .sgs-reveal-border, .sgs-clip-reveal, .sgs-clip-reveal-left, .sgs-clip-reveal-right"
+      );
+      targets.forEach((el) => {
+        if (!el.classList.contains("sgs-observed")) {
+          el.classList.add("sgs-observed");
+          observer.observe(el);
+        }
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("sgs-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    observeReveals();
+
+    const mutationObserver = new MutationObserver(observeReveals);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <>
+    <div className="min-h-screen bg-sgs-bg text-sgs-night font-sans selection:bg-sgs-blue/10 selection:text-sgs-blue">
+      <ScrollProgress />
+      <Suspense fallback={null}>
+        <CustomCursor />
+      </Suspense>
+      <Header />
       <div className="animate-page-enter">
         <Outlet />
       </div>
+      <BackToTop />
+      <Footer />
       <Toaster position="top-center" />
-    </>
+    </div>
   );
 }

@@ -4,8 +4,9 @@ export function trackEvent(action: string, label?: string, value?: number) {
   if (typeof window === "undefined" || !GA_ID) return;
 
   try {
-    if (typeof (window as any).gtag === "function") {
-      (window as any).gtag("event", action, {
+    const w = window as Window & { gtag?: (...args: unknown[]) => void };
+    if (typeof w.gtag === "function") {
+      w.gtag("event", action, {
         event_label: label,
         value,
         send_to: GA_ID,

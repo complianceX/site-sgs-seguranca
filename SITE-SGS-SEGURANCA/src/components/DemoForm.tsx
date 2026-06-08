@@ -10,8 +10,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { submitDemo, type DemoResult } from "@/lib/demo";
+import type { DemoFormData } from "@/lib/api";
 import { trackEvent } from "@/lib/analytics";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { Confetti } from "@/components/animations/Confetti";
 
 interface DemoFormProps {
   triggerLabel: string;
@@ -50,6 +52,7 @@ export function DemoForm({
   const [serverMsg, setServerMsg] = useState("");
   const [open, setOpen] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
+  const [shake, setShake] = useState(false);
 
   const handleChange = useCallback((field: keyof FormFields, value: string) => {
     setFields((prev) => ({ ...prev, [field]: value }));
@@ -73,20 +76,30 @@ export function DemoForm({
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      setShake(true);
+      setTimeout(() => setShake(false), 400);
+      return;
+    }
 
     trackEvent("form_demo_click", "Agendar demonstração");
     setStatus("loading");
     setServerMsg("");
 
     try {
-      const result: DemoResult = await submitDemo({
-        ...fields,
+      const data: DemoFormData = {
+        name: fields.name,
+        email: fields.email,
+        phone: fields.phone,
+        company: fields.company,
+        employees: fields.employees || undefined,
+        needs: fields.needs || undefined,
         turnstileToken: turnstileToken || undefined,
-      });
+      };
+      const result: DemoResult = await (submitDemo as (data: DemoFormData) => Promise<DemoResult>)(data);
 
       setStatus(result.success ? "success" : "error");
-      setServerMsg(result.message);
+      setServerMsg(result.message ?? "");
 
       if (result.success) {
         trackEvent("form_demo_success", "Formulário enviado");
@@ -123,40 +136,41 @@ export function DemoForm({
           {showArrow ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[92vh] max-w-xl overflow-y-auto border-none bg-white p-0 shadow-2xl sm:rounded-2xl">
-        <div className="border-b border-[#dbe4ee]/50 px-8 py-6">
+      <DialogContent className="max-h-[92vh] max-w-xl overflow-y-auto border-none bg-white p-0 pt-10 shadow-2xl sm:rounded-2xl">
+        <div className="border-b border-sgs-border/50 px-8 py-6">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold tracking-tight text-[#0d2033]">
-              {status === "success" ? "Solicitação enviada" : "Agendar demonstração"}
+            <DialogTitle className="text-2xl font-bold tracking-tight text-sgs-night">
+              {status === "success" ? "Solicitação enviada" : "Ver o SGS em ação"}
             </DialogTitle>
-            <DialogDescription className="pt-2 text-base leading-relaxed text-[#5b6878]">
+            <DialogDescription className="pt-2 text-base leading-relaxed text-sgs-slate">
               {status === "success"
                 ? "Entraremos em contato em até 24h úteis."
-                : "Preencha os dados abaixo para conhecer o SGS."}
+                : "Veja em 2 minutos como o SGS pode transformar sua gestão de SST."}
             </DialogDescription>
           </DialogHeader>
         </div>
 
         {status === "success" ? (
-          <div className="flex flex-col items-center px-8 py-16 text-center">
-            <CheckCircle2 className="mb-4 h-16 w-16 text-[#22c55e]" />
-            <p className="text-lg font-bold text-[#0d2033]">{serverMsg}</p>
+          <div className="flex flex-col items-center px-8 py-16 text-center relative overflow-hidden">
+            <Confetti active={status === "success"} />
+            <CheckCircle2 className="mb-4 h-16 w-16 text-sgs-green" />
+            <p className="text-lg font-bold text-sgs-night">{serverMsg}</p>
             <Button
               onClick={handleClose}
-              className="mt-8 h-12 rounded-xl bg-[#1d5b8d] px-8 text-sm font-bold text-white"
+              className="mt-8 h-12 rounded-xl bg-sgs-blue px-8 text-sm font-bold text-white relative z-10"
             >
               Fechar
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6 px-8 py-8">
+          <form onSubmit={handleSubmit} className={`space-y-6 px-8 py-8 ${shake ? "animate-sgs-shake" : ""}`}>
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Nome" error={errors.name}>
                 <input
                   value={fields.name}
                   onChange={(e) => handleChange("name", e.target.value)}
                   required
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#142033] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-night outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
                   placeholder="Seu nome completo"
                 />
               </Field>
@@ -166,8 +180,8 @@ export function DemoForm({
                   value={fields.email}
                   onChange={(e) => handleChange("email", e.target.value)}
                   required
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#142033] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
-                  placeholder="voce@empresa.com.br"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-night outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
+                  placeholder="você@empresa.com.br"
                 />
               </Field>
             </div>
@@ -179,7 +193,7 @@ export function DemoForm({
                   value={fields.phone}
                   onChange={(e) => handleChange("phone", e.target.value)}
                   required
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#142033] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-night outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
                   placeholder="(00) 00000-0000"
                 />
               </Field>
@@ -188,7 +202,7 @@ export function DemoForm({
                   value={fields.company}
                   onChange={(e) => handleChange("company", e.target.value)}
                   required
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#142033] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-night outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
                   placeholder="Nome da sua empresa"
                 />
               </Field>
@@ -199,7 +213,7 @@ export function DemoForm({
                 <select
                   value={fields.employees}
                   onChange={(e) => handleChange("employees", e.target.value)}
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#5b6878] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-slate outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
                 >
                   <option value="">Selecione</option>
                   <option value="1-10">1 a 10</option>
@@ -213,7 +227,7 @@ export function DemoForm({
                 <select
                   value={fields.needs}
                   onChange={(e) => handleChange("needs", e.target.value)}
-                  className="h-12 w-full rounded-xl border border-[#dbe4ee] bg-[#fbfcfe] px-4 text-sm font-medium text-[#5b6878] outline-none transition-all focus:border-[#1d5b8d] focus:bg-white focus:ring-4 focus:ring-[#1d5b8d]/5"
+                  className="h-12 w-full rounded-xl border border-sgs-border bg-sgs-bg px-4 text-sm font-medium text-sgs-slate outline-none transition-all focus:border-sgs-blue focus:bg-white focus:ring-4 focus:ring-sgs-blue/5"
                 >
                   <option value="">Selecione</option>
                   <option value="apr">APR Digital</option>
@@ -235,10 +249,10 @@ export function DemoForm({
               </div>
             )}
 
-            <div className="flex flex-col gap-4 border-t border-[#dbe4ee]/50 pt-6 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs font-medium text-[#5b6878]">
+            <div className="flex flex-col gap-4 border-t border-sgs-border/50 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs font-medium text-sgs-slate">
                 Seus dados estão protegidos pela{" "}
-                <a href="/privacidade" className="underline hover:text-[#1d5b8d]">
+                <a href="/privacidade" className="underline hover:text-sgs-blue">
                   Política de Privacidade
                 </a>
                 .
@@ -246,7 +260,7 @@ export function DemoForm({
               <Button
                 type="submit"
                 disabled={status === "loading"}
-                className="h-12 rounded-xl bg-[#1d5b8d] px-8 text-sm font-bold text-white shadow-lg shadow-[#1d5b8d]/20 transition-all hover:bg-[#16486f] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+                className="h-12 rounded-xl bg-sgs-blue px-8 text-sm font-bold text-white shadow-lg shadow-sgs-blue/20 transition-all hover:bg-sgs-blue-dark hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
               >
                 {status === "loading" ? (
                   <>
@@ -278,7 +292,7 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="space-y-2 text-sm font-bold text-[#0d2033]">
+    <label className="space-y-2 text-sm font-bold text-sgs-night">
       {label}
       {children}
       {error && (

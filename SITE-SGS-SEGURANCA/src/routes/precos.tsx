@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ArrowRight, Mail, MessageCircle, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CheckCircle2, MessageCircle, ShieldCheck, Mail } from "lucide-react";
 import { DemoForm } from "@/components/DemoForm";
-import logoSgs from "@/assets/logo-sgs.webp";
+import { TextReveal } from "@/components/animations/TextReveal";
+import { TiltCard } from "@/components/animations/TiltCard";
+import { MeshGradient } from "@/components/animations/MeshGradient";
 
 const whatsappNumber = "5531986937268";
 const whatsappMessage = "Olá, equipe SGS. Quero saber mais sobre os planos.";
@@ -83,76 +84,65 @@ const plans = [
 
 function PricingPage() {
   return (
-    <div className="min-h-screen bg-[#fbfcfe] text-[#142033] font-sans">
-      <header className="sticky top-0 z-50 border-b border-[#dbe4ee]/50 bg-white/80 backdrop-blur-xl">
-        <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-20 md:px-8">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logoSgs} alt="SGS Segurança" className="h-11 w-auto md:h-14" />
-            <span className="hidden border-l border-[#dbe4ee] pl-3 text-sm font-semibold text-[#5b6878] sm:inline">
-              Planos
-            </span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/"
-              className="text-sm font-semibold text-[#5b6878] transition-colors hover:text-[#1d5b8d]"
-            >
-              Voltar
-            </Link>
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        <section className="border-b border-[#dbe4ee]/50 bg-white py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8 text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1d5b8d]/10 bg-[#1d5b8d]/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#1d5b8d]">
+      <main className="relative overflow-hidden">
+        <section className="relative border-b border-sgs-border/50 bg-white py-20 md:py-28">
+          <MeshGradient className="opacity-15" />
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 text-center sgs-reveal relative">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sgs-blue/10 bg-sgs-blue/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-sgs-blue animate-sgs-soft-in">
               <ShieldCheck className="h-3.5 w-3.5" />
               Planos e Preços
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-[#0d2033] md:text-5xl">
-              O plano certo para a sua operação de SST
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#5b6878]">
+            <TextReveal
+              text="O plano certo para a sua operação de SST"
+              as="h1"
+              className="text-4xl font-black tracking-tight text-sgs-night md:text-5xl"
+              stagger={40}
+            />
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sgs-slate">
               Do básico ao enterprise, o SGS se adapta ao tamanho da sua equipe e à
               complexidade dos seus contratos.
             </p>
           </div>
         </section>
 
-        <section className="bg-[#fbfcfe] py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8">
-            <div className="grid gap-8 md:grid-cols-3 items-stretch">
-              {plans.map((plan) => (
-                <div
+        <section className="relative bg-sgs-bg py-20 md:py-28">
+          <div className="pointer-events-none absolute inset-0 sgs-grid-bg opacity-20" />
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 relative">
+            <div className="grid gap-8 md:grid-cols-3 items-stretch sgs-reveal sgs-stagger">
+              {plans.map((plan) => {
+                const TiltWrapper = plan.highlight ? "div" : TiltCard;
+                const tiltProps = plan.highlight ? {} : { maxTilt: 3, scale: 1.01 };
+                return (
+                <TiltWrapper
                   key={plan.name}
-                  className={`relative flex flex-col rounded-2xl border p-8 transition-all duration-300 ${
+                  {...tiltProps}
+                  className={`relative flex flex-col rounded-2xl border p-8 transition-all duration-500 ${
                     plan.highlight
-                      ? "border-[#1d5b8d] bg-white shadow-2xl shadow-[#1d5b8d]/10 scale-[1.02] md:scale-105"
-                      : "border-[#dbe4ee] bg-white hover:shadow-xl"
+                      ? "border-sgs-blue bg-white shadow-2xl shadow-sgs-blue/10 scale-[1.02] md:scale-105 hover:shadow-3xl hover:shadow-sgs-blue/15 sgs-card-gradient-border"
+                      : "border-sgs-border bg-white hover:shadow-xl hover:-translate-y-1 sgs-hover-glow"
                   }`}
                 >
                   {plan.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#1d5b8d] px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-sgs-blue px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-white animate-sgs-soft-in">
                       Mais popular
                     </div>
                   )}
 
-                  <h2 className="text-2xl font-bold text-[#0d2033]">{plan.name}</h2>
-                  <p className="mt-2 text-sm text-[#5b6878]">{plan.subtitle}</p>
+                  <h2 className="text-2xl font-extrabold text-sgs-night">{plan.name}</h2>
+                  <p className="mt-2 text-sm text-sgs-slate">{plan.subtitle}</p>
 
                   <div className="my-8">
-                    <span className="text-3xl font-black text-[#0d2033]">{plan.price}</span>
+                    <span className="text-3xl font-black text-sgs-night">{plan.price}</span>
                     {plan.period && (
-                      <span className="text-sm text-[#5b6878]">/{plan.period}</span>
+                      <span className="text-sm text-sgs-slate">/{plan.period}</span>
                     )}
                   </div>
 
-                  <ul className="flex-1 space-y-4">
+                  <ul className="flex-1 space-y-4 sgs-stagger-children">
                     {plan.features.map((feat) => (
-                      <li key={feat} className="flex items-start gap-3 text-sm">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#22c55e]" />
-                        <span className="text-[#0d2033]">{feat}</span>
+                      <li key={feat} className="flex items-start gap-3 text-sm transition-all duration-300 group-hover:translate-x-0.5">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sgs-green" />
+                        <span className="text-sgs-night">{feat}</span>
                       </li>
                     ))}
                   </ul>
@@ -163,35 +153,36 @@ function PricingPage() {
                       showArrow
                       triggerClassName={`w-full h-12 rounded-xl text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] ${
                         plan.highlight
-                          ? "bg-[#1d5b8d] shadow-[#1d5b8d]/20 hover:bg-[#16486f]"
-                          : "bg-[#5b6878] shadow-[#5b6878]/20 hover:bg-[#4a5a6a]"
+                          ? "bg-sgs-blue shadow-sgs-blue/20 hover:bg-sgs-blue-dark"
+                          : "bg-sgs-slate shadow-sgs-slate/20 hover:bg-[#4a5a6a]"
                       }`}
                     />
                     <a
                       href={whatsappUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#dbe4ee] bg-white py-3 text-sm font-bold text-[#1d5b8d] transition-colors hover:bg-[#f4f8fc]"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-sgs-border bg-white py-3 text-sm font-bold text-sgs-blue transition-all hover:bg-sgs-bg-hover hover:shadow-md"
                     >
                       <MessageCircle className="h-4 w-4" />
                       Falar no WhatsApp
                     </a>
                   </div>
-                </div>
-              ))}
+                </TiltWrapper>
+              );
+            })}
             </div>
 
-            <div className="mx-auto mt-16 max-w-2xl rounded-2xl border border-[#dbe4ee] bg-white p-8 text-center">
-              <h3 className="text-lg font-bold text-[#0d2033]">
+            <div className="mx-auto mt-16 max-w-2xl rounded-2xl border border-sgs-border bg-white p-8 text-center sgs-reveal sgs-card-float transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-sgs-blue/5">
+              <h3 className="text-lg font-extrabold text-sgs-night">
                 Precisa de um plano personalizado?
               </h3>
-              <p className="mt-3 text-sm text-[#5b6878]">
+              <p className="mt-3 text-sm text-sgs-slate">
                 Atendemos requisitos específicos de compliance, integração com sistemas
                 legados e contratos corporativos de grande porte.
               </p>
               <a
                 href={`mailto:contato@sgsseguranca.com.br`}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#1d5b8d] transition-colors hover:text-[#16486f]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-sgs-blue transition-all hover:text-sgs-blue-dark hover:gap-3"
               >
                 <Mail className="h-4 w-4" />
                 contato@sgsseguranca.com.br
@@ -200,22 +191,5 @@ function PricingPage() {
           </div>
         </section>
       </main>
-
-      <footer className="bg-[#1d5b8d] py-16 text-white/90">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 sm:px-8 md:flex-row">
-          <p className="text-sm text-white/60">
-            © 2026 SGS Segurança
-          </p>
-          <div className="flex gap-6 text-sm">
-            <Link to="/privacidade" className="text-white/70 transition-colors hover:text-white">
-              Privacidade
-            </Link>
-            <Link to="/termos" className="text-white/70 transition-colors hover:text-white">
-              Termos
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
   );
 }

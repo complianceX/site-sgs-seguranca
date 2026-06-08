@@ -1,5 +1,6 @@
 import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import { NotFound } from "./components/NotFound";
 
 export const getRouter = () => {
   const router = createRouter({
@@ -7,6 +8,8 @@ export const getRouter = () => {
     context: {},
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    defaultViewTransition: true,
+    defaultNotFoundComponent: NotFound,
   });
 
   return router;

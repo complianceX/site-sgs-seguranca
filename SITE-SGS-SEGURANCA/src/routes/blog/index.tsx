@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Calendar, Clock, ShieldCheck } from "lucide-react";
-import logoSgs from "@/assets/logo-sgs.webp";
+import { TextReveal } from "@/components/animations/TextReveal";
+import { TiltCard } from "@/components/animations/TiltCard";
 
 export const Route = createFileRoute("/blog/")({
   component: BlogPage,
@@ -69,38 +70,23 @@ const posts = [
 
 function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#fbfcfe] text-[#142033] font-sans">
-      <header className="sticky top-0 z-50 border-b border-[#dbe4ee]/50 bg-white/80 backdrop-blur-xl">
-        <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-20 md:px-8">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logoSgs} alt="SGS Segurança" className="h-11 w-auto md:h-14" />
-            <span className="hidden border-l border-[#dbe4ee] pl-3 text-sm font-semibold text-[#5b6878] sm:inline">
-              Blog
-            </span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm font-semibold text-[#5b6878] transition-colors hover:text-[#1d5b8d]">
-              Início
-            </Link>
-            <Link to="/precos" className="text-sm font-semibold text-[#5b6878] transition-colors hover:text-[#1d5b8d]">
-              Preços
-            </Link>
-          </div>
-        </nav>
-      </header>
-
       <main>
-        <section className="border-b border-[#dbe4ee]/50 bg-white py-20 md:py-28">
+        <section className="relative overflow-hidden border-b border-sgs-border/50 bg-white py-20 md:py-28">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sgs-blue/3 blur-3xl animate-sgs-blob" />
+          <div className="pointer-events-none absolute -left-16 -bottom-16 h-56 w-56 rounded-full bg-sgs-green/3 blur-3xl animate-sgs-float" style={{ animationDuration: '10s' }} />
           <div className="mx-auto max-w-7xl px-6 sm:px-8">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1d5b8d]/10 bg-[#1d5b8d]/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#1d5b8d]">
+            <div className="mx-auto max-w-2xl text-center sgs-reveal">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sgs-blue/10 bg-sgs-blue/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-sgs-blue animate-sgs-soft-in">
                 <ShieldCheck className="h-3.5 w-3.5" />
                 Blog SGS
               </div>
-              <h1 className="text-4xl font-bold tracking-tight text-[#0d2033] md:text-5xl">
-                Gestão de SST na prática
-              </h1>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#5b6878]">
+              <TextReveal
+                text="Gestão de SST na prática"
+                as="h1"
+className="text-4xl font-black tracking-tight text-sgs-night md:text-5xl"
+              stagger={40}
+            />
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sgs-slate">
                 Artigos, guias e melhores práticas para transformar a gestão de
                 segurança do trabalho da sua empresa.
               </p>
@@ -108,16 +94,20 @@ function BlogPage() {
           </div>
         </section>
 
-        <section className="bg-[#fbfcfe] py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8">
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <section className="relative bg-sgs-bg py-20 md:py-28">
+          <div className="pointer-events-none absolute inset-0 sgs-grid-bg opacity-20" />
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 relative">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 sgs-reveal sgs-stagger">
               {posts.map((post) => (
-                <Link
+                <TiltCard
                   key={post.slug}
-                  to={`/blog/${post.slug}`}
-                  className="group flex flex-col rounded-2xl border border-[#dbe4ee] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1d5b8d]/20 hover:shadow-xl"
+                  as="a"
+                  href={`/blog/${post.slug}`}
+                  maxTilt={4}
+                  scale={1.01}
+                  className="group flex flex-col rounded-2xl border border-sgs-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sgs-blue/20 hover:shadow-xl"
                 >
-                  <div className="mb-4 flex items-center gap-4 text-xs text-[#7a8796]">
+                  <div className="mb-4 flex items-center gap-4 text-xs text-sgs-slate-light">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       {post.date}
@@ -127,22 +117,21 @@ function BlogPage() {
                       {post.readTime}
                     </span>
                   </div>
-                  <h2 className="text-lg font-bold text-[#0d2033] transition-colors group-hover:text-[#1d5b8d]">
+                  <h2 className="text-lg font-extrabold text-sgs-night transition-colors duration-300 group-hover:text-sgs-blue">
                     {post.title}
                   </h2>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[#5b6878]">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-sgs-slate">
                     {post.excerpt}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-[#1d5b8d]">
+                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-sgs-blue">
                     Ler artigo
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-3.5 w-3.5 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
                   </span>
-                </Link>
+                </TiltCard>
               ))}
             </div>
           </div>
         </section>
       </main>
-    </div>
   );
 }

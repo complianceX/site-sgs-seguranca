@@ -18,7 +18,9 @@ import {
   Scale,
 } from "lucide-react";
 import { DemoForm } from "@/components/DemoForm";
-import logoSgs from "@/assets/logo-sgs.webp";
+import { TextReveal } from "@/components/animations/TextReveal";
+import { TiltCard } from "@/components/animations/TiltCard";
+import { MeshGradient } from "@/components/animations/MeshGradient";
 
 export const Route = createFileRoute("/funcionalidades")({
   component: FeaturesPage,
@@ -57,76 +59,63 @@ const allModules = [
 
 function FeaturesPage() {
   return (
-    <div className="min-h-screen bg-[#fbfcfe] text-[#142033] font-sans">
-      <header className="sticky top-0 z-50 border-b border-[#dbe4ee]/50 bg-white/80 backdrop-blur-xl">
-        <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-20 md:px-8">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logoSgs} alt="SGS Segurança" className="h-11 w-auto md:h-14" />
-            <span className="hidden border-l border-[#dbe4ee] pl-3 text-sm font-semibold text-[#5b6878] sm:inline">
-              Funcionalidades
-            </span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm font-semibold text-[#5b6878] transition-colors hover:text-[#1d5b8d]">
-              Início
-            </Link>
-            <Link to="/precos" className="text-sm font-semibold text-[#5b6878] transition-colors hover:text-[#1d5b8d]">
-              Preços
-            </Link>
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        <section className="border-b border-[#dbe4ee]/50 bg-white py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8 text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-[#0d2033] md:text-5xl">
-              Todas as funcionalidades do SGS
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#5b6878]">
+      <main className="relative overflow-hidden">
+        <section className="relative border-b border-sgs-border/50 bg-white py-20 md:py-28">
+          <MeshGradient className="opacity-15" />
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 text-center sgs-reveal relative">
+            <TextReveal
+              text="Todas as funcionalidades do SGS"
+              as="h1"
+              className="text-4xl font-black tracking-tight text-sgs-night md:text-5xl"
+              stagger={40}
+            />
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sgs-slate">
               Da APR ao relatório de auditoria, o SGS cobre cada etapa da gestão de
               segurança do trabalho em uma única plataforma.
             </p>
           </div>
         </section>
 
-        <section className="bg-[#fbfcfe] py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <section className="relative bg-sgs-bg py-20 md:py-28">
+          <div className="pointer-events-none absolute inset-0 sgs-grid-bg opacity-30" />
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 relative">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sgs-reveal sgs-stagger">
               {allModules.map((mod) => (
-                <div
+                <TiltCard
                   key={mod.title}
-                  className="group relative flex flex-col rounded-2xl border border-[#dbe4ee] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1d5b8d]/20 hover:shadow-xl hover:shadow-[#1d5b8d]/5"
+                  maxTilt={4}
+                  scale={1.01}
+                  className="group relative flex flex-col rounded-2xl border border-sgs-border bg-white p-6 transition-all duration-300 hover:border-sgs-blue/20 hover:shadow-xl hover:shadow-sgs-blue/5 sgs-hover-glow sgs-card-gradient-border"
                 >
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#1d5b8d]/5 text-[#1d5b8d] transition-colors group-hover:bg-[#1d5b8d] group-hover:text-white">
-                    <mod.icon className="h-5 w-5" />
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-sgs-blue/5 text-sgs-blue transition-all duration-300 group-hover:bg-sgs-blue group-hover:text-white group-hover:shadow-lg group-hover:shadow-sgs-blue/20 sgs-shine">
+                    <mod.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-base font-bold text-[#0d2033]">{mod.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5b6878]">{mod.desc}</p>
-                </div>
+                  <h3 className="text-base font-extrabold text-sgs-night">{mod.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-sgs-slate">{mod.desc}</p>
+                </TiltCard>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-y border-[#dbe4ee]/50 bg-white py-20">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 sm:px-8 md:flex-row">
+        <section className="relative border-y border-sgs-border/50 bg-white py-20">
+          <MeshGradient className="opacity-10" />
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 sm:px-8 md:flex-row sgs-reveal-left relative">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-[#0d2033] md:text-3xl">
+              <h2 className="text-2xl font-black tracking-tight text-sgs-night md:text-3xl">
                 Quer ver na prática?
               </h2>
-              <p className="mt-3 text-base text-[#5b6878]">
+              <p className="mt-3 text-base text-sgs-slate">
                 Agende uma demonstração personalizada com nossa equipe.
               </p>
             </div>
             <DemoForm
               triggerLabel="Agendar demonstração"
               showArrow
-              triggerClassName="h-13 rounded-xl bg-[#1d5b8d] px-8 text-sm font-bold text-white shadow-lg shadow-[#1d5b8d]/20 transition-all hover:bg-[#16486f] hover:scale-[1.02] active:scale-[0.98]"
+              triggerClassName="h-13 rounded-xl bg-sgs-blue px-8 text-sm font-bold text-white shadow-lg shadow-sgs-blue/20 transition-all hover:bg-sgs-blue-dark hover:scale-[1.02] active:scale-[0.98]"
             />
           </div>
         </section>
       </main>
-    </div>
   );
 }

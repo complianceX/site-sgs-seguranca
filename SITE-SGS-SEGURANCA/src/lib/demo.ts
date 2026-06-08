@@ -8,13 +8,13 @@ export type DemoResult =
   | { success: false; message: string }
 
 export const submitDemo = createServerFn({ method: 'POST' })
-  .validator((data: unknown) => demoFormSchema.parse(data))
+  .inputValidator((data: unknown) => demoFormSchema.parse(data))
   .handler(async ({ data }) => {
     const { turnstileToken, ...formData } = data
 
     if (turnstileToken) {
       const verification = await verifyTurnstileToken(turnstileToken)
-      if (!verification.success) {
+      if (!verification) {
       return {
         success: false as const,
         message: 'Verificação anti-spam falhou. Tente novamente.',
@@ -38,8 +38,8 @@ export const submitDemo = createServerFn({ method: 'POST' })
       email: formData.email,
       company: formData.company,
       phone: formData.phone,
-      employee_count: formData.employeeCount,
-      message: formData.message,
+      employee_count: formData.employees,
+      message: formData.needs,
     })
 
     if (error) {
