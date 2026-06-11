@@ -20,6 +20,9 @@ const heroMetrics = [
   { label: "IA assistiva", value: "Sophie com revisão humana" },
 ];
 
+import { TextReveal } from "@/components/animations/TextReveal";
+import { Magnetic } from "@/components/animations/Magnetic";
+
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
   const schedulingHref = getSchedulingHref();
@@ -92,12 +95,11 @@ export function HeroSection() {
               {homeHero.tag}
             </motion.div>
 
-            <MotionText
-              as="h1"
+            <TextReveal
               className="mb-8 text-4xl font-black leading-[1.08] tracking-tight text-sgs-navy text-balance md:text-5xl lg:text-6xl"
             >
               {homeHero.title}
-            </MotionText>
+            </TextReveal>
 
             <motion.p
               variants={variants.maskReveal}
@@ -107,17 +109,21 @@ export function HeroSection() {
             </motion.p>
 
             <div className="flex flex-wrap gap-6">
-              <TrackedLink href={schedulingHref} trackLabel="Agendar demonstração - Hero">
-                <MotionButton size="lg" className="group gap-3">
-                  {homeHero.ctaPrimary.text}{" "}
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </MotionButton>
-              </TrackedLink>
-              <TrackedLink href={homeHero.ctaSecondary.href} trackLabel="Ver módulos - Hero">
-                <MotionButton variant="outline" size="lg">
-                  {homeHero.ctaSecondary.text}
-                </MotionButton>
-              </TrackedLink>
+              <Magnetic strength={0.3}>
+                <TrackedLink href={schedulingHref} trackLabel="Agendar demonstração - Hero">
+                  <MotionButton size="lg" className="group gap-3">
+                    {homeHero.ctaPrimary.text}{" "}
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </MotionButton>
+                </TrackedLink>
+              </Magnetic>
+              <Magnetic strength={0.3}>
+                <TrackedLink href={homeHero.ctaSecondary.href} trackLabel="Ver módulos - Hero">
+                  <MotionButton variant="outline" size="lg">
+                    {homeHero.ctaSecondary.text}
+                  </MotionButton>
+                </TrackedLink>
+              </Magnetic>
             </div>
 
             <motion.div variants={variants.maskReveal} className="mt-6 max-w-2xl">
