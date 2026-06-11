@@ -12,8 +12,11 @@ type RateLimitResult = {
 };
 
 function getClientIp(headerPayload: Headers) {
+  const cfIp = headerPayload.get('cf-connecting-ip');
   const forwardedFor = headerPayload.get('x-forwarded-for');
   const realIp = headerPayload.get("x-real-ip");
+  
+  if (cfIp) return cfIp;
   return forwardedFor ? forwardedFor.split(',')[0].trim() : realIp || '127.0.0.1';
 }
 

@@ -9,6 +9,8 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { getArticleSchema } from "@/lib/seo/structured-data";
 import { createPageMetadata } from "@/lib/seo/seo";
 
+export const revalidate = 3600;
+
 type BlogPostPageProps = {
   params: Promise<{
     slug: string;

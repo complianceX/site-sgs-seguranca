@@ -1,6 +1,8 @@
 import { BlogPage } from "@/components/pages/BlogPage";
 import { createPageMetadata } from "@/lib/seo/seo";
 
+export const revalidate = 3600;
+
 export const metadata = createPageMetadata({
   title: "Blog e Insights",
   description:

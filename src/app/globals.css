@@ -163,3 +163,14 @@ input[type='range']::-moz-range-track {
 input[type='range']::-moz-range-thumb {
   @apply h-4.5 w-4.5 rounded-full bg-white border-2 border-primary shadow-sm transition-all duration-300;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

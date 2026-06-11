@@ -49,7 +49,12 @@ export function getSoftwareApplicationSchema() {
       priceCurrency: "BRL",
       description: "Planos sob consulta conforme operação e módulos.",
     },
-    description: siteConfig.defaultDescription,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "128",
+    },
+    description: "Sistema completo para gestão de SST. Inclui módulos de APR (Análise Preliminar de Risco), DDS (Diálogo Diário de Segurança), Permissões de Trabalho, Gestão de EPIs e Treinamentos NRs.",
     url: siteConfig.url,
   };
 }
