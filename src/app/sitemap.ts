@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { posts } from "@/data/blog";
 import { getPostIsoDate } from "@/data/blog-dates";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig } from "@/lib/seo/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;

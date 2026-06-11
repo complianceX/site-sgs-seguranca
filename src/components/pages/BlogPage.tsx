@@ -9,7 +9,7 @@ import {
   ChevronRight,
   Sparkles
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";

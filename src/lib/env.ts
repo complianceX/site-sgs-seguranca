@@ -1,4 +1,4 @@
-import { logSecurityEvent } from "@/lib/security-logger";
+import { logSecurityEvent } from "@/lib/security/security-logger";
 
 const PROD = process.env.NODE_ENV === "production";
 

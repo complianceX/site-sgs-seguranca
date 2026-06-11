@@ -1,5 +1,5 @@
 import { PricingPage } from "@/components/pages/PricingPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Planos e Preços",

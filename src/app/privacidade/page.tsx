@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Política de Privacidade",

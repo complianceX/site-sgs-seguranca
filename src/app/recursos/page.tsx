@@ -1,5 +1,5 @@
 import { ResourcesPage } from "@/components/pages/ResourcesPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Recursos e Templates Gratuitos",

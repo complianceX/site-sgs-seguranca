@@ -9,9 +9,9 @@ import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { ROICalculator } from "@/components/sections/ROICalculator";
 import { SocialProofSection } from "@/components/sections/SocialProofSection";
 import { FieldGallerySection } from "@/components/sections/FieldGallerySection";
-import { MotionCard } from "@/components/ui/MotionCard";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
+import { MotionCard } from "@/components/animations/MotionCard";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
 import { implementationSteps } from "@/data/home";
 
 export function HomePage() {

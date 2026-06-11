@@ -6,8 +6,8 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { getPostBySlug, posts } from "@/data/blog";
 import { getPostIsoDate } from "@/data/blog-dates";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { getArticleSchema } from "@/lib/structured-data";
-import { createPageMetadata } from "@/lib/seo";
+import { getArticleSchema } from "@/lib/seo/structured-data";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 type BlogPostPageProps = {
   params: Promise<{

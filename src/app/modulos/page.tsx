@@ -1,5 +1,5 @@
 import { ModulesPage } from "@/components/pages/ModulesPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Recursos do Software SGS para Gestão de SST",

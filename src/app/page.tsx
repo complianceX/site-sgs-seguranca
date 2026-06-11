@@ -1,5 +1,5 @@
 import { HomePage } from "@/components/pages/HomePage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "SGS - Gestão de Segurança do Trabalho e Governança Documental",

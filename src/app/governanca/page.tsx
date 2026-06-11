@@ -1,5 +1,5 @@
 import { GovernancePage } from "@/components/pages/GovernancePage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Governança Documental",

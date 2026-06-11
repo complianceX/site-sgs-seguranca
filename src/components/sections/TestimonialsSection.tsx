@@ -1,9 +1,9 @@
 "use client";
 
 import { ShieldCheck, Star } from "lucide-react";
-import { MotionText } from "@/components/ui/MotionText";
-import { MotionCard } from "@/components/ui/MotionCard";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
+import { MotionCard } from "@/components/animations/MotionCard";
+import { FadeIn } from "@/components/animations/FadeIn";
 import { testimonials } from "@/data/home";
 
 export function TestimonialsSection() {

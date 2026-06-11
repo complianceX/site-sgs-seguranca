@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { Activity, ArrowRight, CheckCircle2, Clock3, FileText, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
-import { MotionButton } from "@/components/ui/MotionButton";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
+import { MotionButton } from "@/components/animations/MotionButton";
 import { productProof } from "@/data/home";
 import { transitions } from "@/lib/motion-variants";
 import { useReducedMotion } from "@/hooks/use-motion";

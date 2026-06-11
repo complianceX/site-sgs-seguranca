@@ -15,7 +15,7 @@ import {
   Loader2,
   ArrowRight
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";

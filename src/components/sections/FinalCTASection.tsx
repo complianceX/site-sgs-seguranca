@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
-import { MotionButton } from "@/components/ui/MotionButton";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
+import { MotionButton } from "@/components/animations/MotionButton";
 import { useReducedMotion } from "@/hooks/use-motion";
 import { finalCTA } from "@/data/home";
 import { getSchedulingHref } from "@/lib/contact-links";

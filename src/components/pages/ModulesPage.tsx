@@ -16,10 +16,10 @@ import {
   CheckCircle2,
   ArrowRight
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
-import { MotionCard } from "@/components/ui/MotionCard";
-import { MotionButton } from "@/components/ui/MotionButton";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
+import { MotionCard } from "@/components/animations/MotionCard";
+import { MotionButton } from "@/components/animations/MotionButton";
 import Link from "next/link";
 
 const moduleGroups = [

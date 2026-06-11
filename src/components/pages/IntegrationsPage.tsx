@@ -13,7 +13,7 @@ import {
   Box,
   MessageSquare
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import Link from "next/link";
 
 const integrationGroups = [

@@ -12,8 +12,8 @@ import {
   getOrganizationSchema,
   getSoftwareApplicationSchema,
   getWebSiteSchema,
-} from "@/lib/structured-data";
-import { siteConfig } from "@/lib/seo";
+} from "@/lib/seo/structured-data";
+import { siteConfig } from "@/lib/seo/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

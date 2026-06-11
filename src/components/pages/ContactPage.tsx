@@ -11,7 +11,7 @@ import {
   CheckCircle2,
   Loader2
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";

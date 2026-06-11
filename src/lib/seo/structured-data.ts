@@ -1,5 +1,5 @@
 import { faqs } from "@/data/home";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig } from "@/lib/seo/seo";
 
 export function getOrganizationSchema() {
   return {

@@ -1,8 +1,8 @@
 "use client";
 
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionCard } from "@/components/ui/MotionCard";
-import { MotionText } from "@/components/ui/MotionText";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionCard } from "@/components/animations/MotionCard";
+import { MotionText } from "@/components/animations/MotionText";
 import { conversionBenefits } from "@/data/home";
 
 export function ConversionBenefitsSection() {

@@ -1,5 +1,5 @@
 import { SophiePage } from "@/components/pages/SophiePage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "IA Sophie - Assistente SST Inteligente",

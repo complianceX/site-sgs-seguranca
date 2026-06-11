@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { ContactSchema, verifyTurnstile } from '@/lib/security';
-import { rateLimit } from '@/lib/rate-limit';
-import { logSecurityEvent } from '@/lib/security-logger';
-import { sanitizeContactPayload } from '@/lib/sanitize';
+import { ContactSchema, verifyTurnstile } from '@/lib/security/security';
+import { rateLimit } from '@/lib/security/rate-limit';
+import { logSecurityEvent } from '@/lib/security/security-logger';
+import { sanitizeContactPayload } from '@/lib/security/sanitize';
 
 export async function POST(req: Request) {
   const cId = crypto.randomUUID(); // correlationId

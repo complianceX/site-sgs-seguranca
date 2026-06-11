@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { isProductionRuntime } from "@/lib/env";
-import { logSecurityEvent } from "@/lib/security-logger";
+import { logSecurityEvent } from "@/lib/security/security-logger";
 
 const memoryStore = new Map<string, { count: number; reset: number }>();
 

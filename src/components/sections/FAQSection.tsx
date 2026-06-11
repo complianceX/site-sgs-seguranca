@@ -1,8 +1,8 @@
 "use client";
 
 import { HelpCircle } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
 import { Accordion } from "@/components/ui/Accordion";
 import { faqs } from "@/data/home";
 

@@ -1,6 +1,6 @@
 import { posts } from "@/data/blog";
 import { getPostIsoDate } from "@/data/blog-dates";
-import { siteConfig } from "@/lib/seo";
+import { siteConfig } from "@/lib/seo/seo";
 
 export function GET() {
   const items = posts

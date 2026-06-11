@@ -12,9 +12,9 @@ import {
   CheckCircle2,
   AlertCircle
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
-import { MotionCard } from "@/components/ui/MotionCard";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
+import { MotionCard } from "@/components/animations/MotionCard";
 import { TechnicalElements } from "@/components/ui/TechnicalElements";
 import { motion } from "framer-motion";
 import { transitions } from "@/lib/motion-variants";

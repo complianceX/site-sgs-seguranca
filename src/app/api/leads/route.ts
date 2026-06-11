@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { rateLimit } from "@/lib/rate-limit";
-import { sanitizeContactPayload, sanitizeEmailSubject } from "@/lib/sanitize";
-import { LeadSchema, verifyTurnstile, type LeadPayload } from "@/lib/security";
-import { logSecurityEvent } from "@/lib/security-logger";
+import { rateLimit } from "@/lib/security/rate-limit";
+import { sanitizeContactPayload, sanitizeEmailSubject } from "@/lib/security/sanitize";
+import { LeadSchema, verifyTurnstile, type LeadPayload } from "@/lib/security/security";
+import { logSecurityEvent } from "@/lib/security/security-logger";
 import { 
   assertLeadRuntimeConfig, 
   getAllowedOrigins, 

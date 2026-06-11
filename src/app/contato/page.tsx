@@ -1,5 +1,5 @@
 import { ContactPage } from "@/components/pages/ContactPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Contato",

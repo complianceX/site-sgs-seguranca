@@ -1,5 +1,5 @@
 import { IntegrationsPage } from "@/components/pages/IntegrationsPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Integrações",

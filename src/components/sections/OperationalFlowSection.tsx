@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Camera, FileCheck2, QrCode, ShieldCheck } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { MotionText } from "@/components/ui/MotionText";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { MotionText } from "@/components/animations/MotionText";
 import { transitions } from "@/lib/motion-variants";
 import { useReducedMotion } from "@/hooks/use-motion";
 

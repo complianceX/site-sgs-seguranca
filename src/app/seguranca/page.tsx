@@ -1,5 +1,5 @@
 import { SecurityPage } from "@/components/pages/SecurityPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Segurança e LGPD",

@@ -12,7 +12,7 @@ import {
   Mail,
   FileCheck
 } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";

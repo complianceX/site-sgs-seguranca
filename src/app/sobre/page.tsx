@@ -1,5 +1,5 @@
 import { AboutPage } from "@/components/pages/AboutPage";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo/seo";
 
 export const metadata = createPageMetadata({
   title: "Sobre o SGS",

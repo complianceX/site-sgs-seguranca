@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BarChart3, TrendingUp, ArrowRight } from "lucide-react";
-import { MotionCard } from "@/components/ui/MotionCard";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import { MotionButton } from "@/components/ui/MotionButton";
+import { MotionCard } from "@/components/animations/MotionCard";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { MotionButton } from "@/components/animations/MotionButton";
 import { transitions } from "@/lib/motion-variants";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn } from "@/components/animations/FadeIn";
 import Link from "next/link";
 import { getSchedulingHref } from "@/lib/contact-links";
 
