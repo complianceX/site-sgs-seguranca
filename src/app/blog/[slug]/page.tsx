@@ -8,6 +8,7 @@ import { getPostIsoDate } from "@/data/blog-dates";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { getArticleSchema } from "@/lib/seo/structured-data";
 import { createPageMetadata } from "@/lib/seo/seo";
+import { blurPlaceholder } from "@/lib/utils";
 
 export const revalidate = 3600;
 
@@ -97,6 +98,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             priority
             sizes="(min-width: 1280px) 1200px, 100vw"
             className="object-cover"
+            placeholder="blur"
+            blurDataURL={blurPlaceholder}
           />
         </div>
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
+import { submitLead } from "@/lib/submit-lead";
 
 export function NewsletterOverlay() {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,18 +57,17 @@ export function NewsletterOverlay() {
     setSubmitError("");
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const { ok, result } = await submitLead({
+        body: {
           source: "newsletter",
           email,
           turnstileToken,
-        }),
+        },
+        analyticsEvent: "newsletter_signup",
+        analyticsParams: { placement: "overlay" },
       });
-      const result = (await response.json()) as { success: boolean; error?: string };
 
-      if (!response.ok || !result.success) {
+      if (!ok) {
         setSubmitError(result.error ?? "Não foi possível registrar o e-mail agora.");
         return;
       }

@@ -1,8 +1,7 @@
 "use client";
 
-import { Check, Shield, Zap, Building2, Crown, ArrowRight } from "lucide-react";
+import { Check, Shield, Zap, Crown, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { MotionText } from "@/components/animations/MotionText";
 import { MotionCard } from "@/components/animations/MotionCard";
 import { MotionButton } from "@/components/animations/MotionButton";
 import Link from "next/link";
@@ -13,15 +12,15 @@ import { getSchedulingHref, getSpecialistHref } from "@/lib/contact-links";
 
 const plans = [
   {
-    name: "Operacional",
+    name: "Básico",
     icon: Shield,
-    price: "Consulte",
-    description: "Para empresas que querem sair das planilhas e controlar documentos essenciais de SST com rastreabilidade.",
+    price: "R$ 197",
+    description: "Para pequenas equipes que querem sair das planilhas e organizar documentos essenciais de SST.",
     features: [
-      "Até 50 Trabalhadores",
+      "Até 25 Trabalhadores",
       "Módulos APR, PT e DDS",
       "Checklists e Inspeções",
-      "Storage para Anexos (2GB)",
+      "Storage para Anexos (1GB)",
       "Suporte via E-mail",
       "1 Unidade (Site)",
     ],
@@ -29,47 +28,47 @@ const plans = [
     popular: false,
   },
   {
-    name: "Profissional",
+    name: "Operacional",
     icon: Zap,
-    price: "Consulte",
-    description: "Para operações com mais unidades, evidências, prazos e necessidade de governança documental contínua.",
+    price: "R$ 397",
+    description: "Para operações que precisam de controle completo, evidências e governança documental.",
     features: [
-      "Até 250 Trabalhadores",
+      "Até 100 Trabalhadores",
       "Todos os módulos do plano anterior",
       "IA Sophie Assistiva (Rascunhos)",
       "Gestão de Treinamentos e Exames",
       "Controle de EPI Completo",
-      "Storage para Vídeos (10GB)",
-      "Até 5 Unidades (Sites)",
-      "Suporte Prioritário",
+      "Storage para Anexos (5GB)",
+      "Até 3 Unidades (Sites)",
+      "Suporte Prioritário via Chat",
     ],
     cta: "Agendar demonstração",
     popular: true,
   },
   {
-    name: "Enterprise",
+    name: "Profissional",
     icon: Crown,
-    price: "Sob Consulta",
-    description: "Para empresas com múltiplos sites, alto volume operacional, integrações e requisitos avançados de governança.",
+    price: "R$ 797",
+    description: "Para operações multi-site com alto volume, integrações e requisitos avançados de governança.",
     features: [
-      "Grandes volumes de trabalhadores",
-      "Módulos Customizados",
-      "IA Sophie avançada mediante escopo",
+      "Até 500 Trabalhadores",
+      "Todos os módulos do SGS",
+      "IA Sophie Avançada",
       "Integração via API (Google, ERP)",
       "Dashboard Executivo Customizado",
-      "SSO mediante projeto técnico",
-      "Unidades Ilimitadas",
-      "Acompanhamento comercial e técnico dedicado",
+      "Storage para Vídeos (20GB)",
+      "Até 10 Unidades (Sites)",
+      "Suporte Dedicado",
     ],
-    cta: "Falar com especialista",
+    cta: "Agendar demonstração",
     popular: false,
   },
 ];
 
 const pricingFaqs = [
   {
-    question: "Por que os planos são sob consulta?",
-    answer: "Porque o escopo varia conforme número de empresas, usuários, módulos, volume de evidências e necessidade de implantação."
+    question: "Os preços incluem implantação e suporte?",
+    answer: "Sim. Todos os planos incluem implantação assistida e suporte técnico. O diferencial está no nível de prioridade conforme o plano contratado."
   },
   {
     question: "Posso começar apenas com APR, DDS e PT?",
@@ -98,12 +97,12 @@ export function PricingPage() {
               <Crown className="w-4 h-4" />
               Preços e Planos
             </div>
-            <MotionText as="h1" className="text-5xl md:text-7xl font-black text-sgs-navy mb-10 tracking-tighter leading-[1.05] text-balance">
-              Planos ajustados à maturidade da sua operação de SST
-            </MotionText>
+            <h1 className="text-5xl md:text-7xl font-black text-sgs-navy mb-10 tracking-tighter leading-[1.05] text-balance">
+              Planos a partir de <span className="text-primary">R$ 197/mês</span>
+            </h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-pretty">
-              O SGS é dimensionado conforme número de empresas, usuários, módulos e volume operacional.
-              Agende uma demonstração para definir o melhor escopo antes da contratação.
+              Preços fixos e transparentes. Escolha o plano ideal para o tamanho da sua operação
+              ou agende uma demonstração para um dimensionamento personalizado.
             </p>
           </FadeIn>
         </div>
@@ -163,7 +162,7 @@ export function PricingPage() {
                   ))}
                 </div>
 
-                <Link href={plan.name === "Enterprise" ? specialistHref : schedulingHref} className="block w-full">
+                <Link href={plan.name === "Profissional" ? specialistHref : schedulingHref} className="block w-full">
                   <MotionButton
                     variant={plan.popular ? "primary" : "outline"}
                     className="w-full text-lg group py-5"
@@ -180,9 +179,9 @@ export function PricingPage() {
         <FadeIn direction="up">
           <MotionCard className="mt-32 p-12 lg:p-20 border-none bg-slate-50 shadow-none rounded-[3rem] flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden group">
             <div className="relative z-10 max-w-3xl text-center lg:text-left">
-              <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tight">Precisa de algo sob medida?</h2>
+              <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tight">Mais de 500 colaboradores?</h2>
               <p className="text-slate-500 text-xl font-medium leading-relaxed">
-                Para empresas com demandas específicas de integração, volumes massivos de dados ou requisitos de segurança avançados, nossa equipe pode desenhar uma solução exclusiva.
+                Para grandes operações com múltiplos sites, demandas específicas de integração ou requisitos avançados de segurança, temos planos Enterprise com condições especiais.
               </p>
             </div>
             <div className="relative z-10 flex-shrink-0">
@@ -203,18 +202,19 @@ export function PricingPage() {
               <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
                 <tr>
                   <th className="px-6 py-4">Recurso</th>
+                  <th className="px-6 py-4">Básico</th>
                   <th className="px-6 py-4">Operacional</th>
                   <th className="px-6 py-4">Profissional</th>
-                  <th className="px-6 py-4">Enterprise</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {[
-                  ["Trabalhadores", "Até 50", "Até 250", "Sob medida"],
-                  ["Unidades (sites)", "1", "Até 5", "Ilimitadas"],
-                  ["Módulos APR, DDS, PT", "Sim", "Sim", "Sim + custom"],
-                  ["IA Sophie", "—", "Assistiva", "Avançada (escopo)"],
+                  ["Trabalhadores", "Até 25", "Até 100", "Até 500"],
+                  ["Unidades (sites)", "1", "Até 3", "Até 10"],
+                  ["Módulos APR, DDS, PT", "Sim", "Sim", "Sim"],
+                  ["IA Sophie", "—", "Assistiva", "Avançada"],
                   ["Integrações API", "—", "—", "Sim"],
+                  ["Storage", "1GB", "5GB", "20GB"],
                   ["Suporte", "E-mail", "Prioritário", "Dedicado"],
                 ].map((row) => (
                   <tr key={row[0]}>

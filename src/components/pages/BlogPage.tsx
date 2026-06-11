@@ -13,7 +13,7 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, blurPlaceholder } from "@/lib/utils";
 import { categories, posts } from "@/data/blog";
 
 export function BlogPage() {
@@ -109,6 +109,8 @@ export function BlogPage() {
                   priority
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholder}
                 />
                 <div className="absolute top-8 left-8">
                   <span className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-primary">
@@ -158,6 +160,8 @@ export function BlogPage() {
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    placeholder="blur"
+                    blurDataURL={blurPlaceholder}
                   />
                   <div className="absolute bottom-6 left-6">
                     <span className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-sgs-navy shadow-sm">

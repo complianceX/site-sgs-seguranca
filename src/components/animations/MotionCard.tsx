@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { variants, transitions } from "@/lib/motion-variants";
 import { cn } from "@/lib/utils";
 import { ReactNode, useRef } from "react";
@@ -33,7 +33,10 @@ export function MotionCard({
     mouseY.set(clientY - top);
   }
 
-  const glowOpacity = useSpring(useTransform(mouseX, [0, 100], [0, 1]), { stiffness: 100, damping: 30 });
+  const glowColor = useTransform(
+    [mouseX, mouseY],
+    ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(2, 132, 199, 0.08), transparent 40%)`
+  );
 
   return (
     <motion.div
@@ -65,12 +68,7 @@ export function MotionCard({
       {!shouldReduceMotion && (
         <motion.div
           className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: useTransform(
-              [mouseX, mouseY],
-              ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(2, 132, 199, 0.08), transparent 40%)`
-            ),
-          }}
+          style={{ background: glowColor }}
         />
       )}
 

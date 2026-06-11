@@ -113,8 +113,8 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8">Produto</h4>
-            <ul className="space-y-4 text-sm font-bold">
+            <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8" id="footer-product">Produto</h4>
+            <ul className="space-y-4 text-sm font-bold" aria-labelledby="footer-product">
               {footerSections.product.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-slate-500 hover:text-primary transition-colors">
@@ -126,8 +126,8 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8">Empresa</h4>
-            <ul className="space-y-4 text-sm font-bold">
+            <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8" id="footer-company">Empresa</h4>
+            <ul className="space-y-4 text-sm font-bold" aria-labelledby="footer-company">
               {footerSections.company.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-slate-500 hover:text-primary transition-colors">
@@ -157,14 +157,14 @@ export function Footer() {
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
             © {new Date().getFullYear()} SGS - Segurança do Trabalho. Tecnologia para Vida.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-400 md:justify-end">
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-400 md:justify-end" aria-label="Links institucionais">
             {footerSections.social.map((item) => (
               <Link key={item.name} href={item.href} className="cursor-pointer transition-colors hover:text-primary">
                 {item.name}
               </Link>
             ))}
             <CookiePreferencesLink />
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

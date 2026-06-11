@@ -9,6 +9,7 @@ import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { ROICalculator } from "@/components/sections/ROICalculator";
 import { SocialProofSection } from "@/components/sections/SocialProofSection";
 import { FieldGallerySection } from "@/components/sections/FieldGallerySection";
+import { CustomerLogosSection } from "@/components/sections/CustomerLogosSection";
 import { MotionCard } from "@/components/animations/MotionCard";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MotionText } from "@/components/animations/MotionText";
@@ -20,9 +21,11 @@ export function HomePage() {
   return (
     <div className="flex flex-col gap-24 overflow-hidden bg-white pb-24 lg:gap-40">
       <HeroSection />
+      <CustomerLogosSection />
       <ProductProofSection />
       <SocialProofSection />
       <ValuePropositionSection />
+      <ROICalculator />
       <FieldGallerySection />
       <ConversionBenefitsSection />
       <OperationalFlowSection />
@@ -53,7 +56,6 @@ export function HomePage() {
       </section>
 
       <TestimonialsSection />
-      <ROICalculator />
       <FAQSection />
       <FinalCTASection />
     </div>

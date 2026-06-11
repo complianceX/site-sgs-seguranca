@@ -62,37 +62,39 @@ export function CookieBanner() {
 
         {showPreferences && (
           <div className="grid gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm">
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="font-bold text-sgs-navy">Necessários</span>
-                <span className="mt-1 block text-xs text-slate-500">Sempre ativos para segurança e navegação.</span>
-              </span>
-              <input type="checkbox" checked disabled className="h-4 w-4 accent-primary" />
-            </label>
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="font-bold text-sgs-navy">Analytics</span>
-                <span className="mt-1 block text-xs text-slate-500">Medição de uso (ex.: Google Analytics).</span>
-              </span>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <span className="font-bold text-sgs-navy" id="cookie-necessary">Necessários</span>
+                <p className="mt-1 text-xs text-slate-500">Sempre ativos para segurança e navegação.</p>
+              </div>
+              <input type="checkbox" checked disabled aria-labelledby="cookie-necessary" className="h-4 w-4 accent-primary" />
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <label htmlFor="cookie-analytics" className="font-bold text-sgs-navy">Analytics</label>
+                <p className="mt-1 text-xs text-slate-500">Medição de uso (ex.: Google Analytics).</p>
+              </div>
               <input
+                id="cookie-analytics"
                 type="checkbox"
                 checked={draft.analytics}
                 onChange={(e) => setDraft((prev) => ({ ...prev, analytics: e.target.checked }))}
                 className="h-4 w-4 accent-primary"
               />
-            </label>
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="font-bold text-sgs-navy">Marketing</span>
-                <span className="mt-1 block text-xs text-slate-500">Campanhas e remarketing, quando habilitados.</span>
-              </span>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <label htmlFor="cookie-marketing" className="font-bold text-sgs-navy">Marketing</label>
+                <p className="mt-1 text-xs text-slate-500">Campanhas e remarketing, quando habilitados.</p>
+              </div>
               <input
+                id="cookie-marketing"
                 type="checkbox"
                 checked={draft.marketing}
                 onChange={(e) => setDraft((prev) => ({ ...prev, marketing: e.target.checked }))}
                 className="h-4 w-4 accent-primary"
               />
-            </label>
+            </div>
           </div>
         )}
 
@@ -101,6 +103,7 @@ export function CookieBanner() {
             type="button"
             onClick={() => saveConsent(defaultCookieConsent)}
             className="rounded-md px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100"
+            aria-label="Recusar cookies opcionais"
           >
             Recusar opcionais
           </button>
@@ -112,6 +115,7 @@ export function CookieBanner() {
                 setShowPreferences(true);
               }}
               className="rounded-md px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100"
+              aria-label="Personalizar preferências de cookies"
             >
               Personalizar
             </button>
@@ -121,6 +125,7 @@ export function CookieBanner() {
               type="button"
               onClick={() => saveConsent(draft)}
               className="rounded-md px-4 py-2 text-sm font-bold text-primary transition-colors hover:bg-primary/5"
+              aria-label="Salvar preferências de cookies"
             >
               Salvar preferências
             </button>
@@ -129,6 +134,7 @@ export function CookieBanner() {
             type="button"
             onClick={() => saveConsent({ necessary: true, analytics: true, marketing: true })}
             className="rounded-md bg-primary px-6 py-2 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90"
+            aria-label="Aceitar todos os cookies"
           >
             Aceitar todos
           </button>

@@ -11,9 +11,10 @@ interface AccordionItemProps {
   answer: string;
   isOpen: boolean;
   onClick: () => void;
+  index: number;
 }
 
-function AccordionItem({ question, answer, isOpen, onClick }: AccordionItemProps) {
+function AccordionItem({ question, answer, isOpen, onClick, index }: AccordionItemProps) {
   return (
     <div 
       className={cn(
@@ -25,6 +26,7 @@ function AccordionItem({ question, answer, isOpen, onClick }: AccordionItemProps
         onClick={onClick}
         className="flex w-full items-center justify-between py-6 text-left outline-none"
         aria-expanded={isOpen}
+        aria-controls={`accordion-panel-${index}`}
       >
         <span className={cn(
           "text-lg font-black tracking-tight transition-colors duration-300",
@@ -52,7 +54,10 @@ function AccordionItem({ question, answer, isOpen, onClick }: AccordionItemProps
             transition={{ duration: 0.4, ease: transitions.expo }}
             className="overflow-hidden"
           >
-            <div className="pb-8 text-base font-medium leading-relaxed text-slate-500 max-w-3xl">
+            <div
+              id={`accordion-panel-${index}`}
+              className="pb-8 text-base font-medium leading-relaxed text-slate-500 max-w-3xl"
+            >
               {answer}
             </div>
           </motion.div>
@@ -70,6 +75,7 @@ export function Accordion({ items }: { items: { question: string; answer: string
       {items.map((item, index) => (
         <AccordionItem
           key={index}
+          index={index}
           question={item.question}
           answer={item.answer}
           isOpen={openIndex === index}

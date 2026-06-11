@@ -259,17 +259,38 @@ export function ResourcesPage() {
                     <div className="w-20 h-20 bg-sgs-green/10 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-sm">
                       <CheckCircle2 className="w-10 h-10 text-sgs-green" />
                     </div>
-                    <h2 className="text-3xl font-black text-sgs-navy mb-4 tracking-tight">Solicitação registrada</h2>
-                    <p className="text-slate-500 font-medium mb-8 leading-relaxed">
-                      Vamos enviar o material para o e-mail informado.
+                    <h2 className="text-3xl font-black text-sgs-navy mb-4 tracking-tight">Material liberado!</h2>
+                    <p className="text-slate-500 font-medium mb-6 leading-relaxed">
+                      Seu download está pronto. O material será enviado também para o e-mail informado.
                       {leadResult?.referenceId ? ` Protocolo: ${leadResult.referenceId.slice(0, 8).toUpperCase()}.` : ""}
                     </p>
-                    {leadResult?.delivery === "local" && (
-                      <p className="text-xs font-bold text-slate-400 mb-8">
-                        Encaminhamento externo ainda não configurado neste ambiente. Para urgências, escreva para contato@sgsseguranca.com.br.
-                      </p>
-                    )}
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Fechando em instantes...</p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const content = selectedResource!.title === "Template APR Profissional"
+                          ? "TEMPLATE APR PROFISSIONAL\n\nEmpresa: ________________________\nData: ____/____/________\nAtividade: ________________________\nLocal: ________________________\n\nETAPA | RISCO | CONTROLE | RESPONSÁVEL\n1. Preparação | Queda, choque | EPI completo, sinalização | TST\n2. Execução | Esforço repetitivo | Pausas programadas | Operador\n3. Finalização | Ordem e limpeza | Checklist final | Supervisor\n\nAssinatura do TST: ________________________\nAssinatura do Gestor: ________________________"
+                          : selectedResource!.title === "Checklist de Auditoria NR-10"
+                          ? "CHECKLIST DE AUDITORIA NR-10\n\nItem | Conforme | N/Conforme | N/A | Obs\n1. Esquema de aterramento | ___ | ___ | ___ | ______\n2. Disjuntores identificados | ___ | ___ | ___ | ______\n3. Cabos sem emendas | ___ | ___ | ___ | ______\n4. Quadros trancados | ___ | ___ | ___ | ______\n5. EPIs disponíveis | ___ | ___ | ___ | ______\n6. Treinamento NR-10 vigente | ___ | ___ | ___ | ______\n\nAuditor: ________________________\nData: ____/____/________"
+                          : selectedResource!.title === "Guia de Implementação GRO/PGR"
+                          ? "GUIA DE IMPLEMENTAÇÃO GRO/PGR\n\n1. Diagnóstico inicial\n2. Levantamento de perigos\n3. Avaliação de riscos\n4. Plano de ação\n5. Monitoramento\n6. Revisão periódica\n\nBaixe a planilha completa em sgsseguranca.com.br/recursos"
+                          : "MODELO DE PT PARA TRABALHO EM ALTURA\n\nPermissão de Trabalho nº: ________\nData: ____/____/________\nAtividade: Trabalho em altura\nLocal: ________________________\n\nREQUISITOS:\n[ ] Treinamento NR-35 válido\n[ ] ASO compatível\n[ ] EPIs inspecionados\n[ ] Ancoragem verificada\n[ ] Plano de emergência\n\nExecutor: ________________________\nResponsável: ________________________";
+                        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = `${selectedResource!.title.replace(/\s+/g, "_")}.txt`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                      }}
+                      className="inline-flex items-center gap-3 px-10 py-5 bg-primary text-white font-black text-lg rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all mb-6"
+                    >
+                      <Download className="w-5 h-5" /> Baixar Agora
+                    </button>
+                    <p className="text-xs font-bold text-slate-400">
+                      Se preferir, o arquivo será enviado para o e-mail informado.
+                    </p>
                   </div>
                 )}
               </motion.div>

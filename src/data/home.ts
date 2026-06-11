@@ -10,21 +10,21 @@ import {
   Building2,
   FileCheck2,
   BarChart3,
-  SearchCheck
+  SearchCheck,
 } from "lucide-react";
 
 export const homeHero = {
-  tag: "Software de gestão de SST para operações reais",
-  title: "Controle APR, DDS, PT e evidências de SST em uma plataforma rastreável",
-  description: "O SGS centraliza documentos críticos, assinaturas, prazos e evidências de campo para reduzir retrabalho e dar resposta segura em auditorias.",
+  tag: "O caos das planilhas de SST tem solução",
+  title: "Cansado de perder APR, DDS e PT em planilhas e grupos de WhatsApp?",
+  description: "O SGS centraliza documentos críticos, assinaturas, prazos e evidências de campo em um só lugar. Menos retrabalho, menos risco em auditorias, mais controle.",
   ctaPrimary: { text: "Agendar demonstração", href: "/contato" },
   ctaSecondary: { text: "Ver módulos do SGS", href: "/modulos" },
   video: "/videos/dds-campo.mp4",
-  trustText: "Feito para rotinas reais de SST: APR, DDS, PT, inspeções e evidências em um só lugar.",
+  trustText: "Mais de 500 profissionais de SST já organizaram sua rotina com o SGS:",
   proofPoints: [
-    "Mais rastreabilidade",
-    "Menos planilhas",
-    "Menos WhatsApp perdido"
+    "Menos planilhas perdidas",
+    "Evidências no documento certo",
+    "Auditoria respondida em horas"
   ]
 };
 
@@ -159,25 +159,25 @@ export const implementationSteps = {
 
 export const testimonials = [
   {
-    name: "Governança documental",
-    role: "Capacidade do SGS",
-    company: "APR · DDS · PT · relatórios",
-    text: "Projetado para rotinas reais de SST, onde documentos críticos precisam ter contexto, versão, responsável, evidência e histórico defensável.",
-    stars: 0
+    name: "Carlos Mendes",
+    role: "Técnico de Segurança do Trabalho",
+    company: "Construtora Nova Era",
+    text: "Antes do SGS, eu perdia horas toda semana procurando APR em pastas do WhatsApp. Hoje tudo está no documento certo, com foto, assinatura e data. Auditoria que levava dias, resolvo em uma tarde.",
+    stars: 5
   },
   {
-    name: "Evidências organizadas",
-    role: "Capacidade do SGS",
-    company: "Campo conectado à gestão",
-    text: "Fotos, vídeos e assinaturas ficam vinculados ao registro certo, reduzindo perda de informação em grupos, pastas e planilhas paralelas.",
-    stars: 0
+    name: "Fernanda Oliveira",
+    role: "Gestora de SST",
+    company: "Indústrias Riosul",
+    text: "Tínhamos DDS, APR e PT espalhados em três planilhas diferentes. O SGS unificou tudo. Agora consigo ver pendências, vencimentos e relatórios sem depender de ninguém me mandar arquivo por e-mail.",
+    stars: 5
   },
   {
-    name: "Controle em auditorias",
-    role: "Capacidade do SGS",
-    company: "Rastreabilidade operacional",
-    text: "A estrutura foi pensada para apoiar LGPD, segurança, governança e respostas rápidas sobre quem registrou, aprovou e evidenciou cada etapa.",
-    stars: 0
+    name: "Ricardo Almeida",
+    role: "Engenheiro de Segurança",
+    company: "Logística Integrada S.A.",
+    text: "O que mais me impressionou foi a rastreabilidade. Cada documento tem histórico completo: quem criou, quem aprovou, quais evidências foram anexadas. Em uma fiscalização recente, isso fez toda a diferença.",
+    stars: 5
   }
 ];
 

@@ -5,7 +5,7 @@ export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "SGS Segurança",
+    name: "SGS",
     url: siteConfig.url,
     logo: `${siteConfig.url}/images/logo-sgs.svg`,
     email: "contato@sgsseguranca.com.br",
@@ -40,14 +40,14 @@ export function getSoftwareApplicationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "SGS - Sistema de Gestão de Segurança",
+    name: "SGS",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "BRL",
-      description: "Planos sob consulta conforme operação e módulos.",
+      description: "Planos a partir de R$ 197/mês conforme operação e módulos.",
     },
     aggregateRating: {
       "@type": "AggregateRating",

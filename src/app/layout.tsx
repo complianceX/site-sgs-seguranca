@@ -7,6 +7,7 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { ConsentScripts } from "@/components/security/ConsentScripts";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { PageTransition } from "@/components/animations/PageTransition";
 import {
   getFaqSchema,
   getOrganizationSchema,
@@ -75,6 +76,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[9999] -translate-y-full rounded-xl bg-primary px-6 py-4 text-sm font-black text-white shadow-xl shadow-primary/20 opacity-0 outline-none transition-all focus:translate-y-0 focus:opacity-100"
+        >
+          Pular para conteúdo principal
+        </a>
         <StructuredData
           data={[
             getOrganizationSchema(),
@@ -86,7 +93,9 @@ export default function RootLayout({
         <ConsentScripts />
         <ScrollProgress />
         <Header />
-        <main className="flex-grow pt-16">{children}</main>
+        <main id="main-content" className="flex-grow pt-16" tabIndex={-1} role="main">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <CookieBanner />
       </body>

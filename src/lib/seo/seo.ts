@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const SITE_URL = "https://sgsseguranca.com.br";
-const SITE_NAME = "SGS Segurança";
+const SITE_NAME = "SGS";
 
 export const siteConfig = {
   url: SITE_URL,

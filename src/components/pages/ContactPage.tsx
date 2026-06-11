@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { submitLead, type LeadResponse } from "@/lib/submit-lead";
 
 export function ContactPage() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -67,11 +69,11 @@ export function ContactPage() {
       }
 
       setLeadResult(result);
-      setSubmitted(true);
       form.reset();
       setHoneypot("");
       setTurnstileToken("");
       setTurnstileReset((value) => value + 1);
+      router.push("/obrigado");
     } catch {
       setSubmitError("Falha de conexão. Tente novamente em instantes.");
     } finally {
@@ -278,6 +280,7 @@ export function ContactPage() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12 relative z-10"
+                    role="status"
                   >
                     <div className="w-20 h-20 bg-sgs-green/10 text-sgs-green rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 className="w-10 h-10" />
@@ -285,18 +288,15 @@ export function ContactPage() {
                     <h3 className="text-2xl font-bold mb-4">Solicitação registrada</h3>
                     <p className="text-muted-foreground mb-8">
                       Recebemos sua mensagem e vamos retornar pelo contato informado.
-                      {leadResult?.referenceId ? ` Protocolo: ${leadResult.referenceId.slice(0, 8).toUpperCase()}.` : ""}
                     </p>
-                    {leadResult?.delivery === "local" && (
-                      <p className="text-xs font-bold text-slate-400 mb-8">
-                        Encaminhamento externo ainda não configurado neste ambiente. Para urgências, escreva para contato@sgsseguranca.com.br.
-                      </p>
-                    )}
                     <button
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => {
+                        setSubmitted(false);
+                        router.push("/");
+                      }}
                       className="text-primary font-bold hover:underline"
                     >
-                      Enviar outra mensagem
+                      Voltar para o início
                     </button>
                   </motion.div>
                 )}

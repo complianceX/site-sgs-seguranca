@@ -53,7 +53,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-10" aria-label="Navegação principal">
           <motion.div
             className="flex items-center gap-8"
             initial="hidden"
@@ -79,6 +79,7 @@ export function Header() {
                     "text-[13px] font-bold transition-all relative group tracking-tight",
                     isActive ? "text-primary" : "text-slate-500 hover:text-primary"
                   )}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   <motion.span
                     whileHover={{ y: -1 }}
@@ -133,6 +134,8 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-b border-slate-100 overflow-hidden"
+            role="navigation"
+            aria-label="Navegação mobile"
           >
             <div className="container mx-auto px-4 py-8 flex flex-col gap-6">
               {navItems.map((item, i) => (

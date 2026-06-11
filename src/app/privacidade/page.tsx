@@ -34,6 +34,14 @@ const sections = [
     title: "Segurança",
     text: "Aplicamos minimização de dados, validação de entradas, controles antiabuso e headers de segurança para reduzir riscos no site institucional.",
   },
+  {
+    title: "Compartilhamento com terceiros",
+    text: "Podemos compartilhar dados com provedores de infraestrutura cloud (Cloudflare), plataforma de analytics (Google Analytics, mediante consentimento), serviço de verificação anti-bot (Cloudflare Turnstile) e ferramentas de agendamento (Calendly). Não vendemos dados pessoais sob nenhuma hipótese.",
+  },
+  {
+    title: "Encarregado de dados (DPO)",
+    text: "O encarregado pelo tratamento de dados pessoais no SGS pode ser contatado diretamente pelo e-mail dpo@sgsseguranca.com.br para esclarecimentos, solicitações de exercício de direitos do titular ou comunicações sobre privacidade.",
+  },
 ];
 
 export default function PrivacyPage() {
@@ -54,7 +62,40 @@ export default function PrivacyPage() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {sections.map((section) => (
+          {sections.slice(0, 2).map((section) => (
+            <section key={section.title} className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
+              <h2 className="mb-4 text-xl font-black tracking-tight text-sgs-navy">
+                {section.title}
+              </h2>
+              <p className="text-sm font-medium leading-relaxed text-slate-500">
+                {section.text}
+              </p>
+            </section>
+          ))}
+          <section className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
+            <h2 className="mb-4 text-xl font-black tracking-tight text-sgs-navy">
+              {sections[2].title}
+            </h2>
+            <p className="text-sm font-medium leading-relaxed text-slate-500">
+              {sections[2].text}
+            </p>
+          </section>
+          <section className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
+            <h2 className="mb-4 text-xl font-black tracking-tight text-sgs-navy">
+              {sections[3].title}
+            </h2>
+            <p className="text-sm font-medium leading-relaxed text-slate-500">
+              {sections[3].text}
+            </p>
+          </section>
+        </div>
+
+        <h2 className="mb-8 mt-20 text-3xl font-black tracking-tight text-sgs-navy">
+          Mais informações
+        </h2>
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          {sections.slice(4).map((section) => (
             <section key={section.title} className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
               <h2 className="mb-4 text-xl font-black tracking-tight text-sgs-navy">
                 {section.title}
@@ -66,14 +107,24 @@ export default function PrivacyPage() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-[2rem] border border-primary/10 bg-primary/5 p-8">
-          <p className="text-sm font-bold leading-relaxed text-sgs-navy">
-            Para dúvidas ou solicitações de privacidade, entre em contato por{" "}
-            <Link className="text-primary underline" href="mailto:contato@sgsseguranca.com.br">
-              contato@sgsseguranca.com.br
-            </Link>
-            .
-          </p>
+        <div className="mt-16 space-y-4">
+          <div className="rounded-[2rem] border border-primary/10 bg-primary/5 p-8">
+            <p className="text-sm font-bold leading-relaxed text-sgs-navy">
+              Para dúvidas ou solicitações de privacidade, entre em contato por{" "}
+              <Link className="text-primary underline" href="mailto:contato@sgsseguranca.com.br">
+                contato@sgsseguranca.com.br
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-sgs-orange/10 bg-sgs-orange/5 p-8">
+            <p className="text-sm font-bold leading-relaxed text-sgs-navy">
+              Encarregado de dados (DPO):{" "}
+              <Link className="text-primary underline" href="mailto:dpo@sgsseguranca.com.br">
+                dpo@sgsseguranca.com.br
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
