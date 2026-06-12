@@ -8,15 +8,20 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "security-check": "npm audit"
+    "security-check": "npm audit",
+    "generate-resources": "node scripts/generate-resources.js",
+    "postinstall": "node scripts/generate-resources.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "docx": "^9.7.1",
+    "exceljs": "^4.4.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.474.0",
     "next": "^16.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "resend": "^6.12.4",
     "tailwind-merge": "^3.5.0",
     "zod": "^4.3.6"
   },

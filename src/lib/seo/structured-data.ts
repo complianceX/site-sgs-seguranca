@@ -45,14 +45,10 @@ export function getSoftwareApplicationSchema() {
     operatingSystem: "Web",
     offers: {
       "@type": "Offer",
-      price: "0",
+      price: "197",
       priceCurrency: "BRL",
+      priceValidUntil: new Date(Date.now() + 90 * 86400000).toISOString().split("T")[0],
       description: "Planos a partir de R$ 197/mês conforme operação e módulos.",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "128",
     },
     description: "Sistema completo para gestão de SST. Inclui módulos de APR (Análise Preliminar de Risco), DDS (Diálogo Diário de Segurança), Permissões de Trabalho, Gestão de EPIs e Treinamentos NRs.",
     url: siteConfig.url,
@@ -94,5 +90,18 @@ export function getArticleSchema(post: {
     datePublished: post.date,
     image: post.image,
     mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
+  };
+}
+
+export function getBreadcrumbSchema(items: { name: string; item: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.item.startsWith("http") ? item.item : `${siteConfig.url}${item.item}`,
+    })),
   };
 }

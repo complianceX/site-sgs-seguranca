@@ -5,8 +5,10 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { ConsentScripts } from "@/components/security/ConsentScripts";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { PageTransition } from "@/components/animations/PageTransition";
 import {
   getFaqSchema,
@@ -90,6 +92,7 @@ export default function RootLayout({
             getFaqSchema(),
           ]}
         />
+        <BreadcrumbSchema />
         <ConsentScripts />
         <ScrollProgress />
         <Header />
@@ -98,6 +101,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <CookieBanner />
+        <WhatsAppButton />
       </body>
     </html>
   );

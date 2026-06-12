@@ -1,15 +1,17 @@
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ValuePropositionSection } from "@/components/sections/ValuePropositionSection";
 import { ProductProofSection } from "@/components/sections/ProductProofSection";
 import { ConversionBenefitsSection } from "@/components/sections/ConversionBenefitsSection";
 import { OperationalFlowSection } from "@/components/sections/OperationalFlowSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
-import { ROICalculator } from "@/components/sections/ROICalculator";
 import { SocialProofSection } from "@/components/sections/SocialProofSection";
 import { FieldGallerySection } from "@/components/sections/FieldGallerySection";
-import { CustomerLogosSection } from "@/components/sections/CustomerLogosSection";
+
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection").then((m) => ({ default: m.FAQSection })));
+const ROICalculator = dynamic(() => import("@/components/sections/ROICalculator").then((m) => ({ default: m.ROICalculator })));
+const CustomerLogosSection = dynamic(() => import("@/components/sections/CustomerLogosSection").then((m) => ({ default: m.CustomerLogosSection })));
 import { MotionCard } from "@/components/animations/MotionCard";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MotionText } from "@/components/animations/MotionText";
