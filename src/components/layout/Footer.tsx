@@ -126,6 +126,19 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
+            <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8" id="footer-solutions">Soluções</h4>
+            <ul className="space-y-4 text-sm font-bold" aria-labelledby="footer-solutions">
+              {footerSections.solutions.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-slate-500 hover:text-primary transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
             <h4 className="text-sgs-navy font-black text-xs uppercase tracking-widest mb-8" id="footer-company">Empresa</h4>
             <ul className="space-y-4 text-sm font-bold" aria-labelledby="footer-company">
               {footerSections.company.map((item) => (
@@ -138,7 +151,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-2">
             <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
               <h4 className="text-sgs-navy font-black text-sm mb-4">Pronto para digitalizar seu SST?</h4>
               <p className="text-xs text-slate-500 mb-6 leading-relaxed">Converse com nossa equipe e veja como o SGS pode se adaptar à realidade da sua operação.</p>

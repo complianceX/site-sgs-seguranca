@@ -1,0 +1,16 @@
+export const categories = [
+  "Todos",
+  "Governança",
+  "Tecnologia",
+  "NRs & Legislação",
+  "IA no SST",
+  "AJN Engenharia",
+  "Segurança do Trabalho",
+  "Saúde Ocupacional",
+  "eSocial SST",
+  "Combate a Incêndio",
+  "Laudos Técnicos",
+  "Treinamentos",
+  "Gestão Ambiental",
+  "Engenharia Elétrica",
+];

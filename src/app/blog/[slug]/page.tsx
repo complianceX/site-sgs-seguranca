@@ -6,9 +6,10 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { getPostBySlug, posts } from "@/data/blog";
 import { getPostIsoDate } from "@/data/blog-dates";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { getArticleSchema } from "@/lib/seo/structured-data";
+import { getArticleSchema, getBreadcrumbSchema } from "@/lib/seo/structured-data";
 import { createPageMetadata } from "@/lib/seo/seo";
 import { blurPlaceholder } from "@/lib/utils";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export const revalidate = 3600;
 
@@ -52,12 +53,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <article className="bg-white py-24 lg:py-40">
       <StructuredData
-        data={getArticleSchema({
-          ...post,
-          date: getPostIsoDate(post.slug),
-        })}
+        data={[
+          getArticleSchema({
+            ...post,
+            date: getPostIsoDate(post.slug),
+          }),
+          getBreadcrumbSchema([
+            { name: "Insights", item: "/blog" },
+            { name: post.title, item: `/blog/${slug}` },
+          ]),
+        ]}
       />
       <div className="container">
+        <Breadcrumbs
+          items={[
+            { name: "Insights", href: "/blog" },
+            { name: post.title, href: `/blog/${slug}` },
+          ]}
+        />
         <Link
           href="/blog"
           className="mb-12 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-primary transition-colors hover:text-sgs-navy"

@@ -7,8 +7,6 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^[0-9+()\-\s.]{8,30}$/;
 const TURNSTILE_TIMEOUT_MS = 7000;
 
-export type LeadSource = "contact" | "newsletter" | "resource";
-
 /**
  * Esquema Zod para validação de Leads.
  * Substitui a validação manual anterior por uma abordagem declarativa e segura.

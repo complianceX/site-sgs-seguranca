@@ -1,13 +1,5 @@
 import { trackEvent, type AnalyticsEvent } from "@/lib/analytics";
-
-export type LeadResponse = {
-  success: boolean;
-  error?: string;
-  referenceId?: string;
-  delivery?: "webhook" | "local";
-  fallbackEmail?: string;
-  fallbackSubject?: string;
-};
+import type { LeadResponse } from "@/types/lead";
 
 type SubmitLeadOptions = {
   body: Record<string, unknown>;

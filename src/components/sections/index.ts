@@ -1,0 +1,12 @@
+export { ConversionBenefitsSection } from "./ConversionBenefitsSection";
+export { CustomerLogosSection } from "./CustomerLogosSection";
+export { FAQSection } from "./FAQSection";
+export { FieldGallerySection } from "./FieldGallerySection";
+export { FinalCTASection } from "./FinalCTASection";
+export { HeroSection } from "./HeroSection";
+export { OperationalFlowSection } from "./OperationalFlowSection";
+export { ProductProofSection } from "./ProductProofSection";
+export { ROICalculator } from "./ROICalculator";
+export { SocialProofSection } from "./SocialProofSection";
+export { TestimonialsSection } from "./TestimonialsSection";
+export { ValuePropositionSection } from "./ValuePropositionSection";

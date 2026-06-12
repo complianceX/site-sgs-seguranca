@@ -1,0 +1,15 @@
+export { HomePage } from "./HomePage";
+export { AboutPage } from "./AboutPage";
+export { BlogPage } from "./BlogPage";
+export { ClientsPage } from "./ClientsPage";
+export { ComparativoPage } from "./ComparativoPage";
+export { ContactPage } from "./ContactPage";
+export { GovernancePage } from "./GovernancePage";
+export { IntegrationsPage } from "./IntegrationsPage";
+export { ModulesPage } from "./ModulesPage";
+export { PartnersPage } from "./PartnersPage";
+export { PricingPage } from "./PricingPage";
+export { ResourcesPage } from "./ResourcesPage";
+export { SecurityPage } from "./SecurityPage";
+export { SophiePage } from "./SophiePage";
+export { SuccessStoriesPage } from "./SuccessStoriesPage";

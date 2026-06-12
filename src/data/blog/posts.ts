@@ -1,39 +1,4 @@
-export const categories = [
-  "Todos", 
-  "Governança", 
-  "Tecnologia", 
-  "NRs & Legislação", 
-  "IA no SST",
-  "AJN Engenharia",
-  "Segurança do Trabalho",
-  "Saúde Ocupacional",
-  "eSocial SST",
-  "Combate a Incêndio",
-  "Laudos Técnicos",
-  "Treinamentos",
-  "Gestão Ambiental",
-  "Engenharia Elétrica"
-];
-
-export interface BlogPost {
-  id: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  author: string;
-  date: string;
-  readTime: string;
-  image: string;
-  tags?: string[];
-  featured?: boolean;
-  seoTitle?: string;
-  seoDescription?: string;
-  content: {
-    heading: string;
-    body: string[];
-  }[];
-}
+import type { BlogPost } from "@/types/blog";
 
 export const posts: BlogPost[] = [
   {
@@ -53,10 +18,10 @@ export const posts: BlogPost[] = [
         heading: "IA no SST precisa apoiar, não substituir",
         body: [
           "A inteligência artificial ganha valor real quando reduz trabalho repetitivo sem remover a responsabilidade técnica do profissional de SST.",
-          "O SGS posiciona a Sophie como camada assistiva: o profissional revisa, ajusta e aprova o documento."
-        ]
-      }
-    ]
+          "O SGS posiciona a Sophie como camada assistiva: o profissional revisa, ajusta e aprova o documento.",
+        ],
+      },
+    ],
   },
   {
     id: 5,
@@ -76,19 +41,19 @@ export const posts: BlogPost[] = [
       {
         heading: "Especialista em conformidade e segurança",
         body: [
-          "A AJN Consultoria e Engenharia é uma empresa especializada em soluções de Qualidade, Saúde, Segurança e Meio Ambiente, oferecendo suporte técnico para empresas que precisam manter suas operações seguras, regulares e em conformidade com as normas aplicáveis.",
-          "Com atuação em segurança do trabalho, saúde ocupacional, gestão ambiental, qualidade, eSocial, treinamentos, laudos técnicos, perícias, projetos elétricos e combate a incêndio, a AJN entrega serviços voltados à prevenção de riscos, organização documental, regularização técnica e melhoria contínua dos ambientes de trabalho."
-        ]
+          "A AJN Consultoria e Engenharia é uma empresa especializada em soluções de Qualidade, Saúde, Segurança e Meio Ambiente...",
+          "Com atuação em segurança do trabalho, saúde ocupacional, gestão ambiental, qualidade, eSocial, treinamentos, laudos técnicos...",
+        ],
       },
       {
         heading: "Soluções completas para sua empresa",
         body: [
-          "Entre suas principais soluções estão a assessoria em segurança do trabalho, a gestão de PCMSO e ASOs, a elaboração de PGR, o envio de eventos de SST ao eSocial, as perícias de insalubridade e periculosidade, a emissão de laudos técnicos, os treinamentos de Normas Regulamentadoras, os projetos de combate a incêndio, a regularização de imóveis junto ao Corpo de Bombeiros e os projetos elétricos residenciais, comerciais e prediais.",
-          "A empresa também atua com PMOC, climatização, refrigeração, elevadores, escadas rolantes, esteiras rolantes e mobilização de pessoas, máquinas e equipamentos.",
-          "O compromisso da AJN está na entrega de soluções personalizadas, no cumprimento de prazos, na comunicação transparente e na busca por segurança, eficiência e conformidade para seus clientes."
-        ]
-      }
-    ]
+          "Entre suas principais soluções estão a assessoria em segurança do trabalho, a gestão de PCMSO e ASOs, a elaboração de PGR...",
+          "A empresa também atua com PMOC, climatização, refrigeração, elevadores, escadas rolantes...",
+          "O compromisso da AJN está na entrega de soluções personalizadas...",
+        ],
+      },
+    ],
   },
   {
     id: 6,
@@ -105,11 +70,11 @@ export const posts: BlogPost[] = [
       {
         heading: "A importância do gerenciamento de riscos",
         body: [
-          "O Programa de Gerenciamento de Riscos, conhecido como PGR, é uma ferramenta essencial para empresas que desejam controlar riscos ocupacionais e manter um ambiente de trabalho mais seguro. Ele permite identificar perigos, avaliar riscos e definir medidas preventivas e corretivas.",
-          "A AJN Consultoria e Engenharia atua na elaboração e atualização do PGR, considerando as atividades da empresa, os ambientes de trabalho, os riscos existentes e as exigências das Normas Regulamentadoras."
-        ]
-      }
-    ]
+          "O Programa de Gerenciamento de Riscos, conhecido como PGR, é uma ferramenta essencial...",
+          "A AJN Consultoria e Engenharia atua na elaboração e atualização do PGR...",
+        ],
+      },
+    ],
   },
   {
     id: 7,
@@ -126,11 +91,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Gestão médica preventiva",
         body: [
-          "O PCMSO é o Programa de Controle Médico de Saúde Ocupacional. Ele organiza as ações de acompanhamento da saúde dos trabalhadores, considerando os riscos identificados no ambiente de trabalho.",
-          "A AJN auxilia empresas na gestão do PCMSO, no controle de vencimentos dos ASOs, no acompanhamento dos exames ocupacionais e na organização documental necessária para manter a saúde ocupacional em dia."
-        ]
-      }
-    ]
+          "O PCMSO é o Programa de Controle Médico de Saúde Ocupacional...",
+          "A AJN auxilia empresas na gestão do PCMSO, no controle de vencimentos dos ASOs...",
+        ],
+      },
+    ],
   },
   {
     id: 8,
@@ -147,11 +112,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Conformidade digital no eSocial",
         body: [
-          "O eSocial SST reúne informações importantes sobre saúde e segurança do trabalho. Entre os eventos mais relevantes estão o S-2220, relacionado ao monitoramento da saúde do trabalhador, e o S-2240, relacionado às condições ambientais do trabalho.",
-          "A AJN Consultoria e Engenharia auxilia empresas na organização, conferência e envio das informações de SST ao eSocial, ajudando a reduzir erros, atrasos e inconsistências."
-        ]
-      }
-    ]
+          "O eSocial SST reúne informações importantes sobre saúde e segurança do trabalho...",
+          "A AJN Consultoria e Engenharia auxilia empresas na organização...",
+        ],
+      },
+    ],
   },
   {
     id: 9,
@@ -168,11 +133,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Regularização de Edificações",
         body: [
-          "A regularização de imóveis junto ao Corpo de Bombeiros é uma etapa fundamental para garantir segurança, conformidade e tranquilidade para empresas, condomínios, comércios e indústrias.",
-          "A AJN atua com projetos de combate a incêndio e pânico, renovação de AVCB e CLCB, análise de conformidade, documentação técnica e acompanhamento junto aos órgãos competentes."
-        ]
-      }
-    ]
+          "A regularização de imóveis junto ao Corpo de Bombeiros é uma etapa fundamental...",
+          "A AJN atua com projetos de combate a incêndio e pânico...",
+        ],
+      },
+    ],
   },
   {
     id: 10,
@@ -189,11 +154,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Preparação e Conscientização",
         body: [
-          "Os treinamentos de Normas Regulamentadoras são fundamentais para preparar trabalhadores para atividades com riscos específicos. Eles contribuem para a prevenção de acidentes, redução de falhas operacionais e atendimento às exigências legais.",
-          "A AJN oferece treinamentos de NRs como NR 01, NR 06, NR 10, NR 11, NR 12, NR 13, NR 17, NR 18, NR 20, NR 23, NR 24, NR 25, NR 26, NR 31, NR 32, NR 33, NR 35, NR 36, NR 38 e integração de novos colaboradores."
-        ]
-      }
-    ]
+          "Os treinamentos de Normas Regulamentadoras são fundamentais...",
+          "A AJN oferece treinamentos de NRs como NR 01, NR 06, NR 10...",
+        ],
+      },
+    ],
   },
   {
     id: 11,
@@ -210,11 +175,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Avaliação de Agentes Nocivos",
         body: [
-          "Os laudos de insalubridade e periculosidade avaliam as condições de trabalho e verificam se há exposição a agentes nocivos ou situações de risco acentuado, como ruído, produtos químicos, eletricidade, inflamáveis, explosivos, vibração e outros fatores.",
-          "A AJN realiza avaliações técnicas e emite laudos para apoiar empresas na prevenção de riscos, na organização documental e no atendimento às exigências legais."
-        ]
-      }
-    ]
+          "Os laudos de insalubridade e periculosidade avaliam as condições de trabalho...",
+          "A AJN realiza avaliações técnicas e emite laudos...",
+        ],
+      },
+    ],
   },
   {
     id: 12,
@@ -231,11 +196,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Responsabilidade e Impacto",
         body: [
-          "A gestão ambiental é essencial para empresas que desejam reduzir impactos, controlar resíduos e atuar de forma responsável. Ela envolve organização de processos, conscientização, monitoramento e cumprimento das exigências ambientais aplicáveis.",
-          "A AJN atua com segregação, armazenamento e destinação correta de resíduos, treinamentos, conscientização ambiental, monitoramento de qualidade do ar e da água, políticas de sustentabilidade e apoio em licenciamento ambiental."
-        ]
-      }
-    ]
+          "A gestão ambiental é essencial para empresas que desejam reduzir impactos...",
+          "A AJN atua com segregação, armazenamento e destinação correta de resíduos...",
+        ],
+      },
+    ],
   },
   {
     id: 13,
@@ -252,11 +217,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Segurança em Instalações",
         body: [
-          "Projetos elétricos são fundamentais para garantir instalações seguras, eficientes e adequadas ao uso de cada edificação. Um projeto bem feito reduz riscos, melhora o desempenho do sistema e contribui para economia na execução e operação.",
-          "A AJN elabora projetos elétricos residenciais, comerciais e prediais com foco em segurança, qualidade, prazo, eficiência operacional e viabilidade econômica."
-        ]
-      }
-    ]
+          "Projetos elétricos são fundamentais para garantir instalações seguras...",
+          "A AJN elabora projetos elétricos residenciais, comerciais e prediais...",
+        ],
+      },
+    ],
   },
   {
     id: 14,
@@ -273,11 +238,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Qualidade do Ar e Manutenção",
         body: [
-          "O PMOC é o Plano de Manutenção, Operação e Controle aplicado a sistemas de climatização. Ele ajuda a organizar rotinas de manutenção, preservar a eficiência dos equipamentos e contribuir para ambientes mais seguros e saudáveis.",
-          "A AJN atua na elaboração e implementação de PMOC, além de serviços relacionados à instalação e manutenção de sistemas de refrigeração e climatização."
-        ]
-      }
-    ]
+          "O PMOC é o Plano de Manutenção, Operação e Controle aplicado a sistemas de climatização...",
+          "A AJN atua na elaboração e implementação de PMOC...",
+        ],
+      },
+    ],
   },
   {
     id: 2,
@@ -294,11 +259,11 @@ export const posts: BlogPost[] = [
       {
         heading: "Validação pública não deve expor dado sensível",
         body: [
-          "QR Codes e portais de validação são úteis para auditorias, contratantes e fiscalização, mas precisam revelar apenas o necessário para comprovar autenticidade."
-        ]
-      }
-    ]
-  }
+          "QR Codes e portais de validação são úteis para auditorias, contratantes e fiscalização...",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string) {
